@@ -14,7 +14,7 @@ skoru, Claude Code'un ne yaptığı. Pile tıklayınca üstünde bir kart açıl
 [Kurulum](#kurulum) &nbsp;·&nbsp;
 [Derleme](#derleme)
 
-<sub>One UI's Now Bar in the Windows 11 and 10 taskbar. The app speaks Turkish and English.</sub>
+<sub>One UI's Now Bar in the Windows 11 and 10 taskbar. The app speaks Turkish, English and Arabic. · [العربية](README_AR.md)</sub>
 
 </div>
 
@@ -67,7 +67,7 @@ Boştayken saate tıklayınca günün özeti açılır: hava, maçlar, son çala
 
 Ayarlar penceresi tepsi menüsündeki **Ayarlar…** ile açılır; her değişiklik pile anında yansır.
 Üstteki arama çubuğu ayarları bulur; Canlı maç sayfasında takım arar, Tam ekran sayfasında istisna
-ekler. Ctrl+F aramaya, Ctrl+K eylemler menüsüne götürür. Arayüz Türkçe ve İngilizcedir
+ekler. Ctrl+F aramaya, Ctrl+K eylemler menüsüne götürür. Arayüz Türkçe, İngilizce ve Arapçadır
 (Genel → Dil; varsayılan olarak Windows'un dili).
 
 ## Kurulum
@@ -204,9 +204,11 @@ kullanır. Ayarlar penceresi Inter'i kendi içinde barındırır (`ui\fonts`, SI
 
 Now Bar açıldıktan bir dakika sonra ve ardından günde bir kez GitHub'dan son sürümü sorar
 (`api.github.com`; sorgu dışında hiçbir şey gönderilmez). Yeni sürüm varsa tepsi menüsünde
-**Güncelle: x.y.z** ve Ayarlar → Hakkında'da bir satır belirir. Tıklayınca iki exe indirilir,
+**Güncelle: x.y.z** ve Ayarlar → Hakkında'da bir satır belirir. Tıklayınca iki exe indirilir;
+`SHA256SUMS.txt`'nin imzası exe'ye gömülü anahtarla (`UPDATE_KEY`) denetlenir, exe'ler
 `SHA256SUMS.txt` ile doğrulanır, eskilerinin yerine konur ve Now Bar yeniden başlar; ayarlar ve
-otomatik başlatma olduğu gibi kalır. Adımlardan biri bile başarısız olursa eski exe'ler yerinde
+otomatik başlatma olduğu gibi kalır. İmzasız bir sürümde (ya da anahtarı olmayan bir derlemede)
+hiçbir exe değiştirilmez: sürüm sayfası açılır ve güncelleme kurulumla elle yapılır. Adımlardan biri bile başarısız olursa eski exe'ler yerinde
 kalır. Now Bar'ın yazma izni olmayan bir klasöre (Program Files gibi) kurulduysa sürüm sayfası
 açılır. Güncelleme denetimi Ayarlar → Hakkında → Güncellemeleri denetle ile kapatılabilir.
 
@@ -279,7 +281,10 @@ Testler ve clippy (`.cargo\config.toml`'daki kısaltmalar) quick profilinde çal
 - `assets\make_icon.py`: simgeyi (tepsideki beyaz hap) yeniden çizer.
 - **Sürüm yayınlamak:** `Cargo.toml`'daki `version`'ı artır, `tools\make-setup.ps1`'i çalıştır,
   sonra `dist\` içindekileri yayınla:
-  `gh release create vX.Y.Z dist\nowbar-setup.exe dist\nowbar.exe dist\nowbar-settings.exe dist\SHA256SUMS.txt`.
+  `gh release create vX.Y.Z dist\nowbar-setup.exe dist\nowbar.exe dist\nowbar-settings.exe dist\SHA256SUMS.txt dist\SHA256SUMS.txt.sig`.
+  İmza anahtarı bir kez `tools\make-update-key.ps1` ile üretilir: gizli yarısı depo dışında
+  (`%USERPROFILE%\.nowbar\update-key.json`) kalır, açık yarısı `src\update.rs`'deki `UPDATE_KEY`'e
+  yazılır; `make-setup.ps1` imzayı kendisi atar.
   `nowbar.exe --update-from <klasör>` güncellemeyi GitHub olmadan, bir klasördeki exe'lerle dener.
 
 ---

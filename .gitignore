@@ -10,3 +10,9 @@
 /.impeccable/
 /.superpowers/
 /.taste-skill/
+# The update signing key's private half (tools/make-update-key.ps1 keeps it outside the repo).
+update-key.json
+# thmanyah's fonts: their license forbids sharing the files (each PC installs them).
+thmanyah*.otf
+thmanyah*.woff2
+thmanyah*.ttf

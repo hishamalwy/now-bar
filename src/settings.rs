@@ -126,7 +126,7 @@ pub struct Settings {
     pub enabled: bool,
     // Genel
     pub autostart: bool,
-    /// The interface's language (`Auto`: Windows' own, Turkish or English).
+    /// The interface's language (`Auto`: Windows' own, Turkish, English or Arabic).
     pub language: crate::i18n::LanguagePick,
     pub hotkey_picker: Hotkey,
     pub tray_left_click: TrayClick,

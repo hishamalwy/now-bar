@@ -277,37 +277,188 @@ pub fn crest_path(team_id: &str) -> PathBuf {
     crate::platform::log::log_path().with_file_name("crests").join(format!("{team_id}.png"))
 }
 
-/// Downloads each team's crest once (ESPN's 500 px PNG; the UI scales it to the exact size).
+/// A cached crest older than this is fetched again: clubs redraw their badges.
+const CREST_MAX_AGE: Duration = Duration::from_secs(30 * 24 * 3600);
+/// After a team's crest couldn't be fetched, it isn't tried again for this long (not every poll).
+const CREST_RETRY: Duration = Duration::from_secs(6 * 3600);
+
+/// Keeps each team's crest cached and current (the UI scales it to the exact size).
 fn cache_crests(m: &MatchSnapshot) {
     for team in [&m.home, &m.away] {
-        if let Some(url) = &team.logo {
-            fetch_crest(&team.id, url);
+        queue_crest(CrestJob::Team { id: team.id.clone(), name: team.name.clone(), logo: team.logo.clone() });
+    }
+}
+
+/// Bumped by every crest saved: the UI drops the crests it decoded and draws them again.
+pub static CREST_SAVED: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
+/// A crest for the crest thread to keep current.
+pub enum CrestJob {
+    /// A football team's: [`fetch_team_crest`].
+    Team { id: String, name: String, logo: Option<String> },
+    /// A picture at a known address (basketball's feed): [`fetch_crest`].
+    Url { id: String, url: String },
+}
+
+/// Hands `job` to the crest thread (started on first use): the score polls never wait on a
+/// picture. Each saved crest wakes the UI as a match update.
+pub fn queue_crest(job: CrestJob) {
+    static JOBS: std::sync::Mutex<Option<Sender<CrestJob>>> = std::sync::Mutex::new(None);
+    let mut jobs = JOBS.lock().unwrap_or_else(|e| e.into_inner());
+    if jobs.is_none() {
+        let (tx, rx) = channel::<CrestJob>();
+        let spawned = std::thread::Builder::new().name("crests".into()).spawn(move || {
+            unsafe {
+                let _ = RoInitialize(RO_INIT_MULTITHREADED);
+            }
+            for job in rx {
+                let before = CREST_SAVED.load(std::sync::atomic::Ordering::Relaxed);
+                match job {
+                    CrestJob::Team { id, name, logo } => fetch_team_crest(&id, &name, logo.as_deref()),
+                    CrestJob::Url { id, url } => fetch_crest(&id, &url),
+                };
+                if CREST_SAVED.load(std::sync::atomic::Ordering::Relaxed) != before {
+                    crate::platform::windows::post_matches();
+                }
+            }
+        });
+        match spawned {
+            Ok(_) => *jobs = Some(tx),
+            Err(e) => {
+                log(&format!("crests: no thread: {e}"));
+                return;
+            }
+        }
+    }
+    if let Some(tx) = jobs.as_ref() {
+        let _ = tx.send(job);
+    }
+}
+
+/// Whether `team_id`'s cached crest is there and younger than [`CREST_MAX_AGE`].
+fn crest_fresh(path: &std::path::Path) -> bool {
+    let age = std::fs::metadata(path).and_then(|m| m.modified()).ok().and_then(|t| t.elapsed().ok());
+    age.is_some_and(|a| a < CREST_MAX_AGE)
+}
+
+/// Whether `team_id` failed lately (and notes a failure now with `failed`).
+fn crest_backoff(team_id: &str, failed: bool) -> bool {
+    static FAILED: std::sync::Mutex<Option<HashMap<String, Instant>>> = std::sync::Mutex::new(None);
+    let mut map = FAILED.lock().unwrap_or_else(|e| e.into_inner());
+    let map = map.get_or_insert_with(HashMap::new);
+    if failed {
+        map.insert(team_id.to_string(), Instant::now());
+        return true;
+    }
+    map.get(team_id).is_some_and(|t| t.elapsed() < CREST_RETRY)
+}
+
+/// `team_id`'s crest, current: TheSportsDB's badge for a team of exactly that name (kept up to
+/// date by its community; ESPN's lag years behind outside Europe's big leagues), else ESPN's
+/// `logo`, else ESPN's picture by id. A stale crest stays when none can be fetched. Whether one
+/// is cached now (blocking: off the UI thread).
+pub fn fetch_team_crest(team_id: &str, name: &str, logo: Option<&str>) -> bool {
+    let path = crest_path(team_id);
+    if crest_fresh(&path) || crest_backoff(team_id, false) {
+        return path.exists();
+    }
+    let Ok(espn) = Espn::new() else { return path.exists() };
+    let by_id = format!("https://a.espncdn.com/i/teamlogos/soccer/500/{team_id}.png");
+    let espn_urls = logo.filter(|u| u.starts_with("https://")).into_iter().chain((!team_id.is_empty()).then_some(by_id.as_str()));
+    let badge = sportsdb_badge(&espn, name);
+    for url in badge.iter().map(String::as_str).chain(espn_urls) {
+        if let Some(png) = espn.bytes(url).ok().filter(|b| is_picture(b)) {
+            return save_crest(team_id, &path, &png);
+        }
+    }
+    log(&format!("football: crest {team_id} ({name}): none found"));
+    crest_backoff(team_id, true);
+    path.exists()
+}
+
+/// TheSportsDB's badge for the football team called `name` (accents, case and punctuation aside),
+/// when exactly one team has that name or alternate name.
+fn sportsdb_badge(espn: &Espn, name: &str) -> Option<String> {
+    let key = fold(name);
+    if key.len() < 3 {
+        return None;
+    }
+    let url = format!(
+        "https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t={}",
+        Uri::EscapeComponent(&HSTRING::from(name)).ok()?
+    );
+    let v: serde_json::Value = serde_json::from_slice(&espn.bytes(&url).ok()?).ok()?;
+    let named = |t: &&serde_json::Value| {
+        let alternates = t["strTeamAlternate"].as_str().unwrap_or("");
+        t["strSport"] == "Soccer"
+            && std::iter::once(t["strTeam"].as_str().unwrap_or("")).chain(alternates.split(',')).any(|n| fold(n) == key)
+    };
+    let hits: Vec<&serde_json::Value> = v["teams"].as_array()?.iter().filter(named).collect();
+    match hits.as_slice() {
+        [t] => t["strBadge"].as_str().filter(|u| u.starts_with("https://")).map(str::to_string),
+        _ => None,
+    }
+}
+
+/// A team name to compare: lower case, Latin letters without accents, letters and digits only.
+fn fold(name: &str) -> String {
+    name.chars()
+        .flat_map(char::to_lowercase)
+        .map(|c| match c {
+            'á' | 'à' | 'â' | 'ä' | 'ã' | 'å' => 'a',
+            'ç' | 'ć' | 'č' => 'c',
+            'é' | 'è' | 'ê' | 'ë' => 'e',
+            'ğ' => 'g',
+            'í' | 'ì' | 'î' | 'ï' | 'ı' => 'i',
+            'ñ' => 'n',
+            'ó' | 'ò' | 'ô' | 'ö' | 'õ' | 'ø' => 'o',
+            'ş' | 'š' | 'ś' => 's',
+            'ú' | 'ù' | 'û' | 'ü' => 'u',
+            'ž' | 'ź' | 'ż' => 'z',
+            c => c,
+        })
+        .filter(|c| c.is_alphanumeric())
+        .collect()
+}
+
+/// PNG or JPEG bytes (an error page or an empty answer isn't a crest).
+fn is_picture(b: &[u8]) -> bool {
+    b.starts_with(b"\x89PNG") || b.starts_with(b"\xFF\xD8\xFF")
+}
+
+fn save_crest(team_id: &str, path: &std::path::Path, png: &[u8]) -> bool {
+    let _ = std::fs::create_dir_all(path.parent().unwrap_or(path));
+    match std::fs::write(path, png) {
+        Ok(()) => {
+            CREST_SAVED.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+            true
+        }
+        Err(e) => {
+            log(&format!("football: crest {team_id}: {e:?}"));
+            false
         }
     }
 }
 
-/// Downloads `team_id`'s crest from `url` into the cache unless it's there; whether it is now
-/// (blocking: off the UI thread; the settings window uses it for search results too).
+/// Downloads `team_id`'s crest from `url` into the cache unless a current one is there; whether
+/// one is now (blocking: off the UI thread; basketball uses it with its own feed's crests).
 pub fn fetch_crest(team_id: &str, url: &str) -> bool {
     let path = crest_path(team_id);
-    if path.exists() {
-        return true;
+    if crest_fresh(&path) || crest_backoff(team_id, false) || !url.starts_with("https://") {
+        return path.exists();
     }
-    let Ok(espn) = Espn::new() else { return false };
+    let Ok(espn) = Espn::new() else { return path.exists() };
     match espn.bytes(url) {
-        Ok(png) => {
-            let _ = std::fs::create_dir_all(path.parent().unwrap_or(&path));
-            match std::fs::write(&path, png) {
-                Ok(()) => true,
-                Err(e) => {
-                    log(&format!("football: crest {team_id}: {e:?}"));
-                    false
-                }
-            }
+        Ok(png) if is_picture(&png) => save_crest(team_id, &path, &png),
+        Ok(_) => {
+            log(&format!("football: crest {team_id}: not a picture"));
+            crest_backoff(team_id, true);
+            path.exists()
         }
         Err(e) => {
             log(&format!("football: crest {team_id}: {e}"));
-            false
+            crest_backoff(team_id, true);
+            path.exists()
         }
     }
 }
@@ -331,4 +482,25 @@ pub fn try_search_teams(query: &str) -> Option<Vec<TeamHit>> {
     );
     let v: serde_json::Value = serde_json::from_str(&espn.get(&url).ok()?).ok()?;
     Some(parse_search(&v))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn team_names_compare_without_accents_case_or_punctuation() {
+        assert_eq!(fold("Fenerbahçe"), fold("FENERBAHCE"));
+        assert_eq!(fold("Beşiktaş J.K."), "besiktasjk");
+        assert_eq!(fold("Al-Ahly"), fold("Al Ahly"));
+        assert_ne!(fold("Al Ahli"), fold("Al Ahly"), "another club");
+    }
+
+    #[test]
+    fn only_pictures_are_crests() {
+        assert!(is_picture(b"\x89PNG\r\n\x1a\n...."));
+        assert!(is_picture(b"\xFF\xD8\xFF\xE0...."));
+        assert!(!is_picture(b"<html>404</html>"));
+        assert!(!is_picture(b""));
+    }
 }

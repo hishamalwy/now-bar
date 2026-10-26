@@ -639,6 +639,8 @@ pub struct App {
     windows_name: Option<String>,
     /// Crests decoded at a pixel size, per (team id, size).
     crests: std::cell::RefCell<std::collections::HashMap<(String, u32), Option<Crest>>>,
+    /// `CREST_SAVED` when `crests` was last emptied: a newer count means new pictures on disk.
+    crests_seen: u64,
     matches_mailbox: std::sync::Arc<std::sync::Mutex<Option<Vec<MatchSnapshot>>>>,
     /// When a match list last came (ms): a live match without news for long is shown stale.
     football: FootballWorker,
@@ -867,6 +869,7 @@ impl App {
             brief_auto: false,
             windows_name: windows_full_name().as_deref().and_then(first_name),
             crests: Default::default(),
+            crests_seen: 0,
             matches_mailbox,
             games_mailbox,
             basketball,
@@ -3514,7 +3517,20 @@ impl App {
             },
             UiEvent::Media => self.take_media(),
             UiEvent::Buds => self.take_buds(),
-            UiEvent::Matches => self.take_matches(),
+            UiEvent::Matches => {
+                // The crest thread saved a picture: decode again and draw with it.
+                let saved = crate::activities::football_worker::CREST_SAVED.load(std::sync::atomic::Ordering::Relaxed);
+                let crests_changed = saved != self.crests_seen;
+                if crests_changed {
+                    self.crests_seen = saved;
+                    self.crests.borrow_mut().clear();
+                }
+                self.take_matches()?;
+                if crests_changed {
+                    self.refresh()?;
+                }
+                Ok(())
+            }
             UiEvent::OutputChanged => {
                 self.output_name = default_output_name();
                 // The waveform listens to the new default output from its next tick.

@@ -485,7 +485,7 @@ export component GeneralInspector inherits VerticalLayout {
             note: @tr("Otomatik: Windows'unki");
             Select {
                 // Each language in its own words.
-                options: [@tr("Otomatik"), "Türkçe", "English"];
+                options: [@tr("Otomatik"), "Türkçe", "English", "العربية"];
                 selected <=> Store.language;
                 box-width: 110px;
                 picked(i) => { Store.language-picked(i); }

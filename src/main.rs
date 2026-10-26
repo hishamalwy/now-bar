@@ -113,12 +113,28 @@ fn forward(args: &[String]) -> bool {
             claude_hooks_command(args.get(2).map(String::as_str));
             return true;
         }
+        // Bare, with something piped in: a Claude Code hook from a client that dropped its
+        // `args` (an older Claude Code, another tool reading ~/.claude/settings.json). Never a
+        // person starting the app: without this, every tool call opened the settings window.
+        None if stdin_is_pipe() => {
+            claude_hook(false);
+            return true;
+        }
         _ => return false,
     };
     if let Some(c) = command {
         ipc::send(&c);
     }
     true
+}
+
+/// Whether stdin is a pipe: a hook or a script feeding the exe, not a person starting it (a
+/// shortcut or Explorer gives a GUI exe no stdin at all).
+fn stdin_is_pipe() -> bool {
+    use std::os::windows::io::AsRawHandle;
+    use windows::Win32::Storage::FileSystem::{GetFileType, FILE_TYPE_PIPE};
+    let h = std::io::stdin().as_raw_handle();
+    !h.is_null() && unsafe { GetFileType(windows::Win32::Foundation::HANDLE(h)) } == FILE_TYPE_PIPE
 }
 
 /// `nowbar.exe claude-hooks install | remove`: Claude Code's hooks for this exe, said in a box
@@ -167,7 +183,11 @@ fn claude_hook(asks: bool) {
     // plan, a cut or many-line command stay with Claude's own dialog.
     let (tool, input) = (hook["tool_name"].as_str().unwrap_or("").to_string(), hook["tool_input"].clone());
     let answerable = asks && event == "PermissionRequest" && card_can_answer(&tool, &input);
-    let ask = answerable.then(|| (format!("{}-{}", std::process::id(), unsafe { windows::Win32::System::SystemInformation::GetTickCount64() }), nonce()));
+    // Without a secret no card can answer: the ask stays with Claude's own dialog.
+    let ask = answerable
+        .then(nonce)
+        .flatten()
+        .map(|nonce| (format!("{}-{}", std::process::id(), unsafe { windows::Win32::System::SystemInformation::GetTickCount64() }), nonce));
     // The window comes first, so a quick click on the card always finds it.
     let window = ask.as_ref().and_then(|(id, nonce)| nowbar::platform::ask::AskWindow::create(id, nonce));
     if let (Some((id, nonce)), Some(_)) = (&ask, &window) {
@@ -191,15 +211,22 @@ fn claude_hook(asks: bool) {
     }
 }
 
-/// 128 random bits as hex (the std hasher's keys come from the OS's random source).
-fn nonce() -> String {
-    use std::hash::{BuildHasher, Hasher};
-    let half = || {
-        let mut h = std::collections::hash_map::RandomState::new().build_hasher();
-        h.write_u128(std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_or(0, |d| d.as_nanos()));
-        h.finish()
-    };
-    format!("{:016x}{:016x}", half(), half())
+#[link(name = "bcrypt")]
+extern "system" {
+    fn BCryptGenRandom(algorithm: *mut std::ffi::c_void, buffer: *mut u8, len: u32, flags: u32) -> i32;
+}
+
+/// 128 bits from Windows' cryptographic random generator, as hex; `None` rather than a guessable
+/// secret if it fails (it doesn't, on a working Windows).
+fn nonce() -> Option<String> {
+    const BCRYPT_USE_SYSTEM_PREFERRED_RNG: u32 = 2;
+    let mut bytes = [0u8; 16];
+    let status = unsafe { BCryptGenRandom(std::ptr::null_mut(), bytes.as_mut_ptr(), bytes.len() as u32, BCRYPT_USE_SYSTEM_PREFERRED_RNG) };
+    if status != 0 {
+        log(&format!("claude-hook: no random bytes ({status:#x})"));
+        return None;
+    }
+    Some(bytes.iter().map(|b| format!("{b:02x}")).collect())
 }
 
 fn main() {

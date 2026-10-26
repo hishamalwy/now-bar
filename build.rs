@@ -1,7 +1,7 @@
 // Embeds nowbar.manifest: Windows 10/11 support (needed for layered child windows) and
-// Per-Monitor v2 DPI awareness. Embeds the icon (assets/nowbar.ico). Builds the English table
-// `i18n::tr` searches from i18n/en/LC_MESSAGES/nowbar-ui.po. The settings window's Slint UI
-// compiles in its own crate (ui/), with the same .po bundled.
+// Per-Monitor v2 DPI awareness. Embeds the icon (assets/nowbar.ico). Builds the English and
+// Arabic tables `i18n::tr` searches from i18n/{en,ar}/LC_MESSAGES/nowbar-ui.po. The settings
+// window's Slint UI compiles in its own crate (ui/), with the same .po files bundled.
 //
 // Both are copied into OUT_DIR and linked from there: checkouts that share a target dir (the
 // main one and its worktrees) share this script's output too, and a path into a checkout that
@@ -20,19 +20,20 @@ fn main() {
     println!("cargo:rustc-link-arg-bins=/MANIFEST:EMBED");
     println!("cargo:rustc-link-arg-bins=/MANIFESTINPUT:{}", manifest.display());
     embed_icon(&root.join("assets").join("nowbar.ico"), &out);
-    english_table(root, &out);
+    language_table(root, &out, "en", "EN", "English");
+    language_table(root, &out, "ar", "AR", "Arabic");
 }
 
-/// The English strings as a table sorted by their Turkish (OUT_DIR/en.rs, included by i18n).
-fn english_table(root: &Path, out: &Path) {
-    let po = root.join("i18n").join("en").join("LC_MESSAGES").join("nowbar-ui.po");
+/// A language's strings as a table sorted by their Turkish (OUT_DIR/<code>.rs, included by i18n).
+fn language_table(root: &Path, out: &Path, code: &str, name: &str, language: &str) {
+    let po = root.join("i18n").join(code).join("LC_MESSAGES").join("nowbar-ui.po");
     println!("cargo:rerun-if-changed={}", po.display());
     let mut entries = parse_po(&std::fs::read_to_string(&po).unwrap_or_default());
     entries.sort_by(|a, b| a.0.cmp(&b.0));
     entries.dedup_by(|a, b| a.0 == b.0);
-    let rows: String = entries.iter().map(|(tr, en)| format!("    ({tr:?}, {en:?}),\n")).collect();
-    let table = format!("/// (Turkish, English), sorted by the Turkish.\nstatic EN: &[(&str, &str)] = &[\n{rows}];\n");
-    std::fs::write(out.join("en.rs"), table).expect("en.rs");
+    let rows: String = entries.iter().map(|(tr, other)| format!("    ({tr:?}, {other:?}),\n")).collect();
+    let table = format!("/// (Turkish, {language}), sorted by the Turkish.\nstatic {name}: &[(&str, &str)] = &[\n{rows}];\n");
+    std::fs::write(out.join(format!("{code}.rs")), table).expect("language table");
 }
 
 /// Compiles a one-line resource script with the Windows SDK's rc.exe and links it into every

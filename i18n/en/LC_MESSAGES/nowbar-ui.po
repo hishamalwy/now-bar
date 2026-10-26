@@ -2182,8 +2182,8 @@ msgid "Kayan başlığın hızı"
 msgstr "How fast the title scrolls"
 
 #: src/settings_ui.rs
-msgid "Otomatik: Windows'unki; Türkçe ya da İngilizce"
-msgstr "Automatic: Windows' own; Turkish or English"
+msgid "Otomatik: Windows'unki; Türkçe, İngilizce ya da Arapça"
+msgstr "Automatic: Windows' own; Turkish, English or Arabic"
 
 #: src/settings_ui.rs
 msgid "Oturum açınca Now Bar kendiliğinden çalışır"

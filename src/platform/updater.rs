@@ -1,6 +1,9 @@
 //! The update thread: asks GitHub for the latest release once a day, and on demand downloads it,
-//! checks the exes against SHA256SUMS.txt, swaps them in and starts the new Now Bar.
+//! checks SHA256SUMS.txt's signature against the key built in (UPDATE_KEY) and the exes against
+//! SHA256SUMS.txt, swaps them in and starts the new Now Bar. A release it can't verify that way
+//! (unsigned, or this build has no key) opens its page instead: the setup installs it by hand.
 
+use std::ffi::c_void;
 use std::path::{Path, PathBuf};
 use std::sync::mpsc::{channel, RecvTimeoutError, Sender};
 use std::sync::{Arc, Mutex};
@@ -13,7 +16,9 @@ use windows::Win32::UI::WindowsAndMessaging::SW_SHOWNORMAL;
 
 use super::http::get_bytes;
 use super::log::{log, log_path};
-use crate::update::{is_newer, latest_url, parse_release, parse_sums, rollback, swap_plan, Release, UpdateState, ASSETS, REPO};
+use crate::update::{
+    hex64, installs_itself, is_newer, latest_url, parse_release, parse_sums, rollback, swap_plan, Release, UpdateState, ASSETS, REPO, SUMS_SIG, UPDATE_KEY,
+};
 
 /// The running version.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -73,7 +78,12 @@ impl Updater {
                                 found = check().map(|(r, _)| r);
                             }
                             let result = match found.as_ref().filter(|r| is_newer(r, VERSION)) {
-                                Some(r) => download(r).and_then(|dir| install(&dir, &r.page)),
+                                Some(r) if installs_itself(r, UPDATE_KEY) => download(r).and_then(|dir| install(&dir, &r.page)),
+                                // Nothing unverified is swapped in: the user installs it with the setup.
+                                Some(r) => {
+                                    open_page(&r.page);
+                                    Err(format!("{} isn't signed with this build's key: opened its page", r.tag))
+                                }
                                 None => Err("no newer release".into()),
                             };
                             report(result.map_or_else(Progress::Failed, |()| Progress::Installed));
@@ -160,9 +170,11 @@ fn download(r: &Release) -> Result<PathBuf, String> {
     Ok(dir)
 }
 
-/// Both exes in `dir` match its SHA256SUMS.txt.
+/// `dir`'s SHA256SUMS.txt carries the signature of the key built in, and both exes match it.
 fn verify(dir: &Path) -> Result<(), String> {
-    let sums = parse_sums(&std::fs::read_to_string(dir.join("SHA256SUMS.txt")).map_err(|e| format!("SHA256SUMS.txt: {e}"))?);
+    let sums_bytes = std::fs::read(dir.join("SHA256SUMS.txt")).map_err(|e| format!("SHA256SUMS.txt: {e}"))?;
+    verify_signature(&sums_bytes, &std::fs::read_to_string(dir.join(SUMS_SIG)).map_err(|e| format!("{SUMS_SIG}: {e}"))?, UPDATE_KEY)?;
+    let sums = parse_sums(&String::from_utf8_lossy(&sums_bytes));
     for exe in EXES {
         let want = sums.iter().find(|(n, _)| n == exe).map(|(_, h)| h).ok_or(format!("{exe} isn't in SHA256SUMS.txt"))?;
         let got = sha256_hex(&std::fs::read(dir.join(exe)).map_err(|e| format!("{exe}: {e}"))?);
@@ -199,13 +211,65 @@ fn install(staged: &Path, page: &str) -> Result<(), String> {
             Ok(())
         }
         Err((e, step)) => {
-            if e.kind() == std::io::ErrorKind::PermissionDenied && !page.is_empty() {
-                unsafe {
-                    ShellExecuteW(None, w!("open"), &HSTRING::from(page), None, None, SW_SHOWNORMAL);
-                }
+            if e.kind() == std::io::ErrorKind::PermissionDenied {
+                open_page(page);
             }
             Err(format!("{step}: {e}"))
         }
+    }
+}
+
+/// The release's page in the browser (GitHub's own address for it, nothing else).
+fn open_page(page: &str) {
+    if page.starts_with("https://github.com/") {
+        unsafe {
+            ShellExecuteW(None, w!("open"), &HSTRING::from(page), None, None, SW_SHOWNORMAL);
+        }
+    }
+}
+
+/// `signature` (hex, from SHA256SUMS.txt.sig) is `key`'s ECDSA P-256 signature of `sums`.
+fn verify_signature(sums: &[u8], signature: &str, key: &str) -> Result<(), String> {
+    let key = hex64(key).ok_or("this build has no update key")?;
+    let signature = hex64(signature).ok_or(format!("{SUMS_SIG} isn't a signature"))?;
+    let hash = sha256(sums).ok_or("SHA256SUMS.txt: no hash")?;
+    if ecdsa_p256_verifies(&key, &hash, &signature) {
+        Ok(())
+    } else {
+        Err("SHA256SUMS.txt isn't signed by this build's update key".into())
+    }
+}
+
+#[link(name = "bcrypt")]
+extern "system" {
+    fn BCryptOpenAlgorithmProvider(algorithm: *mut *mut c_void, id: *const u16, implementation: *const u16, flags: u32) -> i32;
+    fn BCryptCloseAlgorithmProvider(algorithm: *mut c_void, flags: u32) -> i32;
+    fn BCryptImportKeyPair(algorithm: *mut c_void, import_key: *mut c_void, blob_type: *const u16, key: *mut *mut c_void, input: *const u8, input_len: u32, flags: u32) -> i32;
+    fn BCryptDestroyKey(key: *mut c_void) -> i32;
+    fn BCryptVerifySignature(key: *mut c_void, padding: *const c_void, hash: *const u8, hash_len: u32, signature: *const u8, signature_len: u32, flags: u32) -> i32;
+}
+
+/// Whether `signature` (r then s) is `key`'s (X then Y) ECDSA P-256 signature of the SHA-256
+/// `hash`, by Windows' own BCrypt.
+fn ecdsa_p256_verifies(key: &[u8; 64], hash: &[u8; 32], signature: &[u8; 64]) -> bool {
+    // BCRYPT_ECCKEY_BLOB: BCRYPT_ECDSA_PUBLIC_P256_MAGIC ("ECS1"), the coordinates' length, X, Y.
+    let mut blob = Vec::with_capacity(72);
+    blob.extend_from_slice(&0x3153_4345u32.to_le_bytes());
+    blob.extend_from_slice(&32u32.to_le_bytes());
+    blob.extend_from_slice(key);
+    unsafe {
+        let mut algorithm = std::ptr::null_mut();
+        if BCryptOpenAlgorithmProvider(&mut algorithm, w!("ECDSA_P256").0, std::ptr::null(), 0) != 0 {
+            return false;
+        }
+        let mut handle = std::ptr::null_mut();
+        let imported = BCryptImportKeyPair(algorithm, std::ptr::null_mut(), w!("ECCPUBLICBLOB").0, &mut handle, blob.as_ptr(), blob.len() as u32, 0) == 0;
+        let verified = imported && BCryptVerifySignature(handle, std::ptr::null(), hash.as_ptr(), hash.len() as u32, signature.as_ptr(), signature.len() as u32, 0) == 0;
+        if imported {
+            BCryptDestroyKey(handle);
+        }
+        BCryptCloseAlgorithmProvider(algorithm, 0);
+        verified
     }
 }
 
@@ -269,12 +333,13 @@ pub fn cleanup_old() {
 
 /// The exe's SHA-256 as lowercase hex (Windows' own BCrypt).
 pub fn sha256_hex(bytes: &[u8]) -> String {
+    sha256(bytes).map(|out| out.iter().map(|b| format!("{b:02x}")).collect()).unwrap_or_default()
+}
+
+fn sha256(bytes: &[u8]) -> Option<[u8; 32]> {
     let mut out = [0u8; 32];
     let status = unsafe { BCryptHash(BCRYPT_SHA256_ALG_HANDLE, None, bytes, &mut out) };
-    if status.is_err() {
-        return String::new();
-    }
-    out.iter().map(|b| format!("{b:02x}")).collect()
+    status.is_ok().then_some(out)
 }
 
 #[cfg(test)]
@@ -332,6 +397,24 @@ mod tests {
         assert!(!start_and_watch(cmd, &["/c", "exit", "1"], Duration::from_millis(800)), "died at once");
         assert!(start_and_watch(cmd, &["/c", "ping -n 3 127.0.0.1 >nul"], Duration::from_millis(500)), "still running");
         assert!(!start_and_watch(Path::new(r"C:\no\such.exe"), &[], Duration::from_millis(100)), "didn't start");
+    }
+
+    /// A pair made by tools\make-update-key.ps1 and a signature of "abc" by tools\sign-sums.ps1:
+    /// what .NET signs, BCrypt verifies.
+    const TEST_KEY: &str = "943beba35c58187ce37c6497584ea898e79cf8eb4f50a6aa4918fae6888fd06924788c5010264dd3ae63843f8db8a6304fe39649a0e28f3ab9774d5763981d76";
+    const TEST_SIG: &str = "7280807f4ed0d5bd62d5ac524cbbd41adc264955791267ae620aa3e28a151e8ff951ab6bbee1fb72b2138fb74628e2de949219bf102d55c20863f2825717f6d8";
+
+    #[test]
+    fn only_the_keys_signature_passes() {
+        assert_eq!(verify_signature(b"abc", TEST_SIG, TEST_KEY), Ok(()));
+        assert!(verify_signature(b"abd", TEST_SIG, TEST_KEY).is_err(), "another file");
+        let mut forged = TEST_SIG.to_string();
+        forged.replace_range(0..2, "00");
+        assert!(verify_signature(b"abc", &forged, TEST_KEY).is_err(), "another signature");
+        let other_key = format!("{}{}", &TEST_KEY[..64], "00".repeat(32));
+        assert!(verify_signature(b"abc", TEST_SIG, &other_key).is_err(), "another key");
+        assert!(verify_signature(b"abc", TEST_SIG, "").is_err(), "no key built in");
+        assert!(verify_signature(b"abc", "", TEST_KEY).is_err(), "no signature");
     }
 
     /// Checks a release folder the way an update will (BCrypt against its SHA256SUMS.txt), before

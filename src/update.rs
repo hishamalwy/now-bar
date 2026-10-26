@@ -9,10 +9,36 @@ use serde_json::Value;
 
 /// "owner/name" of the repository whose releases are the updates (asked without a token: it
 /// answers once the repository is public); empty: none asked.
-pub const REPO: &str = "nixesty/now-bar";
+pub const REPO: &str = "hishamalwy/now-bar";
 
 /// The files a release must carry: the two exes and their checksums.
-pub const ASSETS: [&str; 3] = ["nowbar.exe", "nowbar-settings.exe", "SHA256SUMS.txt"];
+pub const ASSETS: [&str; 4] = ["nowbar.exe", "nowbar-settings.exe", "SHA256SUMS.txt", SUMS_SIG];
+
+/// SHA256SUMS.txt's signature (tools\sign-sums.ps1): ECDSA P-256, r then s, as hex.
+pub const SUMS_SIG: &str = "SHA256SUMS.txt.sig";
+
+/// The P-256 public key (X then Y, as hex) whose signature on SHA256SUMS.txt an update must carry
+/// (tools\make-update-key.ps1 makes the pair). Empty: this build swaps no exes itself; an update
+/// opens the release page and is installed with the setup, by hand.
+pub const UPDATE_KEY: &str = "0f7e178a45b480a846b6b3652ad5e0e84b7a15a8dfaea02490bc256a18dc77628d6d05035e5712aa4bd727aa8700151178912228b4b6eacddd0cd3be6e49c87d";
+
+/// 64 bytes from hex (a public key or a signature); `None` for anything else.
+pub fn hex64(text: &str) -> Option<[u8; 64]> {
+    let text = text.trim();
+    if text.len() != 128 || !text.bytes().all(|b| b.is_ascii_hexdigit()) {
+        return None;
+    }
+    let mut out = [0u8; 64];
+    for (i, byte) in out.iter_mut().enumerate() {
+        *byte = u8::from_str_radix(&text[2 * i..2 * i + 2], 16).ok()?;
+    }
+    Some(out)
+}
+
+/// Whether this build may install `r` itself: it has a key, and the release a signature.
+pub fn installs_itself(r: &Release, key: &str) -> bool {
+    hex64(key).is_some() && r.asset(SUMS_SIG).is_some()
+}
 
 pub type Version = (u32, u32, u32);
 
@@ -141,6 +167,28 @@ mod tests {
                 {"name": "SHA256SUMS.txt", "browser_download_url": "https://github.com/k/nowbar/releases/download/v0.3.0/SHA256SUMS.txt"}
             ]
         })
+    }
+
+    #[test]
+    fn keys_and_signatures_are_64_bytes_of_hex() {
+        let hex = "00ff".repeat(32);
+        assert_eq!(hex64(&hex).map(|b| (b[0], b[1], b[63])), Some((0x00, 0xFF, 0xFF)));
+        assert!(hex64(&format!("{hex}\n")).is_some(), "a trailing newline is fine");
+        assert_eq!(hex64(&hex[2..]), None, "too short");
+        assert_eq!(hex64(&format!("{hex}00")), None, "too long");
+        assert_eq!(hex64(&"zz".repeat(64)), None);
+        assert_eq!(hex64(""), None);
+    }
+
+    #[test]
+    fn only_a_keyed_build_and_a_signed_release_install_themselves() {
+        let key = "ab".repeat(64);
+        let unsigned = parse_release(&answer()).unwrap();
+        let mut signed = unsigned.clone();
+        signed.assets.push((SUMS_SIG.into(), "https://github.com/k/nowbar/releases/download/v0.3.0/SHA256SUMS.txt.sig".into()));
+        assert!(installs_itself(&signed, &key));
+        assert!(!installs_itself(&unsigned, &key), "no signature: the release page");
+        assert!(!installs_itself(&signed, ""), "no key in this build: the release page");
     }
 
     #[test]

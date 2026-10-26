@@ -1,5 +1,6 @@
-// The settings window, with its English bundled: ../i18n/en/LC_MESSAGES/nowbar-ui.po (msgids are
-// the Turkish strings themselves, no context; the Rust side's table comes from the same file).
+// The settings window, with its English and Arabic bundled: ../i18n/{en,ar}/LC_MESSAGES/nowbar-ui.po
+// (msgids are the Turkish strings themselves, no context; the Rust side's tables come from the
+// same files).
 fn main() {
     let config = slint_build::CompilerConfiguration::new()
         .with_bundled_translations("../i18n")
