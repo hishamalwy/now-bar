@@ -11,7 +11,7 @@
 شريط صغير يستقر في شريط المهام ويعرض ما يحدث الآن: الأغنية التي تسمعها، والمؤقّت، ونتيجة<br>
 المباراة، وما يعمل عليه Claude Code. انقر عليه لتنفتح فوقه بطاقة بكل التفاصيل.
 
-**[تنزيل](https://github.com/nixesty/now-bar/releases/latest)** &nbsp;·&nbsp;
+**[تنزيل](https://github.com/hishamalwy/now-bar/releases/latest)** &nbsp;·&nbsp;
 [ماذا يعرض](#ماذا-يعرض) &nbsp;·&nbsp;
 [التثبيت](#التثبيت) &nbsp;·&nbsp;
 [البناء من المصدر](#البناء-من-المصدر)
@@ -75,7 +75,7 @@
 
 <img src="assets/readme/setup.png" width="480" align="left" alt="نافذة التثبيت">
 
-نزّل `nowbar-setup.exe` من [أحدث إصدار](https://github.com/nixesty/now-bar/releases/latest) وشغّله.
+نزّل `nowbar-setup.exe` من [أحدث إصدار](https://github.com/hishamalwy/now-bar/releases/latest) وشغّله.
 لا يحتاج صلاحيات المسؤول، ويُثبَّت في المجلد `%LOCALAPPDATA%\Programs\NowBar` (ويمكنك اختيار مجلد
 آخر من «تغيير»). الخيارات في شاشة التثبيت:
 
