@@ -1,293 +1,328 @@
+<div dir="rtl" align="right">
+
 <div align="center">
 
-<img src="assets/readme/hero.png" width="880" alt="Görev çubuğunda çalan şarkının pili, üstünde açılmış müzik kartı; yanında Claude Code, maç, zamanlayıcı, Galaxy Buds, hava ve şarj pilleri">
+<img src="assets/readme/hero.png" width="880" alt="شريط الأغنية الحالية في شريط المهام وفوقه بطاقة الموسيقى مفتوحة؛ وبجواره أشرطة Claude Code والمباراة والمؤقّت وGalaxy Buds والطقس والشحن">
 
 # Now Bar
 
-**Samsung One UI'daki Now Bar, Windows 11 ve 10 görev çubuğunda.**
+**ميزة Now Bar من Samsung One UI، على شريط مهام Windows 11 و10.**
 
-Görev çubuğunda küçük bir pil durur ve o an olan biteni gösterir: çalan şarkı, zamanlayıcı, maçın<br>
-skoru, Claude Code'un ne yaptığı. Pile tıklayınca üstünde bir kart açılır.
+شريط صغير يستقر في شريط المهام ويعرض ما يحدث الآن: الأغنية التي تسمعها، والمؤقّت، ونتيجة<br>
+المباراة، وما يعمل عليه Claude Code. انقر عليه لتنفتح فوقه بطاقة بكل التفاصيل.
 
-**[İndir](https://github.com/nixesty/now-bar/releases/latest)** &nbsp;·&nbsp;
-[Neler gösterir](#neler-gösterir) &nbsp;·&nbsp;
-[Kurulum](#kurulum) &nbsp;·&nbsp;
-[Derleme](#derleme)
+**[تنزيل](https://github.com/nixesty/now-bar/releases/latesta)** &nbsp;·&nbsp;
+[ماذا يعرض](#ماذا-يعرض) &nbsp;·&nbsp;
+[التثبيت](#التثبيت) &nbsp;·&nbsp;
+[البناء من المصدر](#البناء-من-المصدر)
 
-<sub>One UI's Now Bar in the Windows 11 and 10 taskbar. The app speaks Turkish, English and Arabic. · [العربية](README_AR.md)</sub>
+<sub>الواجهة متاحة بالعربية والإنجليزية والتركية · [Türkçe](README.md)</sub>
 
 </div>
 
 <br>
 
-## Neler gösterir
+## ماذا يعرض
 
-<img src="assets/readme/pills.png" width="880" alt="Pillerden örnekler: müzik, Claude Code izin isteği, maç, zamanlayıcı, hava, yağmur uyarısı, şarj, Galaxy Buds, kamera ve mikrofon, Steam indirmesi, raf, ekran süresi sınırı, saat ve ses">
+<img src="assets/readme/pills.png" width="880" alt="نماذج من الأشرطة: الموسيقى، وطلب إذن من Claude Code، ومباراة، ومؤقّت، وطقس، وتنبيه مطر، وشحن، وGalaxy Buds، والكاميرا والميكروفون، وتنزيل من Steam، والرف، وحد وقت الشاشة، والساعة، ومستوى الصوت">
 
-- **Müzik:** Windows'ta medya oturumu açan her uygulama (Spotify, YouTube Music, tarayıcılar).
-  Pil, albüm kapağının rengini alır; kartta kapak, dalgalı ilerleme çubuğu, şarkı sözleri ve ses
-  çıkışı seçimi bulunur.
-- **Zamanlayıcı ve kronometre:** seçiciden (Win+Alt+N) ya da tepsi menüsünden başlatılır; süre
-  dolunca alarm çalar ve kart açılır.
-- **Canlı maç:** takip ettiğin futbol ve basketbol takımlarının skoru, dakikası ve gol anları.
-- **Hava durumu:** boştayken saat ve hava durumu; yağmur, kar, fırtına, kuvvetli rüzgâr, aşırı
-  sıcak, don ve kötü hava kalitesinde uyarı. Şehir seçilmemişse konum Windows'tan alınır.
-- **Galaxy Buds:** iki kulaklığın ve kutunun şarjı, gürültü kontrolü. Birden fazla Buds
-  eşleştirilmişse hangisinin gösterileceği ayarlardan seçilir.
-- **Claude Code:** Claude'un o an ne yaptığı ve görev listesi; izin istediğinde kartta
-  **İzin ver / Reddet** düğmeleri çıkar ([aşağıda](#canlı-etkinlikler)).
-- **Oyunlar:** Steam ve Epic Games indirmeleri, güncellemeleri, duraklatmaları ve oyun süresi.
-- **Dijital Denge:** günün ekran süresi, uygulamaların payı ve koyduğun sınırlar.
-- **Raf:** pile bıraktığın dosyalar orada bekler, sonra istediğin yere sürükleyebilirsin; yeni
-  ekran görüntüleri rafa kendiliğinden eklenir.
-- **Sistem:** ses seviyesi, şarj ve düşük pil uyarısı, mikrofonu ya da kamerayı kullanan
-  uygulama, Bluetooth kulaklıkların şarjı.
-- Aynı anda birden fazla etkinlik varsa öndekinin sağında ince şeritler görünür; pilin üzerinde
-  fare tekerleğini çevirerek aralarında geçiş yapılır. Oyun, video ya da sunum tam ekrandayken pil
-  gizlenir; bekleyemeyecek şeyler (Claude'un izin isteği, hava uyarısı) ekranın üstünde küçük bir
-  adada belirir.
+- **الموسيقى:** أي تطبيق يفتح جلسة وسائط في Windows (Spotify وYouTube Music والمتصفحات). يأخذ
+  الشريط لون غلاف الألبوم، وتضم البطاقة الغلاف وشريط تقدّم متموّجًا وكلمات الأغنية واختيار مخرج
+  الصوت.
+- **المؤقّت وساعة الإيقاف:** تبدأهما من المنتقي (Win+Alt+N) أو من قائمة أيقونة شريط المهام؛ وعند
+  انتهاء الوقت يرنّ التنبيه وتنفتح البطاقة.
+- **المباريات المباشرة:** النتيجة والدقيقة ولحظات الأهداف لفرق كرة القدم والسلة التي تتابعها.
+- **الطقس:** الساعة والطقس حين لا يوجد نشاط، مع تنبيهات للمطر والثلج والعواصف والرياح القوية
+  والحرّ الشديد والصقيع وسوء جودة الهواء. إن لم تختر مدينة، يؤخذ الموقع من Windows.
+- **Galaxy Buds:** بطارية السماعتين والعلبة، والتحكم في الضوضاء. وإن كان لديك أكثر من Buds مقترنة،
+  تختار من الإعدادات أيّها يظهر.
+- **Claude Code:** ما يفعله Claude الآن وقائمة مهامه؛ وحين يطلب إذنًا تظهر على البطاقة أزرار
+  **سماح / رفض** ([التفاصيل أدناه](#الأنشطة-المباشرة)).
+- **الألعاب:** تنزيلات Steam وEpic Games وتحديثاتها وإيقافها المؤقت، ووقت اللعب.
+- **الرفاهية الرقمية:** وقت الشاشة اليومي، ونصيب كل تطبيق منه، والحدود التي وضعتها.
+- **الرف:** الملفات التي تفلتها على الشريط تنتظرك هناك لتسحبها لاحقًا إلى أي مكان؛ ولقطات الشاشة
+  الجديدة تُضاف إليه تلقائيًا.
+- **النظام:** مستوى الصوت، والشحن وتنبيه انخفاض البطارية، والتطبيق الذي يستخدم الميكروفون أو
+  الكاميرا، وبطارية سماعات Bluetooth.
+- إن تزامن أكثر من نشاط، تظهر شرائط رفيعة بجوار النشاط الأمامي؛ وتتنقّل بينها بعجلة الماوس فوق
+  الشريط. وحين تعمل لعبة أو فيديو أو عرض تقديمي بملء الشاشة يختفي الشريط، أما ما لا يحتمل الانتظار
+  (كطلب إذن من Claude أو تنبيه طقس) فيظهر في جزيرة صغيرة أعلى الشاشة.
 
-## Kartlar
+## البطاقات
 
-<img src="assets/readme/music.png" width="880" alt="Müzik kartı: kapak, ilerleme çubuğu ve düğmeler; yanında aynı şarkının sözleri; altında müzik pili">
+<img src="assets/readme/music.png" width="880" alt="بطاقة الموسيقى: الغلاف وشريط التقدّم والأزرار؛ وبجوارها كلمات الأغنية نفسها؛ وتحتها شريط الموسيقى">
 
-Kart pilden büyüyerek açılır, fare uzaklaşınca küçülerek kapanır. Müzik kartında kapağın
-köşesindeki **Sözler** şarkı sözlerini açar; sözler `lrclib.net`'ten gelir ve şarkıyla birlikte
-akar.
+تنمو البطاقة من الشريط عند فتحها، وتنكمش عائدةً إليه حين يبتعد الماوس. في بطاقة الموسيقى، يفتح زر
+**الكلمات** في زاوية الغلاف كلمات الأغنية؛ وهي تأتي من `lrclib.net` وتتحرك متزامنةً مع الأغنية.
 
-<img src="assets/readme/day.png" width="880" alt="Günün özeti kartı, zamanlayıcı kartı, saatlik hava durumu kartı ve Dijital Denge kartı">
+<img src="assets/readme/day.png" width="880" alt="بطاقة ملخص اليوم، وبطاقة المؤقّت، وبطاقة الطقس بالساعة، وبطاقة الرفاهية الرقمية">
 
-Boştayken saate tıklayınca günün özeti açılır: hava, maçlar, son çalan şarkı ve ekran süresi.
+حين لا يوجد نشاط، انقر على الساعة ليُفتح ملخص يومك: الطقس، والمباريات، وآخر أغنية سمعتها، ووقت
+الشاشة.
 
-<img src="assets/readme/live.png" width="880" alt="Canlı maç kartı, Claude Code izin kartı, Galaxy Buds kartı ve raf kartı">
+<img src="assets/readme/live.png" width="880" alt="بطاقة مباراة مباشرة، وبطاقة إذن Claude Code، وبطاقة Galaxy Buds، وبطاقة الرف">
 
-## Ayarlar
+## الإعدادات
 
-<img src="assets/readme/settings.png" width="880" alt="Ayarlar penceresi: solda sayfalar, ortada pil ve kart boyutunun önizlemeleri, sağda görünüm ayarları">
+<img src="assets/readme/settings.png" width="880" alt="نافذة الإعدادات: الصفحات على اليسار، ومعاينة الشريط وحجم البطاقة في المنتصف، وإعدادات المظهر على اليمين">
 
-Ayarlar penceresi tepsi menüsündeki **Ayarlar…** ile açılır; her değişiklik pile anında yansır.
-Üstteki arama çubuğu ayarları bulur; Canlı maç sayfasında takım arar, Tam ekran sayfasında istisna
-ekler. Ctrl+F aramaya, Ctrl+K eylemler menüsüne götürür. Arayüz Türkçe, İngilizce ve Arapçadır
-(Genel → Dil; varsayılan olarak Windows'un dili).
+تُفتح نافذة الإعدادات من **الإعدادات…** في قائمة أيقونة شريط المهام، وكل تغيير ينعكس على الشريط
+فورًا. شريط البحث في الأعلى يجد لك أي إعداد؛ وفي صفحة المباريات المباشرة يبحث عن الفرق، وفي صفحة
+ملء الشاشة يضيف الاستثناءات. ‏Ctrl+F ينقلك إلى البحث، وCtrl+K إلى قائمة الإجراءات. الواجهة متاحة
+بالعربية والإنجليزية والتركية (عام ← اللغة؛ وافتراضيًا تتبع لغة Windows).
 
-## Kurulum
+## التثبيت
 
-<img src="assets/readme/setup.png" width="480" align="right" alt="Kurulum penceresi">
+<img src="assets/readme/setup.png" width="480" align="left" alt="نافذة التثبيت">
 
-[Son sürümden](https://github.com/nixesty/now-bar/releases/latest) `nowbar-setup.exe`'yi indirip
-çalıştır. Yönetici izni istemez ve `%LOCALAPPDATA%\Programs\NowBar` klasörüne kurulur
-("Değiştir" ile başka bir klasör seçilebilir). Kurulum ekranındaki seçenekler:
+نزّل `nowbar-setup.exe` من [أحدث إصدار](https://github.com/nixesty/now-bar/releases/latest) وشغّله.
+لا يحتاج صلاحيات المسؤول، ويُثبَّت في المجلد `%LOCALAPPDATA%\Programs\NowBar` (ويمكنك اختيار مجلد
+آخر من «تغيير»). الخيارات في شاشة التثبيت:
 
-- **Windows'la başlat**
-- **Claude Code'a bağlan** (bilgisayarda Claude Code varsa görünür)
-- **Uygulama bildirimlerini aç** (varsayılan olarak kapalı): başka uygulamaların pilde bildirim
-  göstermesine izin verir ([aşağıda](#canlı-etkinlikler)). İzin verdiğin uygulamalar ve
-  gösterdikleri senin sorumluluğundadır.
-- **Masaüstü kısayolu**
-- **Bitince ayarları aç**
+- **التشغيل مع Windows**
+- **الربط مع Claude Code** (يظهر إن كان Claude Code مثبّتًا على الجهاز)
+- **تفعيل إشعارات التطبيقات** (متوقف افتراضيًا): يسمح لتطبيقات أخرى بعرض إشعارات في الشريط
+  ([التفاصيل أدناه](#الأنشطة-المباشرة)). اختيار التطبيقات التي تسمح لها وما تعرضه مسؤوليتك.
+- **اختصار على سطح المكتب**
+- **فتح الإعدادات عند الانتهاء**
 
-Başlat menüsüne her zaman bir kısayol eklenir. Now Bar, Windows'un "Ayarlar → Uygulamalar"
-listesinde görünür ve oradan kaldırılabilir. Kaldırınca kısayollar, Windows'la başlatma ve Claude
-Code hook'ları da silinir; ayarları silmek isteğe bağlıdır.
+يُضاف دائمًا اختصار إلى قائمة ابدأ. ويظهر Now Bar في قائمة «الإعدادات ← التطبيقات» في Windows،
+ويمكن إلغاء تثبيته من هناك. عند إلغاء التثبيت تُحذف الاختصارات والتشغيل مع Windows وخطافات Claude
+Code أيضًا؛ أما حذف الإعدادات فاختياري.
 
-<br clear="right">
+<br clear="left">
 
-Now Bar kuruluyken kurulumu yeniden çalıştırırsan Now Bar güncellenir ya da onarılır: çalışan Now
-Bar kapatılır, dosyaları yenilenir ve yeniden başlatılır.
+إن شغّلت برنامج الإعداد وNow Bar مثبّت بالفعل، فسيُحدَّث أو يُصلَح: يُغلق Now Bar الجاري، وتُجدَّد
+ملفاته، ثم يُعاد تشغيله.
 
-Sessiz kurulum için `nowbar-setup.exe --quiet` (uygulama bildirimleri ayarına dokunmaz), sessiz
-kaldırma için `"%LOCALAPPDATA%\Programs\NowBar\nowbar-setup.exe" --uninstall --quiet` kullanılır.
+للتثبيت الصامت استخدم `nowbar-setup.exe --quiet` (لا يغيّر إعداد إشعارات التطبيقات)، ولإلغاء
+التثبيت الصامت `"%LOCALAPPDATA%\Programs\NowBar\nowbar-setup.exe" --uninstall --quiet`.
 
-## Kullanım
+## الاستخدام
 
-| Ne | Nasıl |
+| ماذا تريد | كيف |
 |---|---|
-| Kartı aç / kapat | Pile tıkla; fare uzaklaşınca kart kendiliğinden kapanır |
-| Oynat / duraklat | Pile farenin orta tuşuyla tıkla |
-| Etkinlikler arasında geçiş | Pilin ya da kartın üzerinde fare tekerleği |
-| Zamanlayıcı seçicisi | Win+Alt+N (Ayarlar → Genel'den değiştirilebilir) |
-| Tepsi menüsü | Zamanlayıcı başlat, Kronometre başlat, Windows ile başlat, Ayarlar…, Çıkış |
+| فتح البطاقة / إغلاقها | انقر على الشريط؛ وتُغلق البطاقة تلقائيًا حين يبتعد الماوس |
+| تشغيل / إيقاف مؤقت | انقر على الشريط بزر الماوس الأوسط |
+| التنقّل بين الأنشطة | عجلة الماوس فوق الشريط أو البطاقة |
+| منتقي المؤقّت | ‏Win+Alt+N (يمكن تغييره من الإعدادات ← عام) |
+| قائمة أيقونة شريط المهام | بدء مؤقّت، بدء ساعة الإيقاف، التشغيل مع Windows، الإعدادات…، خروج |
 
-## Canlı etkinlikler
+## الأنشطة المباشرة
 
-Başka bir program ya da betik pilde bir etkinlik gösterebilir. Now Bar çalışmıyorsa komut hiçbir
-şey yapmadan çıkar (çıkış kodu her zaman 0'dır, çıktı vermez):
+يستطيع أي برنامج أو سكربت آخر عرض نشاط في الشريط. وإن لم يكن Now Bar يعمل، ينتهي الأمر دون أن
+يفعل شيئًا (رمز الخروج دائمًا 0، ولا مخرجات):
 
-```
-nowbar.exe push --id yedek --title "Yedekleme" --text "Belgeler" --progress 40
-nowbar.exe push --id yedek --title "Yedekleme" --state done
-```
-
-`--state`: `run` (varsayılan), `wait` (kullanıcıyı bekliyor; kısa bir süre öne gelir), `done`
-(5 saniye "Bitti" gösterir), `clear` (hemen kaldırır). Bir saat boyunca güncellenmeyen etkinlik
-kendiliğinden kalkar. Bu özellik Ayarlar → Sistem → Canlı etkinlikler'den kapatılabilir.
-
-**Uygulamalar için API:** başka uygulamalar tek bir HTTP isteğiyle pilde bildirim ya da canlı
-etkinlik gösterebilir; kendi ikonlarını, renklerini ve en fazla iki düğme kullanabilirler. API'ye
-yalnızca bu bilgisayardan (`127.0.0.1:20034`) erişilebilir ve sen açana kadar kapalıdır (kurulumda
-**Uygulama bildirimlerini aç** ya da Ayarlar → Sistem → Uygulama bildirimleri). Bir uygulama ilk
-kez istek gönderdiğinde pil "Bildirim göstermek istiyor" diye sorar; verdiğin cevap hatırlanır ve
-ayarlardan değiştirilebilir. İzin verdiğin uygulamalar ve gösterdikleri senin sorumluluğundadır;
-Now Bar yalnızca gösterir. Geliştiriciler için: [DOCS.md](DOCS.md).
+<div dir="ltr">
 
 ```
-curl -H "Content-Type: application/json" -d "{\"app\":\"Yedekleyici\",\"title\":\"Yedek bitti\"}" http://127.0.0.1:20034/v1/notify
+nowbar.exe push --id backup --title "نسخ احتياطي" --text "المستندات" --progress 40
+nowbar.exe push --id backup --title "نسخ احتياطي" --state done
 ```
 
-**Claude Code:** kurulumdaki **Claude Code'a bağlan** seçeneği hook'ları kurar. Elle kurmak ya da
-kaldırmak için aşağıdaki komutlar kullanılır. Komut exe'nin kendi yolunu yazar, ilk seferde
-`settings.json.before-nowbar`, sonraki her yazışta `settings.json.nowbar-last` adıyla yedek alır ve
-başka hook'lara dokunmaz:
+</div>
+
+قيم `--state`: ‏`run` (الافتراضي)، و`wait` (بانتظار المستخدم؛ يتقدّم للحظة)، و`done` (يعرض
+«انتهى» لخمس ثوانٍ)، و`clear` (يُزال فورًا). النشاط الذي لا يُحدَّث لمدة ساعة يُزال تلقائيًا.
+ويمكن إيقاف هذه الميزة من الإعدادات ← النظام ← الأنشطة المباشرة.
+
+**واجهة برمجية للتطبيقات:** يمكن للتطبيقات الأخرى عرض إشعار أو نشاط مباشر في الشريط بطلب HTTP
+واحد، بأيقوناتها وألوانها الخاصة وزرّين كحد أقصى. لا يمكن الوصول إلى الواجهة إلا من هذا الجهاز
+(`127.0.0.1:20034`)، وهي متوقفة إلى أن تفعّلها بنفسك (من خيار **تفعيل إشعارات التطبيقات** أثناء
+التثبيت، أو من الإعدادات ← النظام ← إشعارات التطبيقات). حين يرسل تطبيق طلبه الأول، يسألك الشريط:
+«يريد عرض إشعارات»؛ ويُحفظ ردّك ويمكن تغييره من الإعدادات. اختيار التطبيقات التي تسمح لها وما
+تعرضه مسؤوليتك؛ فدور Now Bar هو العرض فقط. للمطوّرين: [DOCS_AR.md](DOCS_AR.md).
+
+<div dir="ltr">
+
+```
+curl -H "Content-Type: application/json" -d "{\"app\":\"Backup\",\"title\":\"Backup done\"}" http://127.0.0.1:20034/v1/notify
+```
+
+</div>
+
+**Claude Code:** خيار **الربط مع Claude Code** أثناء التثبيت يُثبّت الخطافات (hooks). ولتثبيتها أو
+إزالتها يدويًا استخدم الأوامر التالية. يكتب الأمر مسار البرنامج نفسه، ويحتفظ بنسخة احتياطية باسم
+`settings.json.before-nowbar` في المرة الأولى و`settings.json.nowbar-last` في كل كتابة بعدها، ولا
+يمسّ أي خطافات أخرى:
+
+<div dir="ltr">
 
 ```
 nowbar.exe claude-hooks install
 nowbar.exe claude-hooks remove
 ```
 
-Pil, Claude'un ne yaptığını ve ne kadar süredir çalıştığını gösterir ("now-bar · Düzenliyor:
-app.rs"); kartta görev listesinin ilerlemesi, son adımlar ve iş bitince cevabın ilk satırı
-("Bitti · 12 dk · 9 dosya") bulunur. Claude izin istediğinde kartta **İzin ver / Reddet**
-düğmeleri çıkar; bu yalnızca kartta tamamı görünen tek satırlık komutlar, dosyalar, adresler ve
-aramalar için geçerlidir. Dosya izinlerinde kartta dosyanın tam yolu görünür, değişikliğin
-kendisi Claude'un penceresinde kalır; çok satırlı komutlar, sorular ve plan onayı da orada
-cevaplanır. Claude'un kendi penceresi de aynı anda açıktır; hangisinden önce cevap verilirse o
-geçerli olur. Kart cevabı 60 saniye bekler (Ayarlar → Sistem → Canlı etkinlikler). Now Bar başka
-bir klasöre taşınırsa hook'lar bir sonraki açılışta yeni yola güncellenir. Masaüstü uygulamasının
-Code sekmesinde, CLI'da ve VS Code'da çalışır.
+</div>
 
-## Derleme
+يعرض الشريط ما يفعله Claude ومنذ متى يعمل («now-bar · يعدّل: app.rs»)؛ وتضم البطاقة تقدّم قائمة
+المهام، وآخر الخطوات، وعند انتهاء العمل السطر الأول من الرد («انتهى · 12 د · 9 ملفات»). حين يطلب
+Claude إذنًا تظهر على البطاقة أزرار **سماح / رفض**؛ وهذا يقتصر على الأوامر ذات السطر الواحد التي
+تظهر كاملةً على البطاقة، والملفات، والعناوين، وعمليات البحث. في أذونات الملفات يظهر المسار الكامل
+للملف على البطاقة، بينما يبقى التعديل نفسه في نافذة Claude؛ وكذلك يُجاب هناك عن الأوامر متعددة
+الأسطر والأسئلة واعتماد الخطط. نافذة Claude نفسها تبقى مفتوحة في الوقت ذاته، والرد الأسبق من
+أيّهما هو المعتمد. تنتظر البطاقة ردّك 60 ثانية (الإعدادات ← النظام ← الأنشطة المباشرة). وإن نُقل
+Now Bar إلى مجلد آخر، تُحدَّث الخطافات إلى المسار الجديد عند التشغيل التالي. يعمل ذلك في تبويب Code
+بتطبيق سطح المكتب، وفي CLI، وفي VS Code.
 
-Gerekenler: Rust (MSVC araç zinciri) ve simgenin exe'lere gömülmesi için Windows SDK (`rc.exe`).
-SDK olmadan da derlenir, ama exe'ler Windows'un varsayılan simgesiyle kalır.
+## البناء من المصدر
+
+المتطلبات: Rust (سلسلة أدوات MSVC)، وWindows SDK (‏`rc.exe`) لتضمين الأيقونة في الملفات التنفيذية.
+يمكن البناء دون SDK، لكن الملفات التنفيذية ستحمل أيقونة Windows الافتراضية.
+
+<div dir="ltr">
 
 ```
 cargo b
 ```
 
-`cargo b`, `.cargo\config.toml`'da tanımlı bir kısaltmadır: `cargo build --profile quick --bin
-nowbar --bin nowbar-settings`. Sürüm derlemesi kadar hızlı çalışan bir exe üretir ama programın
-tamamını birlikte optimize etmez (LTO yoktur); bu yüzden önbellek doluyken derleme birkaç saniye
-sürer. Ayarlar penceresinin arayüzü (`ui\`, Slint) bu profilde optimizasyonsuz derlenir: bir
-`.slint` değişikliği 4–5 dakika yerine 40 saniyede derlenir.
+</div>
 
-Çıktılar `target\quick\` klasörüne yazılır; projeyi kısa bir yola klonla (MSVC'nin yol sınırı
-260 karakterdir). İki exe (`nowbar.exe` ve `nowbar-settings.exe`) **aynı klasörde** olmalıdır: Now
-Bar ayarlar penceresini kendi yanında arar. İkisini `bin\` klasörüne kopyalayıp oradan çalıştır.
-"Windows ile başlat" açıksa başlangıç kaydı kendiliğinden en son çalıştırılan kopyaya güncellenir.
+‏`cargo b` اختصار معرّف في `.cargo\config.toml`، ويعادل: `cargo build --profile quick --bin nowbar
+--bin nowbar-settings`. يُنتج ملفًا تنفيذيًا بسرعة إصدار النشر نفسها، لكنه لا يُحسّن البرنامج كله
+دفعةً واحدة (دون LTO)؛ لذا يستغرق البناء بضع ثوانٍ حين تكون الذاكرة المؤقتة ممتلئة. واجهة نافذة
+الإعدادات (`ui\`، بلغة Slint) تُبنى في هذا الملف الشخصي دون تحسين: أي تعديل على ملف `.slint` يُبنى
+في 40 ثانية بدلًا من 4–5 دقائق.
 
-**Yayın:** `tools\make-setup.ps1`, bir GitHub sürümünde yer alan dosyaları `dist\` klasörüne
-üretir: `nowbar-setup.exe` (iki exe içinde), `nowbar.exe`, `nowbar-settings.exe` (güncelleyicinin
-indirdikleri) ve `SHA256SUMS.txt`. C çalışma zamanı statik olarak bağlanır; bu sayede exe'ler
-Visual C++ Redistributable kurulu olmayan Windows'larda da açılır. Sürüm derlemesi
-(`target\dist\`, birkaç GB) saklanır: ilk derleme 13–14 dakika sürer, sonrakiler yalnızca değişen
-kısımları derler (kod değişikliğinden sonra 5 dakika kadar). `-Clean` bu derlemeyi sonunda siler,
-`-Jobs` aynı anda kaç derleme işi çalışacağını belirler.
+تُكتب المخرجات في `target\quick\`؛ انسخ المشروع إلى مسار قصير (حد المسار في MSVC هو 260 حرفًا).
+يجب أن يكون الملفان التنفيذيان (`nowbar.exe` و`nowbar-settings.exe`) **في المجلد نفسه**: فـNow Bar
+يبحث عن نافذة الإعدادات بجواره. انسخهما إلى مجلد `bin\` وشغّلهما من هناك. وإن كان «التشغيل مع
+Windows» مفعّلًا، فسيُحدَّث سجل بدء التشغيل تلقائيًا إلى آخر نسخة شغّلتها.
+
+**النشر:** ينتج `tools\make-setup.ps1` في مجلد `dist\` الملفات التي يتضمنها إصدار GitHub:
+‏`nowbar-setup.exe` (ويحوي الملفين التنفيذيين)، و`nowbar.exe` و`nowbar-settings.exe` (وهما ما ينزّله
+المحدِّث)، و`SHA256SUMS.txt`. تُربط مكتبة C الزمنية ربطًا ثابتًا، فتعمل الملفات التنفيذية حتى على
+أجهزة Windows التي لا تحوي Visual C++ Redistributable. يُحتفظ ببناء الإصدار (`target\dist\`، بضعة
+غيغابايت): البناء الأول يستغرق 13–14 دقيقة، وما يليه يعيد بناء الأجزاء المتغيرة فقط (نحو 5 دقائق
+بعد تعديل في الكود). ‏`-Clean` يحذف هذا البناء في النهاية، و`-Jobs` يحدد عدد مهام البناء المتزامنة.
+
+<div dir="ltr">
 
 ```
 powershell -ExecutionPolicy Bypass -File tools\make-setup.ps1 -Jobs 6
 ```
 
-### Yazı tipleri
+</div>
 
-Pil ve kart, exe'nin yanındaki `fonts\` klasörüne bakar: `OneUISans*.ttf` varsa One UI Sans'ı
-(telefonundan alabilirsin), yoksa `Inter*.ttf`'yi, o da yoksa Windows'un Segoe UI Variable'ını
-kullanır. Ayarlar penceresi Inter'i kendi içinde barındırır (`ui\fonts`, SIL Open Font License).
+### الخطوط
 
-## Dosyalar
+يبحث الشريط والبطاقة في مجلد `fonts\` بجوار الملف التنفيذي: إن وُجد `OneUISans*.ttf` يُستخدم خط
+One UI Sans (يمكنك أخذه من هاتفك)، وإلا فـ`Inter*.ttf`، وإلا فخط Segoe UI Variable من Windows. أما
+نافذة الإعدادات فتحمل خط Inter داخلها (`ui\fonts`، برخصة SIL Open Font License).
 
-- Ayarlar: `%APPDATA%\NowBar\settings.json`
-- Günlük: `%LOCALAPPDATA%\NowBar\log.txt`. Pilin ne zaman ve neden gizlendiği de buraya yazılır
-  (`pill: hidden (nothing active)`, `media: Brave left (paused 10 min)` gibi).
-- Takım armaları: `%LOCALAPPDATA%\NowBar\crests\`
+**الواجهة العربية بخط ثمانية:** حين تكون اللغة العربية، يرسم الشريط والبطاقات ونافذتا الإعدادات
+والتثبيت كل النصوص بخط **thmanyah sans** إن وُجد على الجهاز. رخصة ثمانية لا تسمح بتوزيع ملفات
+الخط مع البرنامج، لذا يثبّته كل مستخدم بنفسه: نزّله من [thmanyah.com](https://thmanyah.com)، ثم
+حدّد ملفات `thmanyahsans-*.otf` وانقر بالزر الأيمن ← **تثبيت** (أو **تثبيت لجميع المستخدمين**)،
+وأعد تشغيل Now Bar. وبدلًا من التثبيت يمكن وضع الملفات في مجلد `fonts\` بجوار `nowbar.exe`، لكن
+نافذة الإعدادات لا تراها حينها (ترى الخطوط المثبّتة فقط). وإن لم يوجد الخط تُعرض العربية بخطوط
+Windows.
 
-## Güncelleme
+## الملفات
 
-Now Bar açıldıktan bir dakika sonra ve ardından günde bir kez GitHub'dan son sürümü sorar
-(`api.github.com`; sorgu dışında hiçbir şey gönderilmez). Yeni sürüm varsa tepsi menüsünde
-**Güncelle: x.y.z** ve Ayarlar → Hakkında'da bir satır belirir. Tıklayınca iki exe indirilir;
-`SHA256SUMS.txt`'nin imzası exe'ye gömülü anahtarla (`UPDATE_KEY`) denetlenir, exe'ler
-`SHA256SUMS.txt` ile doğrulanır, eskilerinin yerine konur ve Now Bar yeniden başlar; ayarlar ve
-otomatik başlatma olduğu gibi kalır. İmzasız bir sürümde (ya da anahtarı olmayan bir derlemede)
-hiçbir exe değiştirilmez: sürüm sayfası açılır ve güncelleme kurulumla elle yapılır. Adımlardan biri bile başarısız olursa eski exe'ler yerinde
-kalır. Now Bar'ın yazma izni olmayan bir klasöre (Program Files gibi) kurulduysa sürüm sayfası
-açılır. Güncelleme denetimi Ayarlar → Hakkında → Güncellemeleri denetle ile kapatılabilir.
+- الإعدادات: `%APPDATA%\NowBar\settings.json`
+- السجل: `%LOCALAPPDATA%\NowBar\log.txt`. ويُسجَّل فيه أيضًا متى ولماذا اختفى الشريط (مثل
+  `pill: hidden (nothing active)` و`media: Brave left (paused 10 min)`).
+- شعارات الفرق: `%LOCALAPPDATA%\NowBar\crests\`
 
-## Gizlilik ve ağ
+## التحديث
 
-Now Bar'ın bağlandığı yerler (hiçbiri API anahtarı istemez):
+بعد دقيقة من تشغيل Now Bar، ثم مرة يوميًا، يسأل GitHub عن أحدث إصدار (`api.github.com`؛ ولا يُرسَل
+شيء غير هذا الاستعلام). إن وُجد إصدار جديد يظهر **تحديث: x.y.z** في قائمة أيقونة شريط المهام، وسطر
+في الإعدادات ← حول. بالنقر عليه يُنزَّل الملفان التنفيذيان، ويُتحقَّق من توقيع `SHA256SUMS.txt`
+بالمفتاح المضمَّن في البرنامج (`UPDATE_KEY`)، ثم من الملفين عبر `SHA256SUMS.txt`، فيحلّان محل
+القديمين ويُعاد تشغيل Now Bar؛ وتبقى الإعدادات والتشغيل التلقائي كما هي. وإن كان الإصدار غير موقَّع
+(أو كانت النسخة بلا مفتاح) فلن يُستبدل أي ملف: تُفتح صفحة الإصدار وتثبّت التحديث يدويًا ببرنامج
+الإعداد. وإن فشلت
+أي خطوة، يبقى الملفان القديمان في مكانهما. وإن كان Now Bar مثبّتًا في مجلد لا يملك صلاحية الكتابة
+فيه (مثل Program Files) تُفتح صفحة الإصدار بدلًا من ذلك. ويمكن إيقاف التحقق من التحديثات من الإعدادات
+← حول ← التحقق من التحديثات.
 
-- **Şarkı sözleri:** çalan şarkının sanatçısı, adı ve süresi `lrclib.net`'e gönderilir
-  (Ayarlar → Medya → Şarkı sözleri ile kapatılabilir).
-- **Hava durumu:** seçilen şehrin koordinatları Open-Meteo'ya gönderilir (`api.open-meteo.com`,
-  `geocoding-api.open-meteo.com`). **Konumumu kullan** seçiliyse konum Windows'un konum
-  hizmetinden alınır (Windows izin ister); yerin adını bulmak için yaklaşık 1 km'ye yuvarlanmış
-  koordinatlar OpenStreetMap'e (`nominatim.openstreetmap.org`) gönderilir.
-- **Maçlar:** takip edilen takımlar için ESPN (`site.api.espn.com`) ve EuroLeague/EuroCup
-  (`feeds.incrowdsports.com`, `live.euroleague.net`); armalar da bu kaynakların görsel
-  adreslerinden indirilir.
-- **Güncelleme:** GitHub (`api.github.com`), yukarıda anlatıldığı gibi.
+## الخصوصية والشبكة
 
-**Uygulama bildirimleri** açıksa Now Bar yalnızca bu bilgisayardan erişilebilen `127.0.0.1:20034`
-ve `[::1]` adreslerini dinler (port doluysa Windows'un verdiği başka bir portu kullanır ve bunu
-`%LOCALAPPDATA%\NowBar\api.json` dosyasına yazar). Kapalıyken hiçbir port açılmaz. Web
-sayfalarından, ağdan ve bu bilgisayardaki diğer Windows kullanıcılarından gelen istekler
-reddedilir; ayrıntılar [DOCS.md](DOCS.md)'de.
+الجهات التي يتصل بها Now Bar (لا يتطلب أي منها مفتاح API):
 
-İzlenen klasörler: ShareX'in ekran görüntüsü klasörü ve Windows'un `Resimler\Screenshots`
-klasörü (yeni bir görüntü pilde kısa bir süre görünür ve rafa eklenir; Ayarlar → Sistem → Ekran
-görüntüleri). Claude Code'un adımları ve izin istekleri görev çubuğunda görünür; ekran paylaşırken
-bunu göz önünde bulundur.
+- **كلمات الأغاني:** يُرسَل اسم الفنان واسم الأغنية ومدتها إلى `lrclib.net` (يمكن إيقافه من
+  الإعدادات ← الوسائط ← كلمات الأغاني).
+- **الطقس:** تُرسَل إحداثيات المدينة المختارة إلى Open-Meteo (‏`api.open-meteo.com`
+  و`geocoding-api.open-meteo.com`). وإن اخترت **استخدام موقعي** يؤخذ الموقع من خدمة الموقع في
+  Windows (ويطلب Windows إذنك)؛ ولمعرفة اسم المكان تُرسَل إحداثيات مقرّبة إلى نحو 1 كم إلى
+  OpenStreetMap (‏`nominatim.openstreetmap.org`).
+- **المباريات:** ‏ESPN (‏`site.api.espn.com`) للفرق التي تتابعها، وEuroLeague/EuroCup
+  (‏`feeds.incrowdsports.com` و`live.euroleague.net`)؛ وتُنزَّل الشعارات من روابط الصور في هذه
+  المصادر نفسها.
+- **التحديث:** ‏GitHub (‏`api.github.com`)، كما شُرح أعلاه.
 
-## Bilinen sınırlar
+حين تكون **إشعارات التطبيقات** مفعّلة، لا يستمع Now Bar إلا على العنوانين `127.0.0.1:20034`
+و`[::1]` اللذين لا يمكن الوصول إليهما إلا من هذا الجهاز (وإن كان المنفذ مشغولًا يستخدم منفذًا آخر
+يخصّصه Windows ويكتبه في `%LOCALAPPDATA%\NowBar\api.json`). وحين تكون متوقفة لا يُفتح أي منفذ.
+تُرفض الطلبات الآتية من صفحات الويب ومن الشبكة ومن مستخدمي Windows الآخرين على الجهاز نفسه؛
+والتفاصيل في [DOCS_AR.md](DOCS_AR.md).
 
-- **Windows 11 ya da Windows 10 (1809 ve sonrası).** Windows 10'da kartın arkası bulanıklaşmaz
-  (düz zemin kullanılır) ve simgeler Segoe MDL2 Assets'ten gelir. Windows 10 desteği 0.2.1'de
-  geldi; görev çubuğundaki yerleşimi henüz yalnızca simülasyonla denendi.
-- **Galaxy Buds:** Buds2'de denendi; Buds2 Pro, Buds FE, Buds Core, Buds3, Buds3 FE ve Buds4 aynı
-  protokolü kullanır, Buds Pro da tanınır. İlk Galaxy Buds, Buds+ ve Buds Live desteklenmez.
-  GalaxyBudsClient ya da Samsung'un Galaxy Buds uygulaması bağlantıyı kullanırken Now Bar
-  kulaklığı okuyamaz.
-- **Duraklatılan medya 10 dakika sonra pilden kalkar** (Ayarlar → Medya → Duraklayınca kal).
-  Başka bir etkinlik yoksa pil de o an gizlenir; müzik yeniden çalınca geri gelir.
-- Ayarlar penceresi canlı verileri göstermez: maçın anlık skoru, Buds'ın o anki şarjı ya da
-  çalışan zamanlayıcı yerine o etkinliğin pilinin örnek bir görünümü yer alır.
-- Yalnızca ana ekranın görev çubuğunda çalışır.
-- Boştaki kaynak kullanımı (medya duraklatılmışken, 2026-10-21 ölçümü): 10 saniyede 5–10 ms
-  işlemci süresi, 39–66 MB çalışma kümesi (25 MB özel bellek). Hedef 10 saniyede 5 ms ve 50 MB'tı.
-- Explorer yeniden başlarsa pil görev çubuğuna kendiliğinden geri döner; açık bir kart varsa
-  kapanır.
+المجلدات المراقَبة: مجلد لقطات الشاشة في ShareX، ومجلد `الصور\Screenshots` في Windows (تظهر الصورة
+الجديدة في الشريط لحظةً وتُضاف إلى الرف؛ الإعدادات ← النظام ← لقطات الشاشة). خطوات Claude Code
+وطلبات الإذن تظهر في شريط المهام؛ فانتبه لذلك أثناء مشاركة الشاشة.
 
-## Geliştirme
+## حدود معروفة
+
+- **Windows 11 أو Windows 10 (الإصدار 1809 فما بعده).** في Windows 10 لا تصبح خلفية البطاقة ضبابية
+  (تُستخدم خلفية مصمتة)، وتأتي الأيقونات من Segoe MDL2 Assets. دعم Windows 10 جاء في الإصدار 0.2.1،
+  ولم يُختبر موضعه في شريط المهام بعدُ إلا بالمحاكاة.
+- **Galaxy Buds:** اختُبر على Buds2؛ وتستخدم Buds2 Pro وBuds FE وBuds Core وBuds3 وBuds3 FE وBuds4
+  البروتوكول نفسه، ويتعرّف أيضًا على Buds Pro. لا يدعم Galaxy Buds الأولى ولا Buds+ ولا Buds Live.
+  ولا يستطيع Now Bar قراءة السماعات أثناء استخدام GalaxyBudsClient أو تطبيق Galaxy Buds من Samsung
+  للاتصال.
+- **الوسائط المتوقفة مؤقتًا تختفي من الشريط بعد 10 دقائق** (الإعدادات ← الوسائط ← البقاء عند
+  الإيقاف المؤقت). وإن لم يوجد نشاط آخر يختفي الشريط أيضًا، ويعود حين تُستأنف الموسيقى.
+- لا تعرض نافذة الإعدادات بيانات حية: بدلًا من النتيجة اللحظية للمباراة أو شحن Buds الحالي أو
+  المؤقّت الجاري، تعرض معاينة نموذجية لشريط ذلك النشاط.
+- يعمل على شريط مهام الشاشة الرئيسية فقط.
+- استهلاك الموارد في وضع الخمول (والوسائط متوقفة مؤقتًا، قياس 2026-10-21): ‏5–10 مللي ثانية من وقت
+  المعالج كل 10 ثوانٍ، و39–66 ميغابايت لمجموعة العمل (25 ميغابايت ذاكرة خاصة). وكان الهدف 5 مللي
+  ثانية و50 ميغابايت.
+- إن أُعيد تشغيل Explorer يعود الشريط إلى شريط المهام تلقائيًا؛ وتُغلق أي بطاقة كانت مفتوحة.
+- **الواجهة العربية:** النصوص مترجمة بالكامل، لكن تخطيط الشريط والبطاقات ونافذة الإعدادات (مواضع
+  الأزرار والقوائم) يبقى من اليسار إلى اليمين.
+
+## التطوير
+
+<div dir="ltr">
 
 ```
 cargo t
 cargo lint
 ```
 
-Testler ve clippy (`.cargo\config.toml`'daki kısaltmalar) quick profilinde çalışır; düz
-`cargo test` ise bağımlılıkların ikinci bir tam kopyasını `debug\` altına derler (onlarca GB).
+</div>
 
-- Derlemeyi hızlandıranlar: Rust'ın kendi bağlayıcısı (`rust-lld`), bağımlılıklarda hata ayıklama
-  bilgisinin kapalı olması ve ayarlar penceresinin Slint arayüzünün ayrı bir crate'te (`ui\`)
-  bulunması: arayüz yalnızca bir `.slint` dosyası değişince yeniden derlenir.
-- `NOWBAR_SETTINGS_SHOTS=<klasör> nowbar-settings.exe`: ayarlar penceresini ekran dışında açar,
-  her sayfanın gerçek çiziciyle ekran görüntüsünü alır ve ayarları kaydetmeden kapanır.
-- `pillsheet`, `cardsheet`, `matchsheet`, `settingsheet`: pencere açmadan örnek görüntüler
-  üretir. `readmesheet` ile `tools\readme-images.py` bu sayfadaki görselleri yeniden çizer
-  (`assets\readme\`).
-- `tools\*.ps1`: titreme, boştaki kullanım, Explorer'ın yeniden başlatılması ve diğer ölçümler.
-- `nowbar.exe --demo`: bir dakikalık örnek bir zamanlayıcıyla başlar; `--match-replay <klasör>`
-  kaydedilmiş skor tablolarıyla bir maçı yeniden oynatır.
-- `assets\make_icon.py`: simgeyi (tepsideki beyaz hap) yeniden çizer.
-- **Sürüm yayınlamak:** `Cargo.toml`'daki `version`'ı artır, `tools\make-setup.ps1`'i çalıştır,
-  sonra `dist\` içindekileri yayınla:
+تعمل الاختبارات وclippy (الاختصارات في `.cargo\config.toml`) بالملف الشخصي quick؛ أما `cargo test`
+المجرّد فيبني نسخة كاملة ثانية من الاعتماديات تحت `debug\` (عشرات الغيغابايت).
+
+- ما يسرّع البناء: رابط Rust الخاص (`rust-lld`)، وإيقاف معلومات التصحيح في الاعتماديات، وفصل واجهة
+  Slint لنافذة الإعدادات في crate مستقل (`ui\`): فلا تُعاد بناء الواجهة إلا عند تعديل ملف `.slint`.
+- ‏`NOWBAR_SETTINGS_SHOTS=<مجلد> nowbar-settings.exe`: يفتح نافذة الإعدادات خارج الشاشة، ويلتقط
+  صورة لكل صفحة بأداة الرسم الحقيقية، ثم يُغلق دون حفظ الإعدادات.
+- ‏`pillsheet` و`cardsheet` و`matchsheet` و`settingsheet`: تُنتج صورًا نموذجية دون فتح نوافذ.
+  و`readmesheet` مع `tools\readme-images.py` يعيدان رسم صور هذه الصفحة (`assets\readme\`).
+  ‏`NOWBAR_LANG=ar` يُخرجها بالعربية.
+- ‏`tools\*.ps1`: الوميض، واستهلاك الخمول، وإعادة تشغيل Explorer، وقياسات أخرى.
+- ‏`nowbar.exe --demo`: يبدأ بمؤقّت تجريبي مدته دقيقة؛ و`--match-replay <مجلد>` يعيد عرض مباراة من
+  جداول نتائج مسجّلة.
+- ‏`assets\make_icon.py`: يعيد رسم الأيقونة (الكبسولة البيضاء في شريط المهام).
+- **الترجمة:** النصوص في الكود بالتركية؛ والإنجليزية في `i18n\en\LC_MESSAGES\nowbar-ui.po`
+  والعربية في `i18n\ar\LC_MESSAGES\nowbar-ui.po`. يضيف `python tools\i18n-extract.py` أي نص جديد
+  ناقص إلى الملفين، ويفشل `cargo t` حتى تكتمل ترجمته في كليهما.
+- **نشر إصدار:** ارفع `version` في `Cargo.toml`، وشغّل `tools\make-setup.ps1`، ثم انشر محتويات
+  `dist\`:
   `gh release create vX.Y.Z dist\nowbar-setup.exe dist\nowbar.exe dist\nowbar-settings.exe dist\SHA256SUMS.txt dist\SHA256SUMS.txt.sig`.
-  İmza anahtarı bir kez `tools\make-update-key.ps1` ile üretilir: gizli yarısı depo dışında
-  (`%USERPROFILE%\.nowbar\update-key.json`) kalır, açık yarısı `src\update.rs`'deki `UPDATE_KEY`'e
-  yazılır; `make-setup.ps1` imzayı kendisi atar.
-  `nowbar.exe --update-from <klasör>` güncellemeyi GitHub olmadan, bir klasördeki exe'lerle dener.
+  يُنشأ مفتاح التوقيع مرة واحدة بـ`tools\make-update-key.ps1`: يبقى نصفه السري خارج المستودع
+  (`%USERPROFILE%\.nowbar\update-key.json`)، ويوضع نصفه العام في `UPDATE_KEY` داخل `src\update.rs`؛
+  ويوقّع `make-setup.ps1` الإصدار تلقائيًا.
+  ويختبر `nowbar.exe --update-from <مجلد>` التحديث دون GitHub، بالملفات التنفيذية الموجودة في مجلد.
 
 ---
 
-<sub>Samsung ile bir ilgisi yoktur; One UI'dan esinlenmiş bağımsız bir projedir. Galaxy Buds'ın
-gürültü kontrolü simgeleri Samsung'a aittir.</sub>
+<sub>لا علاقة لهذا المشروع بـSamsung؛ إنه مشروع مستقل مستوحى من One UI. أيقونات التحكم في الضوضاء
+الخاصة بـGalaxy Buds مملوكة لـSamsung.</sub>
+
+</div>
