@@ -145,7 +145,7 @@ fn window(places: Places, uninstalling: bool, launch: bool) -> Result<(), slint:
     let ui = SetupWindow::new()?;
     // Windows 10 has no Segoe Fluent Icons: the glyphs would be boxes.
     nowbar::set_slint_faces!(ui.global::<Theme>());
-    let _ = slint::select_bundled_translation(if nowbar::i18n::lang() == nowbar::i18n::Language::English { "en" } else { "" });
+    let _ = slint::select_bundled_translation(nowbar::i18n::lang().bundle());
     let (position, scale) = centre_at_mouse();
     stage::fill(&ui, scale);
     describe(&ui, &places, uninstalling);

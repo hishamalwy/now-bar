@@ -1,5 +1,6 @@
 # Builds what a GitHub release carries, into dist\: nowbar-setup.exe (both exes inside),
-# nowbar.exe and nowbar-settings.exe (what the updater downloads) and SHA256SUMS.txt.
+# nowbar.exe and nowbar-settings.exe (what the updater downloads), SHA256SUMS.txt and, with an
+# update key (tools\make-update-key.ps1), its signature SHA256SUMS.txt.sig.
 #
 #   powershell -ExecutionPolicy Bypass -File tools\make-setup.ps1 [-Jobs 2] [-Clean]
 #
@@ -42,6 +43,12 @@ try {
         '{0}  {1}' -f (Get-FileHash (Join-Path $dist $exe) -Algorithm SHA256).Hash.ToLower(), $exe
     }
     Set-Content (Join-Path $dist 'SHA256SUMS.txt') $sums -Encoding ascii
+    # Signed with the update key when this build has one (UPDATE_KEY): the updater swaps in only
+    # what that key signed. Without one, users install updates with the setup.
+    if ((Select-String -Path (Join-Path $repo 'src\update.rs') -Pattern 'pub const UPDATE_KEY: &str = "(.+)";').Matches.Count) {
+        & (Join-Path $PSScriptRoot 'sign-sums.ps1') -Sums (Join-Path $dist 'SHA256SUMS.txt')
+    }
+    else { Write-Warning 'UPDATE_KEY in src\update.rs is empty: SHA256SUMS.txt is unsigned, and this build opens the release page instead of updating itself.' }
 
     # No exe may need the Visual C++ runtime DLLs, or name the user's folder.
     $userPath = '(?i)' + [regex]::Escape($env:USERPROFILE) + '|[\\/]users[\\/]' + [regex]::Escape($env:USERNAME) + '[\\/]'

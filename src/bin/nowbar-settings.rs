@@ -7,7 +7,7 @@ use std::rc::Rc;
 use std::time::{Duration, Instant};
 
 use nowbar::activities::football::{competition_name, known_team, TeamHit};
-use nowbar::activities::football_worker::{crest_path, fetch_crest, try_search_teams};
+use nowbar::activities::football_worker::{crest_path, fetch_crest, fetch_team_crest, try_search_teams};
 use nowbar::activities::media::app_name;
 use nowbar::activities::weather_worker::geocode;
 use nowbar::platform::audio::{list_outputs, picker_order};
@@ -17,7 +17,7 @@ use nowbar::settings::{
     self, AnimationSpeed, CardSize, FollowedTeam, Hotkey, Marquee, PillButtons, PillSize, Settings, Theme as Look, TrayClick, WeatherCity,
 };
 use nowbar::activities::buds::Paired;
-use nowbar::i18n::{self, Language, LanguagePick};
+use nowbar::i18n::{self, LanguagePick};
 use nowbar::settings_ui::{app_badge, badge_letter, buds_choices, exception_name, page_arg, search, stand_in_colour, team_code, tidy_presets};
 use raw_window_handle::{HasWindowHandle, RawWindowHandle};
 use slint::winit_030::winit::window::ResizeDirection;
@@ -406,14 +406,14 @@ fn show_buds(st: &Store, b: &Bridge) {
 }
 
 /// The Dil choice's order.
-const LANGUAGES: [LanguagePick; 3] = [LanguagePick::Auto, LanguagePick::Turkish, LanguagePick::English];
+const LANGUAGES: [LanguagePick; 4] = [LanguagePick::Auto, LanguagePick::Turkish, LanguagePick::English, LanguagePick::Arabic];
 
 /// Speaks `p`'s language: the Rust side's strings, and the Slint ones (bundled; "" is the Turkish
 /// they're written in).
 fn speak(p: LanguagePick) {
     let l = i18n::chosen(p);
     i18n::set_language(l);
-    let _ = slint::select_bundled_translation(if l == Language::English { "en" } else { "" });
+    let _ = slint::select_bundled_translation(l.bundle());
 }
 
 /// Puts every setting into the window.
@@ -831,7 +831,10 @@ fn main() -> Result<(), slint::PlatformError> {
                 let _ = std::fs::write(page_request_path(), page.to_string());
             }
             // Its title is in its own language.
-            if let Ok(hwnd) = FindWindowW(None, TITLE).or_else(|_| FindWindowW(None, w!("Now Bar Settings"))) {
+            if let Ok(hwnd) = FindWindowW(None, TITLE)
+                .or_else(|_| FindWindowW(None, w!("Now Bar Settings")))
+                .or_else(|_| FindWindowW(None, w!("إعدادات Now Bar")))
+            {
                 let _ = ShowWindow(hwnd, SW_RESTORE);
                 let _ = SetForegroundWindow(hwnd);
             }
@@ -842,10 +845,11 @@ fn main() -> Result<(), slint::PlatformError> {
     }
 
     let ui = SettingsWindow::new()?;
-    // Windows 10 has no Segoe Fluent Icons: every glyph was a box.
-    nowbar::set_slint_faces!(ui.global::<Theme>());
     let loaded = settings::load();
     speak(loaded.language);
+    // Windows 10 has no Segoe Fluent Icons: every glyph was a box. (After the language: Arabic
+    // has its own face.)
+    nowbar::set_slint_faces!(ui.global::<Theme>());
     let bridge = Rc::new(RefCell::new(Bridge { settings: loaded.clone(), saved: loaded, hits: Vec::new(), search_gen: 0, city_gen: 0, removed: None, playing: None, buds: None }));
     BRIDGE.with(|b| *b.borrow_mut() = Some(bridge.clone()));
     let live_apps = live_media_apps();
@@ -1067,7 +1071,15 @@ fn main() -> Result<(), slint::PlatformError> {
                     // Results at once (crest stand-ins), then again once the missing crests are cached.
                     let ui_first = ui_weak.clone();
                     let _ = slint::invoke_from_event_loop(move || show_hits(&ui_first, generation, found));
-                    let fetched = hits.iter().filter(|h| h.logo.as_deref().is_some_and(|url| !crest_path(&h.id).exists() && fetch_crest(&h.id, url))).count();
+                    let fetched = hits
+                        .iter()
+                        .filter(|h| !crest_path(&h.id).exists())
+                        .filter(|h| match h.logo.as_deref() {
+                            Some(url) if h.id.starts_with("bb-") => fetch_crest(&h.id, url),
+                            _ if h.id.starts_with("bb-") => false,
+                            logo => fetch_team_crest(&h.id, &h.name, logo),
+                        })
+                        .count();
                     if fetched > 0 {
                         let _ = slint::invoke_from_event_loop(move || show_hits(&ui_weak, generation, Some(hits)));
                     }
@@ -1190,6 +1202,7 @@ fn main() -> Result<(), slint::PlatformError> {
                 speak(p);
                 // The lists the Rust side words, in the new language.
                 if let Some(ui) = ui_weak.upgrade() {
+                    nowbar::set_slint_faces!(ui.global::<Theme>());
                     let st = ui.global::<Store>();
                     show_buds(&st, &bridge.borrow());
                     show_located(&st);

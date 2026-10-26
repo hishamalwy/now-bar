@@ -28,7 +28,7 @@ pub struct TextKit {
     /// re-upload it.
     art: std::cell::RefCell<Option<(usize, ID2D1Bitmap1)>>,
     /// Cap height over the em, per face and weight (for optical centring).
-    caps: std::cell::RefCell<std::collections::HashMap<(Face, Weight), f32>>,
+    caps: std::cell::RefCell<std::collections::HashMap<(Face, Weight, bool), f32>>,
 }
 
 impl TextKit {
@@ -52,11 +52,13 @@ impl TextKit {
 
     /// Cap height as a fraction of the font size (0.7, Segoe UI's, when the font can't be read).
     fn cap_ratio(&self, face: Face, weight: Weight) -> f32 {
-        if let Some(r) = self.caps.borrow().get(&(face, weight)) {
+        // Arabic may draw with another family: its own cap height.
+        let key = (face, weight, speaks_arabic());
+        if let Some(r) = self.caps.borrow().get(&key) {
             return *r;
         }
         let r = self.read_cap_ratio(face, weight).unwrap_or(0.7);
-        self.caps.borrow_mut().insert((face, weight), r);
+        self.caps.borrow_mut().insert(key, r);
         r
     }
 
@@ -122,12 +124,24 @@ impl Weight {
     }
 }
 
-/// Font families: `fonts/OneUISans*` beside the exe, else `fonts/Inter*`, else Segoe UI Variable.
+/// Font families: `fonts/OneUISans*` beside the exe, else `fonts/Inter*`, else Segoe UI Variable;
+/// in Arabic, thmanyah sans when it is there (`fonts/thmanyahsans*`, or installed in Windows).
 pub struct Fonts {
     collection: Option<IDWriteFontCollection1>,
     display: HSTRING,
     text: HSTRING,
     icons: HSTRING,
+    /// The Arabic interface's family and, from the fonts folder, its collection.
+    arabic: Option<(HSTRING, Option<IDWriteFontCollection1>)>,
+}
+
+/// The Arabic interface's family (thmanyah's, from thmanyah.com: its license allows no copy to
+/// ship with the app, so each PC installs it, or keeps it in `fonts\`).
+pub const ARABIC_FAMILY: &str = "thmanyah sans";
+
+/// Whether the Arabic family is the one to draw with now.
+fn speaks_arabic() -> bool {
+    crate::i18n::lang() == crate::i18n::Language::Arabic
 }
 
 pub const ICON_FAMILIES: [&str; 2] = ["Segoe Fluent Icons", "Segoe MDL2 Assets"];
@@ -148,35 +162,48 @@ fn as_windows_10() -> bool {
     std::env::var("NOWBAR_FONTS").is_ok_and(|v| v == "win10")
 }
 
-/// The first of `names` the system has (Windows 10 lacks Segoe UI Variable and Fluent Icons).
-fn installed(dwrite: &IDWriteFactory5, names: &[&str]) -> HSTRING {
-    let have = |name: &str| unsafe {
+/// Whether Windows has the family `name` (installed for everyone or for this user).
+fn system_has(dwrite: &IDWriteFactory5, name: &str) -> bool {
+    unsafe {
         let mut collection: Option<IDWriteFontCollection1> = None;
         if dwrite.GetSystemFontCollection(false, &mut collection, false).is_err() {
             return false;
         }
         let (mut index, mut exists) = (0u32, windows::core::BOOL(0));
         collection.is_some_and(|c| c.FindFamilyName(&HSTRING::from(name), &mut index, &mut exists).is_ok() && exists.as_bool())
-    };
-    HSTRING::from(first_installed(names, have, as_windows_10()))
+    }
 }
 
-/// The system families for icons, text and display (the Slint windows take theirs from here).
+/// The first of `names` the system has (Windows 10 lacks Segoe UI Variable and Fluent Icons).
+fn installed(dwrite: &IDWriteFactory5, names: &[&str]) -> HSTRING {
+    HSTRING::from(first_installed(names, |name| system_has(dwrite, name), as_windows_10()))
+}
+
+/// The system families for icons, text and display (the Slint windows take theirs from here),
+/// and the windows' own face (`ui`: the Inter they carry, or the Arabic family).
 pub struct SystemFaces {
     pub icons: String,
     pub text: String,
     pub display: String,
+    pub ui: String,
 }
 
 impl SystemFaces {
-    /// Windows 11's when it has them (DirectWrite failing: those too).
+    /// Windows 11's when it has them (DirectWrite failing: those too); in Arabic, the Arabic
+    /// family for all text when Windows has it (the Slint windows see installed fonts only).
     pub fn find() -> Self {
         let factory: Result<IDWriteFactory5> = unsafe { DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED) };
         let pick = |names: &[&str]| match &factory {
             Ok(dwrite) => installed(dwrite, names).to_string(),
             Err(_) => names[0].to_string(),
         };
-        SystemFaces { icons: pick(&ICON_FAMILIES), text: pick(&TEXT_FAMILIES), display: pick(&DISPLAY_FAMILIES) }
+        let mut faces = SystemFaces { icons: pick(&ICON_FAMILIES), text: pick(&TEXT_FAMILIES), display: pick(&DISPLAY_FAMILIES), ui: "Inter".into() };
+        if speaks_arabic() && factory.as_ref().is_ok_and(|dwrite| system_has(dwrite, ARABIC_FAMILY)) {
+            faces.text = ARABIC_FAMILY.into();
+            faces.display = ARABIC_FAMILY.into();
+            faces.ui = ARABIC_FAMILY.into();
+        }
+        faces
     }
 
     /// Windows 10's Segoe MDL2 Assets.
@@ -206,6 +233,7 @@ macro_rules! set_slint_faces {
         theme.set_icons(faces.icons.into());
         theme.set_text_face(faces.text.into());
         theme.set_display_face(faces.display.into());
+        theme.set_ui_face(faces.ui.into());
     }};
 }
 
@@ -216,6 +244,7 @@ impl Fonts {
             display: installed(dwrite, &DISPLAY_FAMILIES),
             text: installed(dwrite, &TEXT_FAMILIES),
             icons: installed(dwrite, &ICON_FAMILIES),
+            arabic: None,
         }
     }
 
@@ -234,30 +263,50 @@ impl Fonts {
                 .collect()
         };
         let chosen = [pick("oneuisans"), pick("inter")].into_iter().find(|v| !v.is_empty());
-        match chosen.map(|paths| Self::custom(dwrite, &paths)) {
+        let mut fonts = match chosen.map(|paths| Self::custom(dwrite, &paths)) {
             Some(Ok(fonts)) => fonts,
             _ => Self::system(dwrite),
-        }
+        };
+        // thmanyah's files beside the exe first, then Windows' own copy.
+        let thmanyah = pick("thmanyahsans");
+        let beside = (!thmanyah.is_empty()).then(|| Self::collection(dwrite, &thmanyah).ok()).flatten();
+        fonts.arabic = match beside {
+            Some(c) => Some((HSTRING::from(ARABIC_FAMILY), Some(c))),
+            None => system_has(dwrite, ARABIC_FAMILY).then(|| (HSTRING::from(ARABIC_FAMILY), None)),
+        };
+        fonts
     }
 
-    fn custom(dwrite: &IDWriteFactory5, paths: &[PathBuf]) -> Result<Self> {
+    fn collection(dwrite: &IDWriteFactory5, paths: &[PathBuf]) -> Result<IDWriteFontCollection1> {
         unsafe {
             let builder = dwrite.CreateFontSetBuilder()?;
             for path in paths {
                 let file = dwrite.CreateFontFileReference(&HSTRING::from(path.as_os_str()), None)?;
                 builder.AddFontFile(&file)?;
             }
-            let collection = dwrite.CreateFontCollectionFromFontSet(&builder.CreateFontSet()?)?;
+            dwrite.CreateFontCollectionFromFontSet(&builder.CreateFontSet()?)
+        }
+    }
+
+    fn custom(dwrite: &IDWriteFactory5, paths: &[PathBuf]) -> Result<Self> {
+        unsafe {
+            let collection = Self::collection(dwrite, paths)?;
             let names = collection.GetFontFamily(0)?.GetFamilyNames()?;
             let len = names.GetStringLength(0)? as usize;
             let mut buf = vec![0u16; len + 1];
             names.GetString(0, &mut buf)?;
             let family = HSTRING::from_wide(&buf[..len]);
-            Ok(Fonts { collection: Some(collection), display: family.clone(), text: family, icons: installed(dwrite, &ICON_FAMILIES) })
+            Ok(Fonts { collection: Some(collection), display: family.clone(), text: family, icons: installed(dwrite, &ICON_FAMILIES), arabic: None })
         }
     }
 
+    /// The family (and its collection, when not Windows') for `face` in the language spoken now.
     fn family(&self, face: Face) -> (HSTRING, Option<&IDWriteFontCollection1>) {
+        if face != Face::Icons && speaks_arabic() {
+            if let Some((family, collection)) = &self.arabic {
+                return (family.clone(), collection.as_ref());
+            }
+        }
         match face {
             Face::Display => (self.display.clone(), self.collection.as_ref()),
             Face::Text => (self.text.clone(), self.collection.as_ref()),
@@ -376,7 +425,8 @@ impl Ink<'_> {
             let weight = st.weight.dwrite();
             let style = DWRITE_FONT_STYLE_NORMAL;
             let stretch = DWRITE_FONT_STRETCH_NORMAL;
-            let locale = &HSTRING::from("tr-TR");
+            // Arabic's own shaping and fallback; the others keep the Turkish they always had.
+            let locale = &HSTRING::from(if speaks_arabic() { "ar" } else { "tr-TR" });
             let fmt = match collection {
                 Some(c) => dw.CreateTextFormat(&family, c, weight, style, stretch, size, locale)?,
                 None => dw.CreateTextFormat(&family, None, weight, style, stretch, size, locale)?,

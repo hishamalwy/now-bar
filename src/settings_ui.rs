@@ -40,7 +40,7 @@ pub const INDEX: &[Entry] = &[
     e(0, "speed", n_("Hareket"), n_("Animasyon hızı"), n_("Pilin büyüyüp küçülmesi, kartın açılması, içerik geçişleri"), "animasyon hız yavaş hızlı kapalı"),
     e(0, "marquee", n_("Hareket"), n_("Kayan başlık"), n_("Pile sığmayan şarkı adı"), "kayma marquee başlık"),
     e(0, "marquee-speed", n_("Hareket"), n_("Kayma hızı"), n_("Kayan başlığın hızı"), "kayma hız marquee"),
-    e(1, "language", n_("Dil"), n_("Arayüzün dili"), n_("Otomatik: Windows'unki; Türkçe ya da İngilizce"), "dil language english ingilizce türkçe turkish arayüz"),
+    e(1, "language", n_("Dil"), n_("Arayüzün dili"), n_("Otomatik: Windows'unki; Türkçe, İngilizce ya da Arapça"), "dil language english ingilizce türkçe turkish arayüz arabic arapça عربي العربية لغة"),
     e(1, "autostart", n_("Başlangıç"), n_("Windows ile başlat"), n_("Oturum açınca Now Bar kendiliğinden çalışır"), "başlangıç açılış otomatik"),
     e(1, "hotkey", n_("Kısayol ve tepsi"), n_("Seçici kısayolu"), n_("Zamanlayıcı seçicisini açar"), "klavye tuş hotkey win alt"),
     e(1, "tray-click", n_("Kısayol ve tepsi"), n_("Tepsi simgesine sol tık"), n_("Zamanlayıcı seçicisi ya da ayarlar"), "tepsi simge tray"),

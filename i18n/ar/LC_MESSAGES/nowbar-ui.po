@@ -1,0 +1,3103 @@
+# العربية لـNow Bar. msgid: النص التركي في الكود؛ msgstr: صياغته العربية (ليست ترجمة حرفية).
+# Arabic for the Now Bar. tools/i18n-extract.py adds what's missing (empty msgstr); `cargo t` fails until it's filled in.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+msgid "Otomatik"
+msgstr "تلقائي"
+
+msgid "{} dk"
+msgstr "{} د"
+
+#: ui/pages.slint
+msgid "Dil"
+msgstr "اللغة"
+
+#: ui/pages.slint
+msgid "Arayüzün dili"
+msgstr "لغة الواجهة"
+
+#: ui/pages.slint
+msgid "Otomatik: Windows'unki"
+msgstr "تلقائي: لغة Windows"
+
+#: src/activities/buds.rs
+msgid "Gürültü engelleme"
+msgstr "إلغاء الضوضاء"
+
+#: src/activities/buds.rs
+msgid "Kapalı"
+msgstr "إيقاف"
+
+#: src/activities/buds.rs
+msgid "Ortam sesi"
+msgstr "الصوت المحيط"
+
+#: src/activities/buds.rs
+msgid "Uyarlanabilir"
+msgstr "تكيّفي"
+
+#: src/activities/buds.rs
+msgid "bilinmeyen model"
+msgstr "طراز غير معروف"
+
+#: src/activities/buds.rs
+msgid "Kutu {}"
+msgstr "العلبة {}"
+
+#: src/activities/games.rs
+msgid "{} MB/sn"
+msgstr "{} م.ب/ث"
+
+#: src/activities/games.rs
+msgid "{} KB/sn"
+msgstr "{} ك.ب/ث"
+
+#: src/activities/games.rs
+msgid "{} sa"
+msgstr "{} س"
+
+#: src/activities/games.rs
+msgid "{} sa {} dk"
+msgstr "{} س {} د"
+
+#: src/activities/games.rs
+msgid "1 dk'dan az kaldı"
+msgstr "أقل من دقيقة"
+
+#: src/activities/games.rs
+msgid "~{} kaldı"
+msgstr "متبقٍّ ~{}"
+
+#: src/activities/games.rs
+msgid "Duraklatıldı · {}"
+msgstr "متوقف مؤقتًا · {}"
+
+#: src/activities/games.rs
+msgid "Duraklatıldı"
+msgstr "متوقف مؤقتًا"
+
+#: src/activities/games.rs
+msgid "Güncelleniyor · {}"
+msgstr "جارٍ التحديث · {}"
+
+#: src/activities/games_worker.rs
+msgid "kurulu oyun yok"
+msgstr "لا توجد ألعاب مثبّتة"
+
+#: src/activities/games_worker.rs
+msgid "{} oyun · {}{}"
+msgstr "{} لعبة · {}{}"
+
+#: src/activities/timer.rs
+msgid "{} sn"
+msgstr "{} ث"
+
+#: src/activities/wellbeing.rs
+msgid "dünle aynı"
+msgstr "مثل الأمس"
+
+#: src/activities/wellbeing.rs
+msgid "dünden {} az"
+msgstr "أقل من الأمس بـ{}"
+
+#: src/activities/wellbeing.rs
+msgid "dünden {} fazla"
+msgstr "أكثر من الأمس بـ{}"
+
+#: src/activities/wellbeing.rs
+msgid "{} saati geçtin"
+msgstr "تجاوزت {} س"
+
+#: src/activities/wellbeing.rs
+msgid "{} dakikayı geçtin"
+msgstr "تجاوزت {} د"
+
+#: src/activities/wellbeing.rs
+msgid "{} saat {} dakikayı geçtin"
+msgstr "تجاوزت {} س {} د"
+
+#: src/activities/wellbeing.rs
+msgid "Dosya Gezgini"
+msgstr "مستكشف الملفات"
+
+#: src/activities/wellbeing.rs
+msgid "Pt"
+msgstr "ن"
+
+#: src/activities/wellbeing.rs
+msgid "Sa"
+msgstr "ث"
+
+#: src/activities/wellbeing.rs
+msgid "Ça"
+msgstr "ر"
+
+#: src/activities/wellbeing.rs
+msgid "Pe"
+msgstr "خ"
+
+#: src/activities/wellbeing.rs
+msgid "Cu"
+msgstr "ج"
+
+#: src/activities/wellbeing.rs
+msgid "Ct"
+msgstr "س"
+
+#: src/activities/wellbeing.rs
+msgid "Pz"
+msgstr "ح"
+
+msgctxt "hava"
+msgid "Kapalı"
+msgstr "غائم"
+
+#: src/activities/brief.rs
+msgid "Günaydın"
+msgstr "صباح الخير"
+
+#: src/activities/brief.rs
+msgid "İyi günler"
+msgstr "نهارك سعيد"
+
+#: src/activities/brief.rs
+msgid "İyi akşamlar"
+msgstr "مساء الخير"
+
+#: src/activities/brief.rs
+msgid "İyi geceler"
+msgstr "تصبح على خير"
+
+#: src/activities/brief.rs
+msgid "Pazartesi"
+msgstr "الإثنين"
+
+#: src/activities/brief.rs
+msgid "Salı"
+msgstr "الثلاثاء"
+
+#: src/activities/brief.rs
+msgid "Çarşamba"
+msgstr "الأربعاء"
+
+#: src/activities/brief.rs
+msgid "Perşembe"
+msgstr "الخميس"
+
+#: src/activities/brief.rs
+msgid "Cuma"
+msgstr "الجمعة"
+
+#: src/activities/brief.rs
+msgid "Cumartesi"
+msgstr "السبت"
+
+#: src/activities/brief.rs
+msgid "Pazar"
+msgstr "الأحد"
+
+#: src/activities/brief.rs
+msgid "Ocak"
+msgstr "يناير"
+
+#: src/activities/brief.rs
+msgid "Şubat"
+msgstr "فبراير"
+
+#: src/activities/brief.rs
+msgid "Mart"
+msgstr "مارس"
+
+#: src/activities/brief.rs
+msgid "Nisan"
+msgstr "أبريل"
+
+#: src/activities/brief.rs
+msgid "Mayıs"
+msgstr "مايو"
+
+#: src/activities/brief.rs
+msgid "Haziran"
+msgstr "يونيو"
+
+#: src/activities/brief.rs
+msgid "Temmuz"
+msgstr "يوليو"
+
+#: src/activities/brief.rs
+msgid "Ağustos"
+msgstr "أغسطس"
+
+#: src/activities/brief.rs
+msgid "Eylül"
+msgstr "سبتمبر"
+
+#: src/activities/brief.rs
+msgid "Ekim"
+msgstr "أكتوبر"
+
+#: src/activities/brief.rs
+msgid "Kasım"
+msgstr "نوفمبر"
+
+#: src/activities/brief.rs
+msgid "Aralık"
+msgstr "ديسمبر"
+
+#: src/activities/brief.rs
+msgid "kar"
+msgstr "ثلوج"
+
+#: src/activities/brief.rs
+msgid "yağmur"
+msgstr "أمطار"
+
+#: src/activities/brief.rs
+msgid "{} civarı {}"
+msgstr "{1} نحو {0}"
+
+#: src/activities/brief.rs
+msgid "Devre arası"
+msgstr "بين الشوطين"
+
+#: src/activities/brief.rs
+msgid "Canlı"
+msgstr "مباشر"
+
+#: src/activities/brief.rs
+msgid "{} · Canlı"
+msgstr "{} · مباشر"
+
+#: src/activities/brief.rs
+msgid "Bitti"
+msgstr "انتهى"
+
+#: src/activities/brief.rs
+msgid "Dün"
+msgstr "أمس"
+
+#: src/activities/brief.rs
+msgid "Bugün"
+msgstr "اليوم"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Açık"
+msgstr "صافٍ"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Az bulutlu"
+msgstr "صافٍ غالبًا"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Parçalı bulutlu"
+msgstr "غائم جزئيًا"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Sisli"
+msgstr "ضبابي"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Çiseleme"
+msgstr "رذاذ"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Yağmurlu"
+msgstr "ممطر"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Karlı"
+msgstr "مثلج"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Sağanak"
+msgstr "زخات مطر"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Kar sağanağı"
+msgstr "زخات ثلج"
+
+#: src/activities/weather.rs
+msgctxt "hava"
+msgid "Gök gürültülü"
+msgstr "عاصفة رعدية"
+
+#: src/activities/weather.rs
+msgid "~1 saat içinde"
+msgstr "خلال ساعة تقريبًا"
+
+#: src/activities/weather.rs
+msgid "~{} dk içinde"
+msgstr "خلال ~{} د"
+
+#: src/activities/weather.rs
+msgid "Konum bulunamadı"
+msgstr "تعذّر العثور على الموقع"
+
+#: src/activities/weather.rs
+msgid "Windows'ta konum kapalı"
+msgstr "خدمة الموقع متوقفة في Windows"
+
+#: src/activities/weather.rs
+msgid "Bulunuyor…"
+msgstr "جارٍ البحث…"
+
+#: src/activities/weather.rs
+msgid "Pzt"
+msgstr "إثنين"
+
+#: src/activities/weather.rs
+msgid "Sal"
+msgstr "ثلاثاء"
+
+#: src/activities/weather.rs
+msgid "Çar"
+msgstr "أربعاء"
+
+#: src/activities/weather.rs
+msgid "Per"
+msgstr "خميس"
+
+#: src/activities/weather.rs
+msgid "Cum"
+msgstr "جمعة"
+
+#: src/activities/weather.rs
+msgid "Cmt"
+msgstr "سبت"
+
+#: src/activities/weather.rs
+msgid "Paz"
+msgstr "أحد"
+
+#: src/activities/weather.rs
+msgid "Oca"
+msgstr "يناير"
+
+#: src/activities/weather.rs
+msgid "Şub"
+msgstr "فبراير"
+
+#: src/activities/weather.rs
+msgid "Mar"
+msgstr "مارس"
+
+#: src/activities/weather.rs
+msgid "Nis"
+msgstr "أبريل"
+
+#: src/activities/weather.rs
+msgid "May"
+msgstr "مايو"
+
+#: src/activities/weather.rs
+msgid "Haz"
+msgstr "يونيو"
+
+#: src/activities/weather.rs
+msgid "Tem"
+msgstr "يوليو"
+
+#: src/activities/weather.rs
+msgid "Ağu"
+msgstr "أغسطس"
+
+#: src/activities/weather.rs
+msgid "Eyl"
+msgstr "سبتمبر"
+
+#: src/activities/weather.rs
+msgid "Eki"
+msgstr "أكتوبر"
+
+#: src/activities/weather.rs
+msgid "Kas"
+msgstr "نوفمبر"
+
+#: src/activities/weather.rs
+msgid "Ara"
+msgstr "ديسمبر"
+
+#: src/activities/weather_alert.rs
+msgid "Fırtına"
+msgstr "عاصفة"
+
+#: src/activities/weather_alert.rs
+msgid "şu an"
+msgstr "الآن"
+
+#: src/activities/weather_alert.rs
+msgid "Kuvvetli rüzgâr"
+msgstr "رياح قوية"
+
+#: src/activities/weather_alert.rs
+msgid "{} km/sa · şimdi"
+msgstr "{} كم/س · الآن"
+
+#: src/activities/weather_alert.rs
+msgid "{} km/sa · {}"
+msgstr "{} كم/س · {}"
+
+#: src/activities/weather_alert.rs
+msgid "Aşırı sıcak"
+msgstr "حرّ شديد"
+
+#: src/activities/weather_alert.rs
+msgid "bugün {}°"
+msgstr "اليوم {}°"
+
+#: src/activities/weather_alert.rs
+msgid "sabah {}°"
+msgstr "صباحًا {}°"
+
+#: src/activities/weather_alert.rs
+msgid "gece {}°"
+msgstr "ليلًا {}°"
+
+#: src/activities/weather_alert.rs
+msgid "Don"
+msgstr "صقيع"
+
+#: src/activities/weather_alert.rs
+msgid "Hava kalitesi çok kötü"
+msgstr "جودة الهواء سيئة جدًا"
+
+#: src/activities/weather_alert.rs
+msgid "Hava kalitesi kötü"
+msgstr "جودة الهواء سيئة"
+
+#: src/app.rs
+msgctxt "maç"
+msgid " (KK)"
+msgstr " (عكسي)"
+
+#: src/app.rs
+msgid "Başlıyor"
+msgstr "تبدأ الآن"
+
+#: src/app.rs
+msgid "{} dk sonra"
+msgstr "بعد {} د"
+
+#: src/app.rs
+msgid "{} sa {} dk sonra"
+msgstr "بعد {} س {} د"
+
+#: src/app.rs
+msgid "Uzatma arası"
+msgstr "استراحة الوقت الإضافي"
+
+#: src/app.rs
+msgid "Penaltılar{}"
+msgstr "ركلات الترجيح{}"
+
+#: src/app.rs
+msgid "Maç sonu"
+msgstr "نهاية المباراة"
+
+#: src/app.rs
+msgid "Uzatmalar sonunda"
+msgstr "بعد الوقت الإضافي"
+
+#: src/app.rs
+msgid "Penaltılarla{}"
+msgstr "بركلات الترجيح{}"
+
+#: src/app.rs
+msgid "Ertelendi"
+msgstr "تأجّلت"
+
+#: src/app.rs
+msgid "İptal edildi"
+msgstr "أُلغيت"
+
+#: src/app.rs
+msgid "Tatil edildi"
+msgstr "أُوقفت"
+
+#: src/app.rs
+msgid "Teknik ekip"
+msgstr "الجهاز الفني"
+
+#: src/app.rs
+msgid "Ekran süresi · {}"
+msgstr "وقت الشاشة · {}"
+
+#: src/app.rs
+msgid "Bugün · {}"
+msgstr "اليوم · {}"
+
+#: src/app.rs
+msgid "Süre doldu"
+msgstr "انتهى الوقت"
+
+#: src/app.rs
+msgid "Zamanlayıcı"
+msgstr "المؤقّت"
+
+#: src/app.rs
+msgid "Zamanlayıcı · {}"
+msgstr "المؤقّت · {}"
+
+#: src/app.rs
+msgid "Güncellendi"
+msgstr "تم التحديث"
+
+#: src/app.rs
+msgid "{} oynadın"
+msgstr "لعبت {}"
+
+#: src/app.rs
+msgid "Başladı {}"
+msgstr "بدأت {}"
+
+#: src/app.rs
+msgid "Oynamaya hazır"
+msgstr "جاهزة للعب"
+
+#: src/app.rs
+msgid "İndiriliyor · {}"
+msgstr "جارٍ التنزيل · {}"
+
+#: src/app.rs
+msgid "Oynuyor · {}"
+msgstr "قيد اللعب · {}"
+
+#: src/app.rs
+msgid "Çalışıyor · {}"
+msgstr "قيد التشغيل · {}"
+
+#: src/app.rs
+msgid "Rafa bırak"
+msgstr "أفلِت على الرف"
+
+#: src/app.rs
+msgid "Geçiliyor…"
+msgstr "جارٍ التبديل…"
+
+#: src/app.rs
+msgid "Geçilemedi · tekrar deneyin"
+msgstr "تعذّر التبديل · حاول مجددًا"
+
+#: src/app.rs
+msgid "Şu anda çalıyor"
+msgstr "يُشغَّل الآن"
+
+#: src/app.rs
+msgid "{} · En düşük {} · En yüksek {}"
+msgstr "{} · الصغرى {} · العظمى {}"
+
+#: src/activities/brief.rs
+msgctxt "maç"
+msgid "Bitti"
+msgstr "انتهت"
+
+#: src/activities/claude.rs
+msgid "Okuyor"
+msgstr "يقرأ"
+
+#: src/activities/claude.rs
+msgid "Düzenliyor"
+msgstr "يعدّل"
+
+#: src/activities/claude.rs
+msgid "Yazıyor"
+msgstr "يكتب"
+
+#: src/activities/claude.rs
+msgid "Çalıştırıyor"
+msgstr "يشغّل"
+
+#: src/activities/claude.rs
+msgid "Arıyor"
+msgstr "يبحث"
+
+#: src/activities/claude.rs
+msgid "Alt ajan"
+msgstr "وكيل فرعي"
+
+#: src/activities/claude.rs
+msgid "Araç"
+msgstr "أداة"
+
+#: src/activities/claude.rs
+msgid "Bitti · {}"
+msgstr "انتهى · {}"
+
+#: src/activities/claude.rs
+msgid "Bitti · {} · {} dosya"
+msgstr "انتهى · {} · {} ملفات"
+
+#: src/activities/claude.rs
+msgid "Kota doldu"
+msgstr "بلغت حد الاستخدام"
+
+#: src/activities/claude.rs
+msgid "Sunucu yoğun"
+msgstr "الخادم مشغول"
+
+#: src/activities/claude.rs
+msgid "Oturum açılmalı"
+msgstr "يلزم تسجيل الدخول"
+
+#: src/activities/claude.rs
+msgid "Ödeme sorunu"
+msgstr "مشكلة في الدفع"
+
+#: src/activities/claude.rs
+msgid "Yanıt sınırı aşıldı"
+msgstr "الرد طويل جدًا"
+
+#: src/activities/claude.rs
+msgid "Bir hata oldu"
+msgstr "حدث خطأ ما"
+
+#: src/activities/claude.rs
+msgid "{} (+{} satır)"
+msgstr "{} (+{} سطر)"
+
+#: src/activities/claude.rs
+msgid "Bir soru"
+msgstr "سؤال"
+
+#: src/activities/claude.rs
+msgid "Plan onayı"
+msgstr "اعتماد الخطة"
+
+#: src/activities/live.rs
+msgid "İzin verildi"
+msgstr "تم السماح"
+
+#: src/activities/live.rs
+msgid "Reddedildi"
+msgstr "تم الرفض"
+
+#: src/activities/live.rs
+msgid "Düşünüyor"
+msgstr "يفكّر"
+
+#: src/activities/live.rs
+msgid "İzin istiyor"
+msgstr "يطلب الإذن"
+
+#: src/activities/live.rs
+msgid "Soru soruyor"
+msgstr "يطرح سؤالًا"
+
+#: src/activities/live.rs
+msgid "Plan onayı bekliyor"
+msgstr "بانتظار اعتماد الخطة"
+
+#: src/activities/live.rs
+msgid "İzin istiyor: {}"
+msgstr "يطلب الإذن: {}"
+
+#: src/activities/live.rs
+msgid "Yanıtını bekliyor"
+msgstr "بانتظار ردّك"
+
+#: src/activities/live.rs
+msgid "Bekliyor"
+msgstr "في الانتظار"
+
+#: src/activities/media.rs
+msgid "Medya Oynatıcı"
+msgstr "مشغّل الوسائط"
+
+#: src/render/card.rs
+msgid "Dahili"
+msgstr "مدمج"
+
+#: src/render/card.rs
+msgid "Sanal"
+msgstr "افتراضي"
+
+#: src/render/card.rs
+msgid "{} · Sol {} · Sağ {}"
+msgstr "{} · يسار {} · يمين {}"
+
+#: src/render/card.rs
+msgid "+{} dk"
+msgstr "+{} د"
+
+#: src/render/card.rs
+msgid "İzin istiyor · {}"
+msgstr "يطلب الإذن · {}"
+
+#: src/render/card.rs
+msgid "Claude'un penceresinde yanıtla"
+msgstr "أجب في نافذة Claude"
+
+#: src/render/card.rs
+msgid "Pencereye git"
+msgstr "انتقل إلى النافذة"
+
+#: src/render/card.rs
+msgid "Reddet"
+msgstr "رفض"
+
+#: src/render/card.rs
+msgid "İzin ver"
+msgstr "سماح"
+
+#: src/render/card.rs
+msgid "Henüz gol yok"
+msgstr "لا أهداف بعد"
+
+#: src/render/card.rs
+msgid "Son 5 maç"
+msgstr "آخر 5 مباريات"
+
+#: src/render/card.rs
+msgid "Bu bilgisayara bağlı"
+msgstr "متصل بهذا الكمبيوتر"
+
+#: src/render/card.rs
+msgid "Sol"
+msgstr "يسار"
+
+#: src/render/card.rs
+msgid "Sağ"
+msgstr "يمين"
+
+#: src/render/card.rs
+msgid "Kutu"
+msgstr "العلبة"
+
+#: src/render/card.rs
+msgid "Temizle"
+msgstr "مسح"
+
+#: src/render/card.rs
+msgid "Dijital Denge"
+msgstr "الرفاهية الرقمية"
+
+#: src/render/card.rs
+msgid "Bugün henüz ekran süresi yok"
+msgstr "لا يوجد وقت شاشة اليوم بعد"
+
+#: src/render/card.rs
+msgid "Ses çıkışı"
+msgstr "مخرج الصوت"
+
+#: src/render/card.rs
+msgid "Sessiz"
+msgstr "صامت"
+
+#: src/render/card.rs
+msgid "Kapak"
+msgstr "الغلاف"
+
+#: src/render/card.rs
+msgid "Sözler"
+msgstr "الكلمات"
+
+#: src/render/card.rs
+msgid "Kronometre"
+msgstr "ساعة الإيقاف"
+
+#: src/render/card.rs
+msgid "Başlat'a basınca saymaya başlar"
+msgstr "يبدأ العدّ عند الضغط على «ابدأ»"
+
+#: src/render/card.rs
+msgid "sa"
+msgstr "س"
+
+#: src/render/card.rs
+msgid "dk"
+msgstr "د"
+
+#: src/render/card.rs
+msgid "sn"
+msgstr "ث"
+
+#: src/render/card.rs
+msgid "Başlat"
+msgstr "ابدأ"
+
+#: src/render/pill.rs
+msgid "Kamera, mikrofon"
+msgstr "الكاميرا والميكروفون"
+
+#: src/render/pill.rs
+msgid "Kamera"
+msgstr "الكاميرا"
+
+#: src/render/pill.rs
+msgid "Mikrofon"
+msgstr "الميكروفون"
+
+#: src/render/pill.rs
+msgid "Ekran görüntüsü"
+msgstr "لقطة شاشة"
+
+#: src/render/pill.rs
+msgid "Kar"
+msgstr "ثلوج"
+
+#: src/render/pill.rs
+msgid "Yağmur"
+msgstr "أمطار"
+
+#: src/render/pill.rs
+msgid "Pil azaldı"
+msgstr "البطارية منخفضة"
+
+#: src/render/pill.rs
+msgid "Şarj oluyor"
+msgstr "جارٍ الشحن"
+
+#: src/render/pill.rs
+msgid "GOL!"
+msgstr "هدف!"
+
+#: src/render/pill.rs
+msgid "Gol"
+msgstr "هدف"
+
+#: src/render/pill.rs
+msgid "Gol iptal"
+msgstr "أُلغي الهدف"
+
+#: src/render/pill.rs
+msgid "Kırmızı kart"
+msgstr "بطاقة حمراء"
+
+#: ui/pages.slint
+msgctxt "tema"
+msgid "Açık"
+msgstr "فاتح"
+
+#: ui/pages.slint
+msgid "%{}"
+msgstr "{}%"
+
+#: ui/pages.slint
+msgid "Pil"
+msgstr "الشريط"
+
+#: ui/pages.slint
+msgid "önde ve arkada"
+msgstr "في المقدمة وفي الخلف"
+
+#: ui/pages.slint
+msgid "Medya"
+msgstr "الوسائط"
+
+#: ui/pages.slint
+msgid "önde"
+msgstr "في المقدمة"
+
+#: ui/pages.slint
+msgid "arkada"
+msgstr "في الخلف"
+
+#: ui/pages.slint
+msgid "Pil boyutu"
+msgstr "حجم الشريط"
+
+#: ui/pages.slint
+msgid "3 seçenek"
+msgstr "3 خيارات"
+
+#: ui/pages.slint
+msgid "Küçük"
+msgstr "صغير"
+
+#: ui/pages.slint
+msgid "Normal"
+msgstr "عادي"
+
+#: ui/pages.slint
+msgid "Büyük"
+msgstr "كبير"
+
+#: ui/pages.slint
+msgid "Kart boyutu"
+msgstr "حجم البطاقة"
+
+#: ui/pages.slint
+msgid "2 seçenek"
+msgstr "خياران"
+
+#: ui/pages.slint
+msgid "Kompakt"
+msgstr "مضغوط"
+
+#: ui/pages.slint
+msgid "bütün kartlar %88"
+msgstr "كل البطاقات بنسبة 88%"
+
+#: ui/pages.slint
+msgid "Konum"
+msgstr "الموضع"
+
+#: ui/pages.slint
+msgid "Opaklık"
+msgstr "العتامة"
+
+#: ui/pages.slint
+msgid "Arkadakileri göster"
+msgstr "إظهار الأنشطة الخلفية"
+
+#: ui/pages.slint
+msgid "Renk"
+msgstr "اللون"
+
+#: ui/pages.slint
+msgid "Duvar kâğıdından"
+msgstr "من الخلفية"
+
+#: ui/pages.slint
+msgid "Vurgu duvar kâğıdının renginde"
+msgstr "لون التمييز يتبع لون الخلفية"
+
+#: ui/pages.slint
+msgid "Duvar kâğıdı gri: seçtiğin renk"
+msgstr "إن كانت الخلفية رمادية: اللون الذي تختاره"
+
+#: ui/pages.slint
+msgid "Vurgu rengi"
+msgstr "لون التمييز"
+
+#: ui/pages.slint
+msgid "Seçince duvar kâğıdı kapanır"
+msgstr "اختيار لون يُلغي الأخذ من الخلفية"
+
+#: ui/pages.slint
+msgid "Kapak rengini kullan"
+msgstr "استخدام لون الغلاف"
+
+#: ui/pages.slint
+msgid "Kart"
+msgstr "البطاقة"
+
+#: ui/pages.slint
+msgid "Bulanıklık"
+msgstr "التمويه"
+
+#: ui/pages.slint
+msgid "Koyuluk"
+msgstr "القتامة"
+
+#: ui/pages.slint
+msgid "Doygunluk"
+msgstr "التشبّع"
+
+#: ui/pages.slint
+msgid "Hareket"
+msgstr "الحركة"
+
+#: ui/pages.slint
+msgid "Animasyon hızı"
+msgstr "سرعة الحركة"
+
+#: ui/pages.slint
+msgid "Yavaş"
+msgstr "بطيئة"
+
+#: ui/pages.slint
+msgid "Hızlı"
+msgstr "سريعة"
+
+#: ui/pages.slint
+msgid "Kısayollar"
+msgstr "الاختصارات"
+
+#: ui/pages.slint
+msgid "1 kısayol"
+msgstr "اختصار واحد"
+
+#: ui/pages.slint
+msgid "Zamanlayıcı seçicisi"
+msgstr "منتقي المؤقّت"
+
+#: ui/pages.slint
+msgid "seçiciyi açar"
+msgstr "يفتح المنتقي"
+
+#: ui/pages.slint
+msgid "Tepsi simgesi"
+msgstr "أيقونة شريط المهام"
+
+#: ui/pages.slint
+msgid "sol tık"
+msgstr "النقر الأيسر"
+
+#: ui/pages.slint
+msgid "Bu pencere"
+msgstr "هذه النافذة"
+
+#: ui/pages.slint
+msgid "3 tema"
+msgstr "3 سمات"
+
+#: ui/pages.slint
+msgid "Sistem"
+msgstr "النظام"
+
+#: ui/pages.slint
+msgid "Windows'a uyar"
+msgstr "يتبع Windows"
+
+#: ui/pages.slint
+msgid "Koyu"
+msgstr "داكن"
+
+#: ui/pages.slint
+msgid "her zaman koyu"
+msgstr "داكن دائمًا"
+
+#: ui/pages.slint
+msgid "her zaman açık"
+msgstr "فاتح دائمًا"
+
+#: ui/pages.slint
+msgid "Başlangıç"
+msgstr "بدء التشغيل"
+
+#: ui/pages.slint
+msgid "Windows ile başlat"
+msgstr "التشغيل مع Windows"
+
+#: ui/pages.slint
+msgid "Kısayol ve tepsi"
+msgstr "الاختصار وأيقونة شريط المهام"
+
+#: ui/pages.slint
+msgid "Seçici kısayolu"
+msgstr "اختصار المنتقي"
+
+#: ui/pages.slint
+msgid "Tepsiye sol tık"
+msgstr "النقر الأيسر على الأيقونة"
+
+#: ui/pages.slint
+msgid "Seçici"
+msgstr "المنتقي"
+
+#: ui/pages.slint
+msgid "Ayarlar"
+msgstr "الإعدادات"
+
+#: ui/pages.slint
+msgid "Fare"
+msgstr "الماوس"
+
+#: ui/pages.slint
+msgid "Ayrılınca kartı kapat"
+msgstr "إغلاق البطاقة عند الابتعاد"
+
+#: ui/pages.slint
+msgid "Gecikme"
+msgstr "التأخير"
+
+#: ui/pages.slint
+msgid " ms"
+msgstr " مللي ث"
+
+#: ui/pages.slint
+msgid "Tekerlek gezer"
+msgstr "العجلة تتنقّل"
+
+#: ui/pages.slint
+msgid "Pilin ve kartın üstünde"
+msgstr "فوق الشريط والبطاقة"
+
+#: ui/pages.slint
+msgid "Seçtiğim önde kalsın"
+msgstr "إبقاء اختياري في المقدمة"
+
+#: ui/pages.slint
+msgid "Yeni bir şey olana dek"
+msgstr "حتى يطرأ جديد"
+
+#: ui/pages.slint
+msgid "Uygulamalar"
+msgstr "التطبيقات"
+
+#: ui/pages.slint
+msgid " uygulama · tıkla: göster / gizle"
+msgstr " تطبيقات · انقر: إظهار / إخفاء"
+
+#: ui/pages.slint
+msgid "Henüz uygulama yok"
+msgstr "لا توجد تطبيقات بعد"
+
+#: ui/pages.slint
+msgid "bir şey çalınca burada görünür"
+msgstr "يظهر هنا بمجرد تشغيل شيء"
+
+#: ui/pages.slint
+msgid "şu an çalıyor"
+msgstr "يُشغَّل الآن"
+
+#: ui/pages.slint
+msgid "Gösteriliyor"
+msgstr "ظاهر"
+
+#: ui/pages.slint
+msgid "Gizli"
+msgstr "مخفي"
+
+#: ui/pages.slint
+msgid "Pil düğmeleri"
+msgstr "أزرار الشريط"
+
+#: ui/pages.slint
+msgid "Üç düğme"
+msgstr "ثلاثة أزرار"
+
+#: ui/pages.slint
+msgid "önceki, oynat, sonraki"
+msgstr "السابق، تشغيل، التالي"
+
+#: ui/pages.slint
+msgid "Sadece oynat"
+msgstr "تشغيل فقط"
+
+#: ui/pages.slint
+msgid "başlığa daha çok yer"
+msgstr "مساحة أكبر للعنوان"
+
+#: ui/pages.slint
+msgid "Düğmesiz"
+msgstr "بلا أزرار"
+
+#: ui/pages.slint
+msgid "yalnızca başlık"
+msgstr "العنوان فقط"
+
+#: ui/pages.slint
+msgid "Medya pili"
+msgstr "شريط الوسائط"
+
+#: ui/pages.slint
+msgid "şu anki ayarlarla"
+msgstr "بالإعدادات الحالية"
+
+#: ui/pages.slint
+msgid "Örnek"
+msgstr "مثال"
+
+#: ui/pages.slint
+msgid "sanatçıyla"
+msgstr "مع اسم الفنان"
+
+#: ui/pages.slint
+msgid "sanatçısız"
+msgstr "بدون اسم الفنان"
+
+#: ui/pages.slint
+msgid "Etkinlik"
+msgstr "النشاط"
+
+#: ui/pages.slint
+msgid "Sanatçıyı göster"
+msgstr "إظهار اسم الفنان"
+
+#: ui/pages.slint
+msgid "Ses dalgası"
+msgstr "الموجة الصوتية"
+
+#: ui/pages.slint
+msgid "Kapağın yanında, sesle oynar"
+msgstr "بجوار الغلاف، تتراقص مع الصوت"
+
+#: ui/pages.slint
+msgid "Kayan başlık"
+msgstr "العنوان المتحرّك"
+
+#: ui/pages.slint
+msgid "Değişince"
+msgstr "عند التغيّر"
+
+#: ui/pages.slint
+msgid "Üstündeyken"
+msgstr "عند التمرير فوقه"
+
+#: ui/pages.slint
+msgid "Kayma hızı"
+msgstr "سرعة التمرير"
+
+#: ui/pages.slint
+msgid "Dalgalı çubuk"
+msgstr "شريط تقدّم متموّج"
+
+#: ui/pages.slint
+msgid "Şarkı sözleri"
+msgstr "كلمات الأغاني"
+
+#: ui/pages.slint
+msgid "Eşzamanlı, lrclib.net'ten"
+msgstr "متزامنة، من lrclib.net"
+
+#: ui/pages.slint
+msgid "Orta tıkla oynat"
+msgstr "النقر الأوسط للتشغيل"
+
+#: ui/pages.slint
+msgid "Duraklayınca kal"
+msgstr "البقاء عند الإيقاف المؤقت"
+
+#: ui/pages.slint
+msgid "1 dk"
+msgstr "دقيقة"
+
+#: ui/pages.slint
+msgid "5 dk"
+msgstr "5 د"
+
+#: ui/pages.slint
+msgid "10 dk"
+msgstr "10 د"
+
+#: ui/pages.slint
+msgid "30 dk"
+msgstr "30 د"
+
+#: ui/pages.slint
+msgid "Hep"
+msgstr "دائمًا"
+
+#: ui/pages.slint
+msgid "Ses çıkışları"
+msgstr "مخارج الصوت"
+
+#: ui/pages.slint
+msgid "Kullanılıyor"
+msgstr "قيد الاستخدام"
+
+#: ui/pages.slint
+msgid "Pilde"
+msgstr "في الشريط"
+
+#: ui/pages.slint
+msgid "örnek"
+msgstr "مثال"
+
+#: ui/pages.slint
+msgid "kapalı"
+msgstr "متوقف"
+
+#: ui/pages.slint
+msgid "Hazır süreler"
+msgstr "مُدد جاهزة"
+
+#: ui/pages.slint
+msgid " süre · en çok altı"
+msgstr " مُدد · ست كحد أقصى"
+
+#: ui/pages.slint
+msgid " dakika"
+msgstr " دقيقة"
+
+#: ui/pages.slint
+msgid "seçicide"
+msgstr "في المنتقي"
+
+#: ui/pages.slint
+msgid "Süre ekle"
+msgstr "إضافة مدة"
+
+#: ui/pages.slint
+msgid "dakika yaz, Enter"
+msgstr "اكتب الدقائق ثم Enter"
+
+#: ui/pages.slint
+msgid "Süre dolunca"
+msgstr "عند انتهاء الوقت"
+
+#: ui/pages.slint
+msgid "Alarm sesi"
+msgstr "صوت التنبيه"
+
+#: ui/pages.slint
+msgid "Kartı aç"
+msgstr "فتح البطاقة"
+
+#: ui/pages.slint
+msgid "Ekle düğmesi"
+msgstr "زر الإضافة"
+
+#: ui/pages.slint
+msgid "Saliseyi göster"
+msgstr "إظهار أجزاء الثانية"
+
+#: ui/pages.slint
+msgid "Bağlanınca öne gel"
+msgstr "التقدّم للأمام عند الاتصال"
+
+#: ui/pages.slint
+msgid "4 seçenek"
+msgstr "4 خيارات"
+
+#: ui/pages.slint
+msgid "öne gelmez"
+msgstr "لا يتقدّم"
+
+#: ui/pages.slint
+msgid "saniye önde"
+msgstr "ثوانٍ في المقدمة"
+
+#: ui/pages.slint
+msgid "Hayır"
+msgstr "لا"
+
+#: ui/pages.slint
+msgid " sn"
+msgstr " ث"
+
+#: ui/pages.slint
+msgid "Kulaklık"
+msgstr "السماعات"
+
+#: ui/pages.slint
+msgid "Bağlanan ilk Buds"
+msgstr "أول Buds تتصل"
+
+#: ui/pages.slint
+msgid "Yalnız bu cihaz"
+msgstr "هذا الجهاز فقط"
+
+#: ui/pages.slint
+msgid "Pil uyarısı"
+msgstr "تنبيه البطارية"
+
+#: ui/pages.slint
+msgid "Düşük pil"
+msgstr "بطارية منخفضة"
+
+#: ui/pages.slint
+msgid "Altında öne gelir"
+msgstr "يتقدّم عند النزول عن هذا الحد"
+
+#: ui/pages.slint
+msgid "Kutu pilini göster"
+msgstr "إظهار بطارية العلبة"
+
+#: ui/pages.slint
+msgid "Bir kulaklık kutudayken"
+msgstr "عندما تكون إحدى السماعتين في العلبة"
+
+#: ui/pages.slint
+msgid "Müzik"
+msgstr "الموسيقى"
+
+#: ui/pages.slint
+msgid "Kulaktan çıkınca duraklat"
+msgstr "إيقاف مؤقت عند نزع السماعة"
+
+#: ui/pages.slint
+msgid "Geri takınca devam eder"
+msgstr "يستأنف التشغيل عند إعادتها"
+
+#: ui/pages.slint
+msgid "Sonuçlar"
+msgstr "النتائج"
+
+#: ui/pages.slint
+msgid "aranıyor…"
+msgstr "جارٍ البحث…"
+
+#: ui/pages.slint
+msgid "ESPN'e ulaşılamadı"
+msgstr "تعذّر الوصول إلى ESPN"
+
+#: ui/pages.slint
+msgid " takım · ESPN"
+msgstr " فريق · ESPN"
+
+#: ui/pages.slint
+msgid "Takım bulunamadı"
+msgstr "لم يُعثر على فريق"
+
+#: ui/pages.slint
+msgid "başka bir ad dene"
+msgstr "جرّب اسمًا آخر"
+
+#: ui/pages.slint
+msgid "Takipte"
+msgstr "متابَع"
+
+#: ui/pages.slint
+msgid "Maç pili"
+msgstr "شريط المباراة"
+
+#: ui/pages.slint
+msgid "Örnek maç"
+msgstr "مباراة تجريبية"
+
+#: ui/pages.slint
+msgid "canlı, örnek"
+msgstr "مباشرة، مثال"
+
+#: ui/pages.slint
+msgid "Takip ettiklerin"
+msgstr "فرقك"
+
+#: ui/pages.slint
+msgid " takım"
+msgstr " فريق"
+
+#: ui/pages.slint
+msgid "Takım ekle"
+msgstr "إضافة فريق"
+
+#: ui/pages.slint
+msgid "yukarıda ara"
+msgstr "ابحث في الأعلى"
+
+#: ui/pages.slint
+msgid "Canlı maç"
+msgstr "مباراة مباشرة"
+
+#: ui/pages.slint
+msgid "Ne zaman"
+msgstr "متى"
+
+#: ui/pages.slint
+msgid "Maçtan önce"
+msgstr "قبل المباراة"
+
+#: ui/pages.slint
+msgid "Başlayınca"
+msgstr "عند انطلاقها"
+
+#: ui/pages.slint
+msgid "Bitince kalsın"
+msgstr "البقاء بعد النهاية"
+
+#: ui/pages.slint
+msgid "Anlar"
+msgstr "اللحظات"
+
+#: ui/pages.slint
+msgid "Rakip golünde de an"
+msgstr "لحظة لأهداف المنافس أيضًا"
+
+#: ui/pages.slint
+msgid "Gol olunca pil kısa süre büyür"
+msgstr "يتّسع الشريط لحظيًا عند تسجيل هدف"
+
+#: ui/pages.slint
+msgid "Gol sesi"
+msgstr "صوت الهدف"
+
+#: ui/pages.slint
+msgid "Takımın gol atınca"
+msgstr "عندما يسجّل فريقك"
+
+#: ui/pages.slint
+msgid "İstisnalar"
+msgstr "الاستثناءات"
+
+#: ui/pages.slint
+msgid " uygulama · tam ekranda da görünür"
+msgstr " تطبيقات · تظهر في ملء الشاشة أيضًا"
+
+#: ui/pages.slint
+msgid "Henüz istisna yok"
+msgstr "لا توجد استثناءات بعد"
+
+#: ui/pages.slint
+msgid "yukarıya bir uygulama adı yaz"
+msgstr "اكتب اسم تطبيق في الأعلى"
+
+#: ui/pages.slint
+msgid "Görünür"
+msgstr "ظاهر"
+
+#: ui/pages.slint
+msgid "Açık uygulamalar"
+msgstr "التطبيقات المفتوحة"
+
+#: ui/pages.slint
+msgid "tıkla: istisna yap"
+msgstr "انقر: اجعله استثناءً"
+
+#: ui/pages.slint
+msgid "Ekle"
+msgstr "إضافة"
+
+#: ui/pages.slint
+msgid "Tam ekranda gizle"
+msgstr "الإخفاء في وضع ملء الشاشة"
+
+#: ui/pages.slint
+msgid "Oyun, video ya da sunum açıkken"
+msgstr "أثناء تشغيل لعبة أو فيديو أو عرض تقديمي بملء الشاشة"
+
+#: ui/pages.slint
+msgid "Maç verileri"
+msgstr "بيانات المباريات"
+
+#: ui/pages.slint
+msgid "skor, dakika, armalar"
+msgstr "النتيجة، الدقيقة، الشعارات"
+
+#: ui/pages.slint
+msgid "Esin kaynağı"
+msgstr "مستوحى من"
+
+#: ui/pages.slint
+msgid "Samsung'un Now Bar'ı"
+msgstr "Now Bar من Samsung"
+
+#: ui/pages.slint
+msgid "Güncelleme"
+msgstr "التحديثات"
+
+#: ui/pages.slint
+msgid "günde bir kez GitHub'dan"
+msgstr "مرة يوميًا من GitHub"
+
+#: ui/pages.slint
+msgid "denetim kapalı"
+msgstr "الفحص متوقف"
+
+#: ui/pages.slint
+msgid "Güncelle"
+msgstr "تحديث"
+
+#: ui/pages.slint
+msgid "Sürüm"
+msgstr "الإصدار"
+
+#: ui/pages.slint
+msgid "Dosyalar"
+msgstr "الملفات"
+
+#: ui/pages.slint
+msgid "sorun bildirirken işine yarar"
+msgstr "مفيدة عند الإبلاغ عن مشكلة"
+
+#: ui/pages.slint
+msgid "Günlük"
+msgstr "السجل"
+
+#: ui/pages.slint
+msgid "Ayar dosyası"
+msgstr "ملف الإعدادات"
+
+#: ui/pages.slint
+msgid "Güncellemeleri denetle"
+msgstr "التحقق من التحديثات"
+
+#: ui/pages.slint
+msgid "Günde bir kez GitHub'a sorar"
+msgstr "يسأل GitHub مرة يوميًا"
+
+#: ui/pages.slint
+msgid "Sıfırla"
+msgstr "إعادة التعيين"
+
+#: ui/pages.slint
+msgid "Bütün ayarlar ilk hallerine döner; takımlar, gizlenen uygulamalar ve istisnalar da silinir."
+msgstr "ستعود كل الإعدادات إلى قيمها الافتراضية، وستُحذف أيضًا الفرق والتطبيقات المخفية والاستثناءات."
+
+#: ui/pages.slint
+msgid "Varsayılanlara dön…"
+msgstr "استعادة الإعدادات الافتراضية…"
+
+#: ui/pages.slint
+msgid "5 etkinlik · tıkla: aç / kapat"
+msgstr "5 أنشطة · انقر: تشغيل / إيقاف"
+
+#: ui/pages.slint
+msgid "Ses seviyesi"
+msgstr "مستوى الصوت"
+
+#: ui/pages.slint
+msgid "ses değişince, bir an"
+msgstr "عند تغيّره، للحظة"
+
+#: ui/pages.slint
+msgid "Şarj"
+msgstr "الشحن"
+
+#: ui/pages.slint
+msgid "takınca ve pil azalınca"
+msgstr "عند التوصيل وعند انخفاض البطارية"
+
+#: ui/pages.slint
+msgid "Mikrofon / kamera"
+msgstr "الميكروفون / الكاميرا"
+
+#: ui/pages.slint
+msgid "kullanılırken"
+msgstr "أثناء الاستخدام"
+
+#: ui/pages.slint
+msgid "Diğer kulaklıklar"
+msgstr "سماعات أخرى"
+
+#: ui/pages.slint
+msgid "Bluetooth, piliyle"
+msgstr "Bluetooth، مع البطارية"
+
+#: ui/pages.slint
+msgid "Saat ve hava"
+msgstr "الساعة والطقس"
+
+#: ui/pages.slint
+msgid "boştayken"
+msgstr "عند الخمول"
+
+#: ui/pages.slint
+msgid "hep"
+msgstr "دائمًا"
+
+#: ui/pages.slint
+msgid "yığında"
+msgstr "في المجموعة"
+
+#: ui/pages.slint
+msgid "Şehir"
+msgstr "المدينة"
+
+#: ui/pages.slint
+msgid "Aranıyor…"
+msgstr "جارٍ البحث…"
+
+#: ui/pages.slint
+msgid "Bağlantı kurulamadı"
+msgstr "تعذّر الاتصال"
+
+#: ui/pages.slint
+msgid "Bulunamadı"
+msgstr "لا نتائج"
+
+#: ui/pages.slint
+msgid "Birini seç"
+msgstr "اختر واحدة"
+
+#: ui/pages.slint
+msgid "Ad yaz, Enter"
+msgstr "اكتب اسمًا ثم Enter"
+
+#: ui/pages.slint
+msgid "İzmir, Berlin…"
+msgstr "القاهرة، دبي…"
+
+#: ui/pages.slint
+msgid "Ses seviyesini göster"
+msgstr "إظهار مستوى الصوت"
+
+#: ui/pages.slint
+msgid "Ses değişince kısa bir an pilde"
+msgstr "لحظة قصيرة في الشريط عند تغيّره"
+
+#: ui/pages.slint
+msgid "Şarjı göster"
+msgstr "إظهار الشحن"
+
+#: ui/pages.slint
+msgid "Takınca ve pil azalınca bir an"
+msgstr "لحظة عند التوصيل وعند انخفاض البطارية"
+
+#: ui/pages.slint
+msgid "Altına inince uyarır"
+msgstr "ينبّهك عند النزول عن هذا الحد"
+
+#: ui/pages.slint
+msgid "Kullanımı göster"
+msgstr "إظهار الاستخدام"
+
+#: ui/pages.slint
+msgid "Bir uygulama kullanırken pilde"
+msgstr "في الشريط أثناء استخدام تطبيق لهما"
+
+#: ui/pages.slint
+msgid "Kulaklıkları göster"
+msgstr "إظهار السماعات"
+
+#: ui/pages.slint
+msgid "Galaxy Buds dışındakiler, piliyle"
+msgstr "غير Galaxy Buds، مع البطارية"
+
+#: ui/pages.slint
+msgid "Ekran görüntüleri"
+msgstr "لقطات الشاشة"
+
+#: ui/pages.slint
+msgid "Pilde göster"
+msgstr "إظهار في الشريط"
+
+#: ui/pages.slint
+msgid "ShareX ve Ekran Alıntısı Aracı"
+msgstr "ShareX وأداة القصاصة"
+
+#: ui/pages.slint
+msgid "Rafa ekle"
+msgstr "إضافة إلى الرف"
+
+#: ui/pages.slint
+msgid "Sonra sürükleyip atmak için"
+msgstr "لسحبها وإفلاتها لاحقًا"
+
+#: ui/pages.slint
+msgid "Canlı etkinlikler"
+msgstr "الأنشطة المباشرة"
+
+#: ui/pages.slint
+msgid "Betikler ve Claude Code pilde"
+msgstr "السكربتات وClaude Code في الشريط"
+
+#: ui/pages.slint
+msgid "Claude izinleri"
+msgstr "أذونات Claude"
+
+#: ui/pages.slint
+msgid "Kartta İzin ver / Reddet"
+msgstr "«سماح / رفض» على البطاقة"
+
+#: ui/pages.slint
+msgid "Bekleme"
+msgstr "المهلة"
+
+#: ui/pages.slint
+msgid "Sonra Claude sorar"
+msgstr "ثم يسأل Claude بنفسه"
+
+#: ui/pages.slint
+msgid "Sabah aç"
+msgstr "الفتح صباحًا"
+
+#: ui/pages.slint
+msgid "Günün ilk kilit açılışında"
+msgstr "عند أول إلغاء قفل في اليوم"
+
+#: ui/pages.slint
+msgid "Adın"
+msgstr "اسمك"
+
+#: ui/pages.slint
+msgid "Selamlamada"
+msgstr "في التحية"
+
+#: ui/pages.slint
+msgid "Ad"
+msgstr "الاسم"
+
+#: ui/pages.slint
+msgid "Boşta göster"
+msgstr "الإظهار عند الخمول"
+
+#: ui/pages.slint
+msgid "Etkinlik yokken pil gizlenmez"
+msgstr "يبقى الشريط ظاهرًا حين لا يوجد نشاط"
+
+#: ui/pages.slint
+msgid "Hep göster"
+msgstr "الإظهار دائمًا"
+
+#: ui/pages.slint
+msgid "Diğerlerinin arkasında, yığında"
+msgstr "خلف الأنشطة الأخرى، في المجموعة"
+
+#: ui/pages.slint
+msgid "Hava efektleri"
+msgstr "تأثيرات الطقس"
+
+#: ui/pages.slint
+msgid "Kar, yağmur, güneş, yıldız"
+msgstr "ثلج، مطر، شمس، نجوم"
+
+#: ui/pages.slint
+msgid "Konumumu kullan"
+msgstr "استخدام موقعي"
+
+#: ui/pages.slint
+msgid "Seçili şehir öncelikli"
+msgstr "المدينة المختارة لها الأولوية"
+
+#: ui/pages.slint
+msgid "Yağmur uyarısı"
+msgstr "تنبيه المطر"
+
+#: ui/pages.slint
+msgid "Başlamadan önce bir an"
+msgstr "لحظة قبل هطوله"
+
+#: ui/pages.slint
+msgid "Bir şehir seç"
+msgstr "اختر مدينة"
+
+#: ui/pages.slint
+msgid "Hava uyarıları"
+msgstr "تنبيهات الطقس"
+
+#: ui/pages.slint
+msgid "Fırtına, rüzgâr, sıcak, don, hava kalitesi"
+msgstr "عواصف، رياح، حرّ، صقيع، جودة الهواء"
+
+#: ui/pages.slint
+msgid "2 an · tıkla: aç / kapat"
+msgstr "لحظتان · انقر: تشغيل / إيقاف"
+
+#: ui/pages.slint
+msgid "İndirmeler"
+msgstr "التنزيلات"
+
+#: ui/pages.slint
+msgid "ilerleme, hız"
+msgstr "التقدّم، السرعة"
+
+#: ui/pages.slint
+msgid "Oyun süresi"
+msgstr "وقت اللعب"
+
+#: ui/pages.slint
+msgid "oynarken ve sonra"
+msgstr "أثناء اللعب وبعده"
+
+#: ui/pages.slint
+msgid "Kütüphaneler"
+msgstr "المكتبات"
+
+#: ui/pages.slint
+msgid "bu bilgisayarda"
+msgstr "على هذا الكمبيوتر"
+
+#: ui/pages.slint
+msgid "bulunamadı"
+msgstr "غير موجودة"
+
+#: ui/pages.slint
+msgid "Mağazalar"
+msgstr "المتاجر"
+
+#: ui/pages.slint
+msgid "Kayıt defteri ve kütüphane dosyaları"
+msgstr "السجل وملفات المكتبة"
+
+#: ui/pages.slint
+msgid "Yeni Epic launcher'ın klasörü"
+msgstr "مجلد مشغّل Epic الجديد"
+
+#: ui/pages.slint
+msgid "İlerleme, hız ve duraklatma"
+msgstr "التقدّم والسرعة والإيقاف المؤقت"
+
+#: ui/pages.slint
+msgid "Tam ekran değilken pilde"
+msgstr "في الشريط خارج وضع ملء الشاشة"
+
+#: ui/pages.slint
+msgid "Tam ekran"
+msgstr "ملء الشاشة"
+
+#: ui/pages.slint
+msgid "Oyun içi ada"
+msgstr "جزيرة داخل اللعبة"
+
+#: ui/pages.slint
+msgid "Acil anlar üstte, tıklamayı geçirir"
+msgstr "اللحظات العاجلة في الأعلى، والنقرات تمرّ من خلالها"
+
+#: ui/pages.slint
+msgid "Henüz ekran süresi yok"
+msgstr "لا يوجد وقت شاشة بعد"
+
+#: ui/pages.slint
+msgid "uygulamalar öndeyken sayılır"
+msgstr "تُحتسب التطبيقات وهي في الواجهة"
+
+#: ui/pages.slint
+msgid "Sınır yok"
+msgstr "بلا حد"
+
+#: ui/pages.slint
+msgid "1 sa"
+msgstr "1 س"
+
+#: ui/pages.slint
+msgid "2 sa"
+msgstr "2 س"
+
+#: ui/pages.slint
+msgid "3 sa"
+msgstr "3 س"
+
+#: ui/pages.slint
+msgid "4 sa"
+msgstr "4 س"
+
+#: ui/pages.slint
+msgid "Ekran süresini say"
+msgstr "احتساب وقت الشاشة"
+
+#: ui/pages.slint
+msgid "Bu bilgisayarda kalır, bir hafta"
+msgstr "يبقى على هذا الكمبيوتر لمدة أسبوع"
+
+#: ui/pages.slint
+msgid "Now Brief'te göster"
+msgstr "الإظهار في Now Brief"
+
+#: ui/pages.slint
+msgid "Dünün ya da bugünün toplamı"
+msgstr "إجمالي الأمس أو اليوم"
+
+#: ui/pages.slint
+msgid "Sınırlar"
+msgstr "الحدود"
+
+#: ui/pages.slint
+msgid "Sınır uyarıları"
+msgstr "تنبيهات الحدود"
+
+#: ui/pages.slint
+msgid "Sınırı geçince pilde bir an"
+msgstr "لحظة في الشريط عند تجاوز حد"
+
+#: ui/pills.slint
+msgid " · Şarj oluyor"
+msgstr " · جارٍ الشحن"
+
+#: ui/pills.slint
+msgid " · Kutu %60"
+msgstr " · العلبة 60%"
+
+#: ui/pills.slint
+msgid " · Çar 21 Eki · 18°"
+msgstr " · أربعاء 21 أكتوبر · 18°"
+
+#: ui/pills.slint
+msgid " · Çar 21 Eki"
+msgstr " · أربعاء 21 أكتوبر"
+
+#: ui/pills.slint
+msgid " · %48 · 18 MB/sn"
+msgstr " · 48% · 18 م.ب/ث"
+
+#: ui/pills.slint
+msgid " · 2 sa 14 dk oynadın"
+msgstr " · لعبت 2 س 14 د"
+
+#: ui/settings.slint
+msgid "Now Bar Ayarları"
+msgstr "إعدادات Now Bar"
+
+#: ui/settings.slint
+msgid "Aç"
+msgstr "تشغيل"
+
+#: ui/settings.slint
+msgid "Takip et"
+msgstr "متابعة"
+
+#: ui/settings.slint
+msgid "Takım ara…"
+msgstr "ابحث عن فريق…"
+
+#: ui/settings.slint
+msgid "Uygulama ekle, ör. vlc.exe"
+msgstr "أضف تطبيقًا، مثل vlc.exe"
+
+#: ui/settings.slint
+msgid "Ayar ara…"
+msgstr "ابحث في الإعدادات…"
+
+#: ui/settings.slint
+msgid "Kaydedildi"
+msgstr "تم الحفظ"
+
+#: ui/settings.slint
+msgid "Değişiklikler anında uygulanır"
+msgstr "تُطبَّق التغييرات فورًا"
+
+#: ui/settings.slint
+msgid "Açık"
+msgstr "تشغيل"
+
+#: ui/settings.slint
+msgid "Görünüm"
+msgstr "المظهر"
+
+#: ui/settings.slint
+msgid "Genel"
+msgstr "عام"
+
+#: ui/settings.slint
+msgid "Etkinlikler"
+msgstr "الأنشطة"
+
+#: ui/settings.slint
+msgid "Oyunlar"
+msgstr "الألعاب"
+
+#: ui/settings.slint
+msgid "Hakkında"
+msgstr "حول"
+
+#: ui/settings.slint
+msgid " ayar"
+msgstr " إعدادات"
+
+#: ui/settings.slint
+msgid "başka bir kelime dene"
+msgstr "جرّب كلمة أخرى"
+
+#: ui/settings.slint
+msgid "Eylemler"
+msgstr "الإجراءات"
+
+#: ui/settings.slint
+msgid "Ayar dosyasını aç"
+msgstr "فتح ملف الإعدادات"
+
+#: ui/settings.slint
+msgid "Günlüğü aç"
+msgstr "فتح السجل"
+
+#: ui/settings.slint
+msgid "Son silineni geri al"
+msgstr "التراجع عن آخر حذف"
+
+#: ui/settings.slint
+msgid "Varsayılanlara dönülsün mü?"
+msgstr "استعادة الإعدادات الافتراضية؟"
+
+#: ui/settings.slint
+msgid "Bütün ayarlar ilk hallerine döner; takip ettiğin takımlar, gizlediğin uygulamalar ve istisnalar da silinir."
+msgstr "ستعود كل الإعدادات إلى قيمها الافتراضية، وستُحذف أيضًا الفرق التي تتابعها والتطبيقات التي أخفيتها والاستثناءات."
+
+#: ui/settings.slint
+msgid "Vazgeç"
+msgstr "إلغاء"
+
+#: src/main.rs
+msgid "Claude Code hook'ları kuruldu. Yeni oturumlarda pilde görünür."
+msgstr "تم تثبيت خطافات Claude Code. ستظهر الجلسات الجديدة في الشريط."
+
+#: src/main.rs
+msgid "Claude Code hook'ları kaldırıldı."
+msgstr "تمت إزالة خطافات Claude Code."
+
+#: src/main.rs
+msgid "Kullanım: nowbar.exe claude-hooks install | remove"
+msgstr "الاستخدام: nowbar.exe claude-hooks install | remove"
+
+#: src/main.rs
+msgid "Claude Code ayarları yazılamadı: {}"
+msgstr "تعذّرت كتابة إعدادات Claude Code: {}"
+
+#: src/main.rs
+msgid "Claude Code ayarlarındaki \"hooks\" alanı tanınmadı; dosyaya dokunulmadı."
+msgstr "يحتوي ملف إعدادات Claude Code على حقل \"hooks\" لا يتعرّف عليه Now Bar؛ لم يُمَسّ الملف."
+
+#: src/main.rs
+msgid "Now Bar açılamadı: {}\nAyrıntılar: {}"
+msgstr "تعذّر تشغيل Now Bar: {}\nالتفاصيل: {}"
+
+#: src/settings_ui.rs
+msgid "Galaxy Buds"
+msgstr "Galaxy Buds"
+
+#: src/settings_ui.rs
+msgid "Yükseklik 32 DIP"
+msgstr "الارتفاع 32 DIP"
+
+#: src/settings_ui.rs
+msgid "Görev çubuğunun ortasından sola ya da sağa"
+msgstr "يمين منتصف شريط المهام أو يساره"
+
+#: src/settings_ui.rs
+msgid "Zemin opaklığı"
+msgstr "عتامة الخلفية"
+
+#: src/settings_ui.rs
+msgid "Zamanlayıcı, kronometre, Buds ve maç pillerinde; medya pili kapağın renginde kalır"
+msgstr "في أشرطة المؤقّت وساعة الإيقاف وBuds والمباريات؛ أما شريط الوسائط فيبقى بلون الغلاف"
+
+#: src/settings_ui.rs
+msgid "Arkadaki etkinlikleri göster"
+msgstr "إظهار الأنشطة الخلفية"
+
+#: src/settings_ui.rs
+msgid "Öndeki pilin sağından taşan ince şeritler"
+msgstr "شرائط رفيعة تطلّ من جانب الشريط الأمامي"
+
+#: src/settings_ui.rs
+msgid "Vurgu rengi duvar kâğıdının renginden gelir; gri bir duvar kâğıdında seçtiğin renk"
+msgstr "لون التمييز مأخوذ من لون الخلفية؛ وإن كانت رمادية فاللون الذي تختاره"
+
+#: src/settings_ui.rs
+msgid "Zamanlayıcı, kronometre ve seçici"
+msgstr "المؤقّت وساعة الإيقاف والمنتقي"
+
+#: src/settings_ui.rs
+msgid "Medya pili ve kartı albüm kapağının rengini alır; kapalıyken uygulamanın rengini"
+msgstr "يأخذ شريط الوسائط وبطاقتها لون غلاف الألبوم؛ وعند الإيقاف لون التطبيق"
+
+#: src/settings_ui.rs
+msgid "Kompakt ya da büyük"
+msgstr "مضغوط أو كبير"
+
+#: src/settings_ui.rs
+msgid "Kartın arkasındaki masaüstü bulanıklaşır"
+msgstr "يصبح سطح المكتب خلف البطاقة ضبابيًا"
+
+#: src/settings_ui.rs
+msgid "Malzeme koyuluğu"
+msgstr "قتامة الخامة"
+
+#: src/settings_ui.rs
+msgid "Bulanık zeminin ne kadar karartılacağı"
+msgstr "مدى تعتيم الخلفية الضبابية"
+
+#: src/settings_ui.rs
+msgid "Renk doygunluğu"
+msgstr "تشبّع الألوان"
+
+#: src/settings_ui.rs
+msgid "Bulanık zeminin renk canlılığı"
+msgstr "مدى حيوية ألوان الخلفية الضبابية"
+
+#: src/settings_ui.rs
+msgid "Pilin büyüyüp küçülmesi, kartın açılması, içerik geçişleri"
+msgstr "اتساع الشريط وانكماشه، وفتح البطاقة، وانتقالات المحتوى"
+
+#: src/settings_ui.rs
+msgid "Pile sığmayan şarkı adı"
+msgstr "اسم أغنية أطول من أن يتّسع له الشريط"
+
+#: src/settings_ui.rs
+msgid "Kayan başlığın hızı"
+msgstr "سرعة تمرير العنوان"
+
+#: src/settings_ui.rs
+msgid "Otomatik: Windows'unki; Türkçe, İngilizce ya da Arapça"
+msgstr "تلقائي: لغة Windows؛ التركية أو الإنجليزية أو العربية"
+
+#: src/settings_ui.rs
+msgid "Oturum açınca Now Bar kendiliğinden çalışır"
+msgstr "يعمل Now Bar تلقائيًا عند تسجيل الدخول"
+
+#: src/settings_ui.rs
+msgid "Zamanlayıcı seçicisini açar"
+msgstr "يفتح منتقي المؤقّت"
+
+#: src/settings_ui.rs
+msgid "Tepsi simgesine sol tık"
+msgstr "النقر الأيسر على أيقونة شريط المهام"
+
+#: src/settings_ui.rs
+msgid "Zamanlayıcı seçicisi ya da ayarlar"
+msgstr "منتقي المؤقّت أو الإعدادات"
+
+#: src/settings_ui.rs
+msgid "Kart ve etkileşim"
+msgstr "البطاقة والتفاعل"
+
+#: src/settings_ui.rs
+msgid "Fare ayrılınca kartı kapat"
+msgstr "إغلاق البطاقة عند ابتعاد الماوس"
+
+#: src/settings_ui.rs
+msgid "Fare karttan uzaklaşınca kart kapanır"
+msgstr "تُغلق البطاقة عندما يبتعد الماوس عنها"
+
+#: src/settings_ui.rs
+msgid "Kapanma gecikmesi"
+msgstr "مهلة الإغلاق"
+
+#: src/settings_ui.rs
+msgid "Fare ayrıldıktan sonra kartın kapanma süresi"
+msgstr "المدة قبل إغلاق البطاقة بعد ابتعاد الماوس"
+
+#: src/settings_ui.rs
+msgid "Tekerlek ve kaydırma etkinlik değiştirir"
+msgstr "العجلة والتمرير يبدّلان الأنشطة"
+
+#: src/settings_ui.rs
+msgid "Pilin ve kartın üstünde; dokunmatik yüzeyde iki parmakla"
+msgstr "فوق الشريط والبطاقة؛ وبإصبعين على لوحة اللمس"
+
+#: src/settings_ui.rs
+msgid "Seçtiğim etkinlik önde kalsın"
+msgstr "إبقاء النشاط الذي أختاره في المقدمة"
+
+#: src/settings_ui.rs
+msgid "Tekerlekle öne aldığın etkinlik yeni bir şey olana dek önde kalır"
+msgstr "يبقى النشاط الذي تقدّمه بالعجلة في المقدمة حتى يطرأ جديد"
+
+#: src/settings_ui.rs
+msgid "Tema"
+msgstr "السمة"
+
+#: src/settings_ui.rs
+msgid "Pil ve kartlar her zaman koyudur"
+msgstr "الشريط والبطاقات داكنة دائمًا"
+
+#: src/settings_ui.rs
+msgid "Medyayı göster"
+msgstr "إظهار الوسائط"
+
+#: src/settings_ui.rs
+msgid "Çalan şarkı pilde; tıklayınca medya kartı"
+msgstr "الأغنية الحالية في الشريط؛ وبالنقر تُفتح بطاقة الوسائط"
+
+#: src/settings_ui.rs
+msgid "Başlık, düğmelere kadar uzar"
+msgstr "يمتد العنوان حتى الأزرار"
+
+#: src/settings_ui.rs
+msgid "Başlığın yanında, soluk"
+msgstr "بجوار العنوان، بلون باهت"
+
+#: src/settings_ui.rs
+msgid "Kapakla başlık arasındaki çubuklar sesle birlikte oynar"
+msgstr "أعمدة بين الغلاف والعنوان تتراقص مع الصوت"
+
+#: src/settings_ui.rs
+msgid "Dalgalı ilerleme çubuğu"
+msgstr "شريط تقدّم متموّج"
+
+#: src/settings_ui.rs
+msgid "Çalarken dalgalanır; kapalıyken düz çizgi"
+msgstr "يتموّج أثناء التشغيل؛ وخط مستقيم عند الإيقاف"
+
+#: src/settings_ui.rs
+msgid "Kartta «Sözler» çipi; eşzamanlı sözler lrclib.net'ten gelir"
+msgstr "زر «الكلمات» على البطاقة؛ والكلمات المتزامنة من lrclib.net"
+
+#: src/settings_ui.rs
+msgid "Davranış"
+msgstr "السلوك"
+
+#: src/settings_ui.rs
+msgid "Orta tıkla oynat/durdur"
+msgstr "النقر الأوسط للتشغيل/الإيقاف المؤقت"
+
+#: src/settings_ui.rs
+msgid "Medya pilinin üstünde farenin orta tuşu"
+msgstr "زر الماوس الأوسط فوق شريط الوسائط"
+
+#: src/settings_ui.rs
+msgid "Duraklatınca pilde kalma süresi"
+msgstr "مدة البقاء في الشريط عند الإيقاف المؤقت"
+
+#: src/settings_ui.rs
+msgid "Sonra pil kaybolur; çalınca geri gelir"
+msgstr "بعدها يختفي الشريط، ويعود عند التشغيل"
+
+#: src/settings_ui.rs
+msgid "Pilde gösterilecek medya uygulamaları"
+msgstr "تطبيقات الوسائط التي تظهر في الشريط"
+
+#: src/settings_ui.rs
+msgid "Ses çıkışı seçicisi"
+msgstr "منتقي مخرج الصوت"
+
+#: src/settings_ui.rs
+msgid "Medya kartındaki çıkış sayfasında görünen cihazlar"
+msgstr "الأجهزة الظاهرة في صفحة المخرج ببطاقة الوسائط"
+
+#: src/settings_ui.rs
+msgid "Geri sayım; süre dolunca alarm"
+msgstr "عدّ تنازلي؛ وتنبيه عند انتهاء الوقت"
+
+#: src/settings_ui.rs
+msgid "İleri sayım ve tur"
+msgstr "عدّ تصاعدي مع اللفّات"
+
+#: src/settings_ui.rs
+msgid "Windows'un alarm ve zil sesleri"
+msgstr "أصوات التنبيه والرنين في Windows"
+
+#: src/settings_ui.rs
+msgid "Süre dolunca kart kendiliğinden açılır"
+msgstr "تُفتح البطاقة تلقائيًا عند انتهاء الوقت"
+
+#: src/settings_ui.rs
+msgid "Biten zamanlayıcının kartında"
+msgstr "على بطاقة المؤقّت المنتهي"
+
+#: src/settings_ui.rs
+msgid "Seçicideki çipler, dakika olarak (1–180)"
+msgstr "أزرار المنتقي، بالدقائق (1–180)"
+
+#: src/settings_ui.rs
+msgid "Kartta 00:12,4 gibi; kapalıyken saniyede bir güncellenir"
+msgstr "مثل 00:12.4 على البطاقة؛ وعند الإيقاف يُحدَّث كل ثانية"
+
+#: src/settings_ui.rs
+msgid "Buds'ı göster"
+msgstr "إظهار Buds"
+
+#: src/settings_ui.rs
+msgid "Kulaklığın pili; bağlanınca ve pil azalınca pilde"
+msgstr "بطارية السماعات؛ في الشريط عند الاتصال وعند انخفاضها"
+
+#: src/settings_ui.rs
+msgid "Hangi Buds: bağlanan ilki ya da seçilen eşleşmiş cihaz"
+msgstr "أي Buds: أول ما يتصل، أو جهاز مقترن تختاره"
+
+#: src/settings_ui.rs
+msgid "Düşük pil uyarısı"
+msgstr "تنبيه انخفاض البطارية"
+
+#: src/settings_ui.rs
+msgid "Bunun altında Buds öne gelir, halkalar kırmızı olur"
+msgstr "تحت هذا الحد تتقدّم Buds وتتحوّل الحلقات إلى الأحمر"
+
+#: src/settings_ui.rs
+msgid "Kulaklık bağlanınca pil kısa süre önde"
+msgstr "يتقدّم الشريط لحظيًا عند اتصال السماعات"
+
+#: src/settings_ui.rs
+msgid "Bir kulaklık çıkınca müzik durur, geri takınca devam eder"
+msgstr "تتوقف الموسيقى عند نزع سماعة، وتُستأنف عند إعادتها"
+
+#: src/settings_ui.rs
+msgid "Canlı maçı göster"
+msgstr "إظهار المباريات المباشرة"
+
+#: src/settings_ui.rs
+msgid "Yalnızca takip ettiğin takımlar"
+msgstr "الفرق التي تتابعها فقط"
+
+#: src/settings_ui.rs
+msgid "Sonuçlar ESPN'den gelir"
+msgstr "النتائج من ESPN"
+
+#: src/settings_ui.rs
+msgid "Takip edilenler"
+msgstr "المتابَعة"
+
+#: src/settings_ui.rs
+msgid "Takip edilen takımlar"
+msgstr "الفرق المتابَعة"
+
+#: src/settings_ui.rs
+msgid "Takip ettiğin takımlar"
+msgstr "الفرق التي تتابعها"
+
+#: src/settings_ui.rs
+msgid "Maçtan önce göster"
+msgstr "الإظهار قبل المباراة"
+
+#: src/settings_ui.rs
+msgid "Pilde başlama saatiyle"
+msgstr "في الشريط مع موعد الانطلاق"
+
+#: src/settings_ui.rs
+msgid "Maç bitince kalma süresi"
+msgstr "مدة البقاء بعد المباراة"
+
+#: src/settings_ui.rs
+msgid "Maç sonu pilde kalma süresi"
+msgstr "مدة بقاء النتيجة النهائية في الشريط"
+
+#: src/settings_ui.rs
+msgid "Rakip golünde de an göster"
+msgstr "إظهار لحظة لأهداف المنافس أيضًا"
+
+#: src/settings_ui.rs
+msgid "Pil kısa süre büyür, parıltı olmadan"
+msgstr "يتّسع الشريط لحظيًا، دون التوهّج"
+
+#: src/settings_ui.rs
+msgid "Takımın gol atınca kısa bir ses çalar"
+msgstr "يُصدر صوتًا قصيرًا عندما يسجّل فريقك"
+
+#: src/settings_ui.rs
+msgid "Pil ve kartlar, tam ekran bir uygulama öndeyken gizlenir"
+msgstr "يختفي الشريط والبطاقات حين يكون تطبيق بملء الشاشة في الواجهة"
+
+#: src/settings_ui.rs
+msgid "Bu uygulamalar tam ekran olsa da Now Bar görünür kalır"
+msgstr "يظل Now Bar ظاهرًا حتى عندما تعمل هذه التطبيقات بملء الشاشة"
+
+#: src/settings_ui.rs
+msgid "Yeni sürüm varsa indirir, doğrular ve Now Bar'ı yeniden başlatır"
+msgstr "ينزّل الإصدار الجديد إن وُجد، ويتحقق منه، ثم يعيد تشغيل Now Bar"
+
+#: src/settings_ui.rs
+msgid "Günde bir kez GitHub'a yeni sürüm var mı diye sorar"
+msgstr "يسأل GitHub مرة يوميًا عن وجود إصدار جديد"
+
+#: src/settings_ui.rs
+msgid "Now Bar'ın günlük dosyası"
+msgstr "ملف سجل Now Bar"
+
+#: src/settings_ui.rs
+msgid "settings.json"
+msgstr "settings.json"
+
+#: src/settings_ui.rs
+msgid "Varsayılanlara dön"
+msgstr "استعادة الإعدادات الافتراضية"
+
+#: src/settings_ui.rs
+msgid "Takımlar ve listeler de sıfırlanır"
+msgstr "تُعاد أيضًا الفرق والقوائم"
+
+#: src/settings_ui.rs
+msgid "Ses değişince seviye kısa bir an pilde görünür"
+msgstr "يظهر المستوى في الشريط للحظة عند تغيّر مستوى الصوت"
+
+#: src/settings_ui.rs
+msgid "Şarj aleti takılınca ve pil azalınca pil kısa bir an öne gelir"
+msgstr "يتقدّم الشريط للحظة عند توصيل الشاحن وعند انخفاض البطارية"
+
+#: src/settings_ui.rs
+msgid "Dizüstünün pili bunun altına inince bir kez uyarır"
+msgstr "ينبّهك مرة واحدة عندما تنخفض بطارية الحاسوب المحمول عن هذا الحد"
+
+#: src/settings_ui.rs
+msgid "Mikrofon ve kamera kullanımı"
+msgstr "استخدام الميكروفون والكاميرا"
+
+#: src/settings_ui.rs
+msgid "Bir uygulama mikrofonu ya da kamerayı kullanırken pilde, uygulamanın adıyla"
+msgstr "في الشريط، مع اسم التطبيق، أثناء استخدام تطبيق للميكروفون أو الكاميرا"
+
+#: src/settings_ui.rs
+msgid "nowbar.exe push ve Claude Code'un hook'ları pilde bir etkinlik gösterir"
+msgstr "يعرض nowbar.exe push وخطافات Claude Code نشاطًا في الشريط"
+
+#: src/settings_ui.rs
+msgid "Ekran görüntüsünü göster"
+msgstr "إظهار لقطات الشاشة"
+
+#: src/settings_ui.rs
+msgid "ShareX ya da Ekran Alıntısı Aracı yeni bir görüntü kaydedince pilde kısa bir an; sürükleyip atabilirsin"
+msgstr "لحظة في الشريط عندما يحفظ ShareX أو أداة القصاصة صورة جديدة؛ ويمكنك سحبها إلى أي مكان"
+
+#: src/settings_ui.rs
+msgid "Ekran görüntülerini rafa ekle"
+msgstr "إضافة لقطات الشاشة إلى الرف"
+
+#: src/settings_ui.rs
+msgid "Yeni görüntüler rafa düşer, sonra sürükleyip atmak için"
+msgstr "تنتقل الصور الجديدة إلى الرف لتسحبها وتفلتها لاحقًا"
+
+#: src/settings_ui.rs
+msgid "Claude izin isteyince kartında İzin ver / Reddet çıkar"
+msgstr "عندما يطلب Claude إذنًا، تعرض بطاقته «سماح / رفض»"
+
+#: src/settings_ui.rs
+msgid "İzin için bekleme"
+msgstr "مهلة انتظار الإذن"
+
+#: src/settings_ui.rs
+msgid "Kart bu kadar cevap bekler, sonra Claude kendi penceresinde sorar"
+msgstr "تنتظر البطاقة ردّك طوال هذه المدة، ثم يسأل Claude في نافذته"
+
+#: src/settings_ui.rs
+msgid "Diğer kulaklıkları göster"
+msgstr "إظهار السماعات الأخرى"
+
+#: src/settings_ui.rs
+msgid "Galaxy Buds dışındaki Bluetooth kulaklıklar, pilleriyle"
+msgstr "سماعات Bluetooth غير Galaxy Buds، مع بطارياتها"
+
+#: src/settings_ui.rs
+msgid "Now Brief"
+msgstr "Now Brief"
+
+#: src/settings_ui.rs
+msgid "Sabah Now Brief"
+msgstr "Now Brief الصباحي"
+
+#: src/settings_ui.rs
+msgid "Günün ilk kilit açılışında günaydın kartı: hava, maçlar, müzik"
+msgstr "بطاقة صباح الخير عند أول إلغاء قفل في اليوم: الطقس والمباريات والموسيقى"
+
+#: src/settings_ui.rs
+msgid "Selamlamadaki adın"
+msgstr "اسمك في التحية"
+
+#: src/settings_ui.rs
+msgid "Boşsa Windows hesabındaki ad"
+msgstr "إن تُرك فارغًا، يُستخدم الاسم في حساب Windows"
+
+#: src/settings_ui.rs
+msgid "Boşta saat ve hava"
+msgstr "الساعة والطقس عند الخمول"
+
+#: src/settings_ui.rs
+msgid "Etkinlik yokken pil gizlenmez; saati, tarihi ve havayı gösterir"
+msgstr "يبقى الشريط ظاهرًا حين لا يوجد نشاط، ويعرض الوقت والتاريخ والطقس"
+
+#: src/settings_ui.rs
+msgid "Havayı hep göster"
+msgstr "إظهار الطقس دائمًا"
+
+#: src/settings_ui.rs
+msgid "Başka etkinlikler varken hava yığının en arkasında durur"
+msgstr "عند وجود أنشطة أخرى، ينتظر الطقس في آخر المجموعة"
+
+#: src/settings_ui.rs
+msgid "Kar, yağmur, güneş ve yıldızlar havanın arkasında hareket eder"
+msgstr "الثلج والمطر والشمس والنجوم تتحرك خلف الطقس"
+
+#: src/settings_ui.rs
+msgid "Şehrinde yağmur ya da kar başlamadan önce pil bir an öne gelir"
+msgstr "يتقدّم الشريط للحظة قبل أن يبدأ المطر أو الثلج في مدينتك"
+
+#: src/settings_ui.rs
+msgid "Fırtına, kuvvetli rüzgâr, aşırı sıcak, don ve kötü hava kalitesi öncesinde pil bir an öne gelir"
+msgstr "يتقدّم الشريط للحظة قبل العواصف والرياح القوية والحرّ الشديد والصقيع وتدهور جودة الهواء"
+
+#: src/settings_ui.rs
+msgid "Steam ve Epic'te ilerleme, hız ve duraklatma; bitince Güncellendi"
+msgstr "التقدّم والسرعة والإيقاف المؤقت في Steam وEpic؛ و«تم التحديث» عند الانتهاء"
+
+#: src/settings_ui.rs
+msgid "Oyun açıkken pilde; kapanınca ne kadar oynadığın"
+msgstr "في الشريط أثناء تشغيل لعبة؛ وعند إغلاقها، كم لعبت"
+
+#: src/settings_ui.rs
+msgid "Tam ekranda gol, Claude'un izni, biten zamanlayıcı gibi acil anlar ekranın üstünde birkaç saniye; tıklamayı engellemez"
+msgstr "في وضع ملء الشاشة، تظهر اللحظات العاجلة كهدف أو طلب إذن من Claude أو انتهاء مؤقّت أعلى الشاشة لبضع ثوانٍ؛ دون أن تعيق النقرات"
+
+#: src/settings_ui.rs
+msgid "Steam"
+msgstr "Steam"
+
+#: src/settings_ui.rs
+msgid "Steam'in kayıt defteri ve kütüphane dosyaları"
+msgstr "سجل Steam وملفات مكتبته"
+
+#: src/settings_ui.rs
+msgid "Epic Games"
+msgstr "Epic Games"
+
+#: src/settings_ui.rs
+msgid "Ekran süresi"
+msgstr "وقت الشاشة"
+
+#: src/settings_ui.rs
+msgid "Hangi uygulamanın ne kadar önde kaldığı; bu bilgisayarda kalır"
+msgstr "كم بقي كل تطبيق في الواجهة؛ وتبقى البيانات على هذا الكمبيوتر"
+
+#: src/settings_ui.rs
+msgid "Brief'te dünün ya da bugünün ekran süresi"
+msgstr "وقت الشاشة للأمس أو لليوم في Brief"
+
+#: src/settings_ui.rs
+msgid "Uygulama sınırları"
+msgstr "حدود التطبيقات"
+
+#: src/settings_ui.rs
+msgid "Bir uygulama günlük sınırını geçince pilde bir an"
+msgstr "لحظة في الشريط عندما يتجاوز تطبيق حده اليومي"
+
+#: src/settings_ui.rs
+msgid "Şehir seçilmemişse hava bilgisayarın bulunduğu yerin; konum Windows'tan, yer adı OpenStreetMap'ten"
+msgstr "إن لم تُختر مدينة، فالطقس لموقع الكمبيوتر؛ الموقع من Windows، واسم المكان من OpenStreetMap"
+
+#: src/settings_ui.rs
+msgid "Hava için şehir"
+msgstr "مدينة الطقس"
+
+#: src/settings_ui.rs
+msgid "Sıcaklık ve gökyüzü bu şehrin; veriler Open-Meteo'dan gelir"
+msgstr "درجة الحرارة وحالة السماء لهذه المدينة؛ والبيانات من Open-Meteo"
+
+#: src/settings_ui.rs
+msgid "Geçersiz ad"
+msgstr "اسم غير صالح"
+
+#: src/settings_ui.rs
+msgid "{} zaten listede"
+msgstr "{} موجود في القائمة بالفعل"
+
+#: src/settings_ui.rs
+msgid "Adsız cihaz"
+msgstr "جهاز بلا اسم"
+
+#: src/settings_ui.rs
+msgid "{} · eşleşmemiş"
+msgstr "{} · غير مقترن"
+
+#: src/update.rs
+msgid "{} · denetlenmedi"
+msgstr "{} · لم يُتحقَّق"
+
+#: src/update.rs
+msgid "{} hazır · şimdiki {}"
+msgstr "{} جاهز · الحالي {}"
+
+#: src/update.rs
+msgid "{} · güncel"
+msgstr "{} · محدَّث"
+
+#: src/bin/nowbar-settings.rs
+msgid "Şu an çalıyor"
+msgstr "يُشغَّل الآن"
+
+#: src/bin/nowbar-settings.rs
+msgid "Sürüm {}"
+msgstr "الإصدار {}"
+
+#: src/platform/tray.rs
+msgid "Güncelle: {}"
+msgstr "تحديث: {}"
+
+#: src/platform/tray.rs
+msgid "Maç sayfasını aç"
+msgstr "فتح صفحة المباراة"
+
+#: src/platform/tray.rs
+msgid "Maçı gizle"
+msgstr "إخفاء المباراة"
+
+#: src/platform/tray.rs
+msgid "Zamanlayıcı başlat"
+msgstr "بدء مؤقّت"
+
+#: src/platform/tray.rs
+msgid "Kronometre başlat"
+msgstr "بدء ساعة الإيقاف"
+
+#: src/platform/tray.rs
+msgid "Ayarlar…"
+msgstr "الإعدادات…"
+
+#: src/platform/tray.rs
+msgid "Çıkış"
+msgstr "خروج"
+
+#: ui/pages.slint
+msgid "Ortada"
+msgstr "في المنتصف"
+
+#: ui/pages.slint
+msgid "{} dk {} sn"
+msgstr "{} د {} ث"
+
+#: ui/pages.slint
+msgid "Hemen"
+msgstr "فورًا"
+
+#: ui/pages.slint
+msgid "Seçiciyi açar"
+msgstr "يفتح المنتقي"
+
+#: ui/pages.slint
+msgid "Ayarları açar"
+msgstr "يفتح الإعدادات"
+
+#: src/activities/basketball.rs
+msgid "DA"
+msgstr "استراحة"
+
+#: src/activities/basketball.rs
+msgid "Ç{} sonu"
+msgstr "نهاية ر{}"
+
+#: src/activities/basketball.rs
+msgid "Ç{} {}"
+msgstr "ر{} {}"
+
+#: src/activities/basketball.rs
+msgid "UZ{}"
+msgstr "إضافي {}"
+
+#: src/activities/basketball.rs
+msgid "UZ"
+msgstr "إضافي"
+
+#: src/activities/basketball.rs
+msgid "{} sonu"
+msgstr "نهاية {}"
+
+#: src/activities/basketball.rs
+msgid "{}. çeyrek sonu"
+msgstr "نهاية الربع {}"
+
+#: src/activities/basketball.rs
+msgid "{}. çeyrek · {}"
+msgstr "الربع {} · {}"
+
+#: src/activities/basketball.rs
+msgid "{}. uzatma"
+msgstr "الوقت الإضافي {}"
+
+#: src/activities/basketball.rs
+msgid "Uzatma"
+msgstr "الوقت الإضافي"
+
+#: src/activities/football.rs
+msgctxt "maç"
+msgid "UZ"
+msgstr "إضافي"
+
+#: src/activities/football.rs
+msgid "Şampiyonlar Ligi"
+msgstr "دوري أبطال أوروبا"
+
+#: src/activities/football.rs
+msgid "Avrupa Ligi"
+msgstr "الدوري الأوروبي"
+
+#: src/activities/football.rs
+msgid "Konferans Ligi"
+msgstr "دوري المؤتمر"
+
+#: src/activities/football.rs
+msgid "UEFA Süper Kupa"
+msgstr "كأس السوبر الأوروبي"
+
+#: src/activities/football.rs
+msgid "UEFA Uluslar Ligi"
+msgstr "دوري الأمم الأوروبية"
+
+#: src/activities/football.rs
+msgid "Dünya Kupası Elemeleri"
+msgstr "تصفيات كأس العالم"
+
+#: src/activities/football.rs
+msgid "Dünya Kupası"
+msgstr "كأس العالم"
+
+#: src/activities/football.rs
+msgid "EURO Elemeleri"
+msgstr "تصفيات اليورو"
+
+#: src/activities/football.rs
+msgid "Hazırlık Maçı"
+msgstr "مباراة ودية"
+
+#: src/activities/football.rs
+msgid "{} · Ön Eleme"
+msgstr "{} · التصفيات"
+
+#: src/activities/football.rs
+msgid "İY"
+msgstr "استراحة"
+
+#: src/activities/football.rs
+msgid "MS"
+msgstr "انتهت"
+
+#: src/activities/football.rs
+msgid "ERT"
+msgstr "مؤجلة"
+
+#: src/activities/football.rs
+msgid "İPT"
+msgstr "ملغاة"
+
+#: src/activities/football.rs
+msgid "TAT"
+msgstr "متوقفة"
+
+#: src/render/card.rs
+msgid "ŞL"
+msgstr "CL"
+
+#: src/render/card.rs
+msgid "AL"
+msgstr "EL"
+
+#: src/render/card.rs
+msgid "KL"
+msgstr "ECL"
+
+#: setup/src/install.rs
+msgid "Bu setup dosyasız derlendi (NOWBAR_SETUP_PAYLOAD olmadan)."
+msgstr "بُني برنامج الإعداد هذا دون ملفات (بلا NOWBAR_SETUP_PAYLOAD)."
+
+#: setup/src/install.rs
+msgid "Bu klasöre yazılamıyor; başka bir yer seç."
+msgstr "تتعذّر الكتابة في هذا المجلد؛ اختر مكانًا آخر."
+
+#: setup/src/install.rs
+msgid "Hazırlanıyor"
+msgstr "جارٍ التحضير"
+
+#: setup/src/install.rs
+msgid "Now Bar kapatılıyor"
+msgstr "جارٍ إغلاق Now Bar"
+
+#: setup/src/install.rs
+msgid "Dosyalar kopyalanıyor"
+msgstr "جارٍ نسخ الملفات"
+
+#: setup/src/install.rs
+msgid "Kaydediliyor"
+msgstr "جارٍ التسجيل"
+
+#: setup/src/install.rs
+msgid "Windows'la başlatma"
+msgstr "التشغيل مع Windows"
+
+#: setup/src/install.rs
+msgid "Claude Code bağlanamadı: ayar dosyası açık ya da okunamıyor."
+msgstr "تعذّر ربط Claude Code: ملف إعداداته مفتوح أو تتعذّر قراءته."
+
+#: setup/src/install.rs
+msgid "Now Bar başlatılıyor"
+msgstr "جارٍ تشغيل Now Bar"
+
+#: setup/src/install.rs
+msgid "Now Bar açılmadı. Yeniden başlatıp tekrar dene."
+msgstr "لم يبدأ Now Bar. أعد تشغيل الكمبيوتر وحاول مجددًا."
+
+#: setup/src/install.rs
+msgid "Ayarlar yazılamadı: {}"
+msgstr "تعذّرت كتابة الإعدادات: {}"
+
+#: setup/src/install.rs
+msgid "Windows'la başlatma ayarlanamadı: {}"
+msgstr "تعذّر ضبط التشغيل مع Windows: {}"
+
+#: setup/src/install.rs
+msgid "Now Bar'ın dosyaları değiştirilemedi; Now Bar'ı kapatıp tekrar dene."
+msgstr "تعذّر استبدال ملفات Now Bar؛ أغلق Now Bar وحاول مجددًا."
+
+#: setup/src/main.rs
+msgid "Kurulum dosyası bozuk; yeniden indir."
+msgstr "ملف الإعداد تالف؛ نزّله من جديد."
+
+#: setup/src/main.rs
+msgid "Kurulum penceresi açılamadı: {}"
+msgstr "تعذّر فتح نافذة الإعداد: {}"
+
+#: setup/src/main.rs
+msgid "Now Bar'ı kaldır"
+msgstr "إلغاء تثبيت Now Bar"
+
+#: setup/src/main.rs
+msgid "Now Bar, kısayolları ve Claude Code bağlantısı kaldırılacak."
+msgstr "سيُزال Now Bar واختصاراته وارتباطه بـClaude Code."
+
+#: setup/src/main.rs
+msgid "Kaldır"
+msgstr "إلغاء التثبيت"
+
+#: setup/src/main.rs
+msgid "Görev çubuğunda canlı etkinlikler"
+msgstr "أنشطة مباشرة في شريط المهام"
+
+#: setup/src/main.rs
+msgid "Kur"
+msgstr "تثبيت"
+
+#: setup/src/main.rs
+msgid "v{} kurulu · v{} sürümüne güncellenecek"
+msgstr "الإصدار v{} مثبّت · سيُحدَّث إلى v{}"
+
+#: setup/src/main.rs
+msgid "Bu sürüm zaten kurulu; dosyalar yeniden yazılacak."
+msgstr "هذا الإصدار مثبّت بالفعل؛ ستُعاد كتابة ملفاته."
+
+#: setup/src/main.rs
+msgid "Onar"
+msgstr "إصلاح"
+
+#: setup/src/main.rs
+msgid "Daha yeni bir sürüm kurulu (v{})."
+msgstr "يوجد إصدار أحدث مثبّت (v{})."
+
+#: setup/src/main.rs
+msgid "Yine de kur"
+msgstr "التثبيت على أي حال"
+
+#: setup/src/main.rs
+msgid "Now Bar görev çubuğunda. Her şeyi ayarlar penceresinden değiştirebilirsin."
+msgstr "أصبح Now Bar في شريط المهام. يمكنك تغيير كل شيء من نافذة إعداداته."
+
+#: setup/src/main.rs
+msgid "Dosyalar yerinde; Now Bar başlatılmadı."
+msgstr "الملفات في مكانها؛ لم يُشغَّل Now Bar."
+
+#: setup/src/main.rs
+msgid "Kapat"
+msgstr "إغلاق"
+
+#: setup/src/main.rs
+msgid "Bitir"
+msgstr "إنهاء"
+
+#: setup/src/main.rs
+msgid "Tekrar dene"
+msgstr "حاول مجددًا"
+
+#: setup/src/main.rs
+msgid "Now Bar kapanmadı; görev çubuğundan kapatıp tekrar dene."
+msgstr "لم يُغلق Now Bar؛ أغلقه من شريط المهام وحاول مجددًا."
+
+#: setup/src/main.rs
+msgid "Dosyalar siliniyor"
+msgstr "جارٍ حذف الملفات"
+
+#: setup/src/stage.rs
+msgid "Çalan şarkı, kontroller ve şarkı sözleri"
+msgstr "الأغنية الحالية وأزرار التحكم والكلمات"
+
+#: setup/src/stage.rs
+msgid "Ne yaptığı, görev listesi ve izin istekleri"
+msgstr "ما يفعله، وقائمة مهامه، وطلبات الإذن"
+
+#: setup/src/stage.rs
+msgid "Skor, dakika ve goller anında"
+msgstr "النتيجة والدقيقة والأهداف لحظة بلحظة"
+
+#: setup/src/stage.rs
+msgid "Kulaklıkların ve kutunun pili"
+msgstr "بطارية السماعتين والعلبة"
+
+#: setup/src/stage.rs
+msgid "Raf"
+msgstr "الرف"
+
+#: setup/src/stage.rs
+msgid "Dosyaları bırak, sonra istediğin yere sürükle"
+msgstr "أفلِت الملفات، ثم اسحبها إلى أي مكان تريده"
+
+#: setup/src/system.rs
+msgid "Kayıt yazılamadı: {}"
+msgstr "تعذّرت الكتابة في السجل: {}"
+
+#: setup/src/system.rs
+msgid "Kısayol oluşturulamadı: {}"
+msgstr "تعذّر إنشاء الاختصار: {}"
+
+#: setup/src/system.rs
+msgid "Kaldırıcı başlatılamadı: {}"
+msgstr "تعذّر تشغيل أداة إلغاء التثبيت: {}"
+
+#: setup/src/uninstall.rs
+msgid "Kısayollar ve kayıtlar"
+msgstr "الاختصارات وإدخالات السجل"
+
+#: setup/src/uninstall.rs
+msgid "Bazı dosyalar silinemedi (açık olabilirler). Yeniden başlattıktan sonra klasörü elle silebilirsin."
+msgstr "تعذّر حذف بعض الملفات (ربما لا تزال مفتوحة). بعد إعادة التشغيل يمكنك حذف المجلد يدويًا."
+
+#: setup/ui/setup.slint
+msgid "Now Bar kurulumu"
+msgstr "إعداد Now Bar"
+
+#: setup/ui/setup.slint
+msgid "Windows'la başlat"
+msgstr "التشغيل مع Windows"
+
+#: setup/ui/setup.slint
+msgid "Claude Code'a bağlan"
+msgstr "الربط مع Claude Code"
+
+#: setup/ui/setup.slint
+msgid "Masaüstü kısayolu"
+msgstr "اختصار على سطح المكتب"
+
+#: setup/ui/setup.slint
+msgid "Bitince ayarları aç"
+msgstr "فتح الإعدادات عند الانتهاء"
+
+#: setup/ui/setup.slint
+msgid "Ayarlarımı da sil"
+msgstr "حذف إعداداتي أيضًا"
+
+#: setup/ui/setup.slint
+msgid "Now Bar kaldırıldı"
+msgstr "تم إلغاء تثبيت Now Bar"
+
+#: setup/ui/setup.slint
+msgid "Now Bar kuruldu"
+msgstr "تم تثبيت Now Bar"
+
+#: setup/ui/setup.slint
+msgid "Kaldırma tamamlanamadı"
+msgstr "تعذّر إكمال إلغاء التثبيت"
+
+#: setup/ui/setup.slint
+msgid "Kurulum tamamlanamadı"
+msgstr "تعذّر إكمال التثبيت"
+
+#: setup/ui/setup.slint
+msgid "Değiştir"
+msgstr "تغيير"
+
+#: src/render/pill.rs
+msgid "{} dosya"
+msgstr "{} ملفات"
+
+#: ui/pages.slint
+msgid "Windows 11 gerekir"
+msgstr "يتطلب Windows 11"
+
+#: src/main.rs
+msgid "Now Bar, Windows 10 sürüm 1809 veya sonrasını gerektirir."
+msgstr "يتطلب Now Bar نظام Windows 10 الإصدار 1809 أو أحدث."
+
+#: src/render/card.rs
+msgid "Bildirim göstermek istiyor"
+msgstr "يريد عرض إشعارات"
+
+#: src/render/card.rs
+msgid "Yalnızca güvendiğin uygulamalara izin ver."
+msgstr "لا تسمح إلا للتطبيقات التي تثق بها."
+
+#: src/render/card.rs
+msgid "Sustur"
+msgstr "كتم"
+
+#: src/settings_ui.rs
+msgid "Uygulama bildirimleri"
+msgstr "إشعارات التطبيقات"
+
+#: src/settings_ui.rs
+msgid "Diğer uygulamalar 127.0.0.1:20034 üzerinden pilde bildirim gösterebilir; önce sana sorulur"
+msgstr "يمكن للتطبيقات الأخرى عرض إشعارات في الشريط عبر 127.0.0.1:20034؛ بعد استئذانك أولًا"
+
+#: src/settings_ui.rs
+msgid "İzin verilen uygulamalar"
+msgstr "التطبيقات المسموح لها"
+
+#: src/settings_ui.rs
+msgid "Sorduklarında verdiğin cevaplar; tıkla: izin ver / engelle"
+msgstr "إجاباتك حين طلبت الإذن؛ انقر: سماح / حظر"
+
+#: ui/pages.slint
+msgid " uygulama · tıkla: izin ver / engelle"
+msgstr " تطبيقات · انقر: سماح / حظر"
+
+#: ui/pages.slint
+msgid "bir uygulama sorunca burada görünür"
+msgstr "يظهر التطبيق هنا بمجرد أن يطلب الإذن"
+
+#: ui/pages.slint
+msgid "sağdan aç"
+msgstr "فعّله من اليمين"
+
+#: ui/pages.slint
+msgid "İzinli"
+msgstr "مسموح"
+
+#: ui/pages.slint
+msgid "Engelli"
+msgstr "محظور"
+
+#: ui/pages.slint
+msgid "Açıkken, izin verdiğin uygulamalar pilde bildirim gösterebilir. Hangi uygulamalara izin verdiğin ve gösterdikleri senin sorumluluğunda; Now Bar yalnızca gösterir."
+msgstr "عند التفعيل، يمكن للتطبيقات التي تسمح لها عرض إشعارات في الشريط. اختيار هذه التطبيقات وما تعرضه مسؤوليتك؛ فدور Now Bar هو العرض فقط."
+
+#: setup/ui/setup.slint
+msgid "Uygulama bildirimlerini aç"
+msgstr "تفعيل إشعارات التطبيقات"
+
+#: setup/ui/setup.slint
+msgid "İzin verdiğin uygulamalar ve gösterdikleri senin sorumluluğunda"
+msgstr "التطبيقات التي تسمح لها وما تعرضه مسؤوليتك"

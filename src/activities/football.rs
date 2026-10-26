@@ -319,7 +319,8 @@ fn team_of(t: &Value) -> Team {
         let s = hex_rgb(t["alternateColor"].as_str().unwrap_or("")).unwrap_or([0xFF, 0xFF, 0xFF]);
         (p, s)
     });
-    let logo = text(&t["logo"]).or_else(|| text(&t["logos"][0]["href"]));
+    // ESPN sends "logo": "" for a team it has no picture of.
+    let logo = text(&t["logo"]).filter(|u| !u.is_empty()).or_else(|| text(&t["logos"][0]["href"]).filter(|u| !u.is_empty()));
     match local_team(&id) {
         Some((name, short, code, colors)) => Team { id, name: name.into(), short: short.into(), code: code.into(), colors: colors.or(espn_colors), logo },
         None => Team {
@@ -415,7 +416,8 @@ pub fn parse_event(e: &Value, fixture: &Fixture, followed: &[String]) -> Option<
         away,
         pens,
         events,
-        url: text(&e["links"][0]["href"]),
+        // It goes to ShellExecute: a web page only, never a file or another protocol.
+        url: text(&e["links"][0]["href"]).filter(|u| u.starts_with("https://")),
         followed,
         venue: text(&c["venue"]["fullName"]),
         form,

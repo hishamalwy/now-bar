@@ -40,6 +40,13 @@ $sums = foreach ($f in $exes + $zip) {
     '{0}  {1}' -f (Get-FileHash -Algorithm SHA256 (Join-Path $dist $f)).Hash.ToLower(), $f
 }
 [IO.File]::WriteAllText((Join-Path $dist 'SHA256SUMS.txt'), ($sums -join "`n") + "`n")
+# Signed with the update key when this build has one (see make-setup.ps1).
+$sig = ''
+if ((Select-String -Path src\update.rs -Pattern 'pub const UPDATE_KEY: &str = "(.+)";').Matches.Count) {
+    & (Join-Path $PSScriptRoot 'sign-sums.ps1') -Sums (Join-Path $dist 'SHA256SUMS.txt')
+    $sig = ' dist\SHA256SUMS.txt.sig'
+}
+elseif ($Profile -eq 'release') { Write-Warning 'UPDATE_KEY in src\update.rs is empty: this release is unsigned; its users install the next one by hand.' }
 
 Write-Host "dist\ is ready for v$version. To publish:"
-Write-Host "gh release create v$version dist\$zip dist\nowbar.exe dist\nowbar-settings.exe dist\SHA256SUMS.txt --title `"Now Bar $version`" --notes `"`""
+Write-Host "gh release create v$version dist\$zip dist\nowbar.exe dist\nowbar-settings.exe dist\SHA256SUMS.txt$sig --title `"Now Bar $version`" --notes `"`""

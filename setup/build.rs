@@ -13,12 +13,14 @@ mod payload;
 fn main() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let out = PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR"));
-    // The app's English, bundled under this crate's name (Slint looks for <crate>.po).
-    let po = root.join("..").join("i18n").join("en").join("LC_MESSAGES").join("nowbar-ui.po");
-    println!("cargo:rerun-if-changed={}", po.display());
-    let bundle = out.join("i18n").join("en").join("LC_MESSAGES");
-    std::fs::create_dir_all(&bundle).expect("i18n bundle dir");
-    std::fs::copy(&po, bundle.join("nowbar-setup.po")).expect("nowbar-ui.po");
+    // The app's English and Arabic, bundled under this crate's name (Slint looks for <crate>.po).
+    for code in ["en", "ar"] {
+        let po = root.join("..").join("i18n").join(code).join("LC_MESSAGES").join("nowbar-ui.po");
+        println!("cargo:rerun-if-changed={}", po.display());
+        let bundle = out.join("i18n").join(code).join("LC_MESSAGES");
+        std::fs::create_dir_all(&bundle).expect("i18n bundle dir");
+        std::fs::copy(&po, bundle.join("nowbar-setup.po")).expect("nowbar-ui.po");
+    }
     let config = slint_build::CompilerConfiguration::new()
         .with_bundled_translations(out.join("i18n"))
         .with_default_translation_context(slint_build::DefaultTranslationContext::None);

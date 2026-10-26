@@ -9,7 +9,7 @@ use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use super::basketball::{apply_header, clubs_url, game_of, games_url, header_url, parse_clubs, parse_games, parse_team_id, search_clubs, season_code, LEAGUES};
 use super::football::{MatchSnapshot, TeamHit};
-use super::football_worker::{fetch_crest, fetch_text};
+use super::football_worker::{fetch_text, queue_crest, CrestJob};
 use crate::platform::log::log;
 
 const LIST_EVERY: Duration = Duration::from_secs(6 * 3600);
@@ -91,7 +91,7 @@ fn run(mut teams: Vec<String>, rx: Receiver<Vec<String>>, post: impl Fn(Vec<Matc
                         }
                         for side in [&game.home, &game.away] {
                             if let Some(url) = &side.logo {
-                                fetch_crest(&side.id, url);
+                                queue_crest(CrestJob::Url { id: side.id.clone(), url: url.clone() });
                             }
                         }
                         match tracked.get_mut(&game.id) {
